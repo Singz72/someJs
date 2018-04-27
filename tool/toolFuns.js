@@ -1,7 +1,7 @@
 //-------------------------------------  
 
 /*16进制颜色转为RGB格式*/
-String.prototype.colorRgb = function(g) {
+String.prototype.colorRgba = function(g) {
     //十六进制颜色值的正则表达式  
     var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
     var sColor = this.toLowerCase();
@@ -36,5 +36,5 @@ String.prototype.colorRgb = function(g) {
 };
 
 var sHex = "#00538b";
-var sRgbColor = sHex.colorRgb(); //转为RGB颜色值的方法  
-console.log(sRgbColor);
+var sRgbColor = sHex.colorRgba(); //转为RGBA颜色值的方法  
+console.log(sRgbColor); //rgba(0,83,139,1)

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animate.css">
+    <script src="jquery.js"></script>
+    <style>
+        body {
+            background: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ssg_main_header_button">
+        <img style="vertical-align: middle; height: 100%">
+        <span class="icon iconfont icon-liebiaoshitucaidan" style="color: aliceblue;z-index: 1000;position: absolute;">sdsd</span>
+        <div class="navBox animated">
+            <div id="xx" class="navBox_back">
+                <span class="navBox_back_x">×</span>
+            </div>
+            <div id="navBox_manage" class="navBox_manage">
+                <a href="/ssg-pluginPlat-zhzay/index.do?plat=index" title="后台管理" target="_blank">
+                    后台管理
+                </a>
+            </div>
+            <div id="SelectBox" class="SelectBox" tabindex="1">
+                <span>活动：</span>
+                <span id="SelectBoxVal">国际动漫节</span>
+                <ul class="SelectBox_dropdown">
+                    <li>
+                        <a>周杰伦演唱会</a>
+                    </li>
+                    <li>
+                        <a>德比决赛</a>
+                    </li>
+                    <li>
+                        <a>CBA总决赛</a>
+                    </li>
+                    <li>
+                        <a>LOL夏季赛</a>
+                    </li>
+                    <li>
+                        <a>CSS大会</a>
+                    </li>
+                    <li>
+                        <a>电影展</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function DropDown(el) {
+            this.dd = el;
+            this.initEvents();
+        }
+        DropDown.prototype = {
+            initEvents: function () {
+                var obj = this;
+                var val = $('#SelectBoxVal');
+                obj.dd.on('click', function (event) {
+                    $(this).toggleClass('SelectActive');
+                    event.stopPropagation();
+                });
+                var array = obj.dd.find('li');
+                var l = array.length;
+                for (var i = 0; i < l; i++) {
+                    array[i].onclick = function (i) {
+                        val.html($(this).find('a').html());
+                    }
+                }
+            }
+        }
+        $(function () {
+            var dd = new DropDown($('#SelectBox'));
+            $(document).click(function () {
+                // all dropdowns
+                $('.SelectBox').removeClass('SelectActive');
+            });
+        });
+        $('.icon-liebiaoshitucaidan').click(function () {
+            console.log(1)
+            $('.navBox').removeClass('fadeOutUp').addClass('fadeInDown')
+        })
+        $('.navBox_back_x').click(function () {
+            $('.navBox').removeClass('fadeInDown').addClass('fadeOutUp')
+        })
+
+    </script>
+</body>
+
+</html>
