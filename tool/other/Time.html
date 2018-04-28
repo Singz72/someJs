@@ -27,7 +27,6 @@
             alert(getYearAll("2010-01-28", "2018-09-28"));
         })
     })
-
     Date.prototype.format = function() {
         var s = '';
         s += this.getFullYear() + '-'; // 获取年份。
@@ -35,7 +34,6 @@
         s += this.getDate(); // 获取日。
         return (s); // 返回日期。
     };
-
     //按日查询
     function getDayAll(begin, end) {
         var dateAllArr = new Array();
@@ -53,7 +51,6 @@
         }
         return dateAllArr;
     }
-
     //按周查询
     function getWeekAll(begin, end) {
         var dateAllArr = new Array();
@@ -87,7 +84,6 @@
         if (mCount > 0) {
             var startM = parseInt(s1[1]);
             var startY = parseInt(s1[0]);
-
             for (var i = 0; i < mCount; i++) {
                 if (startM < 12) {
                     // M.push(startM)
@@ -101,7 +97,6 @@
             }
         }
         return dateArry
-
     }
 
     function getYearAll(begin, end) {
