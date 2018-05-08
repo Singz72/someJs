@@ -11,6 +11,34 @@
 </head>
 
 <body>
+    <script>
+        function getSectionOfDate(year, mouth) {
+            var date = new Date();
+            var y, m;
+            if (year == undefined || year == "" || year == " ") {
+                var y = date.getFullYear();
+            } else {
+                var y = year;
+            }
+            if (mouth == undefined || mouth == "") {
+                var m = date.getMonth() + 1;
+            } else {
+                var m = mouth;
+            }
+            var d = new Date(y, m, 0);
+            var d_num = d.getDate() //当月所有天数
+
+            var t_start = y + "-" + m + "-" + "01" + " " + "00:00:00"
+            var t_end = y + "-" + m + "-" + d_num + " " + "23:59:59"
+
+            return {
+                t_start: t_start,
+                t_end: t_end
+            }
+        }
+        var d = getSectionOfDate(' ', 4)
+        console.log(d)
+    </script>
     <div class="desktop">
         <div class="desktop_header">
             <div class="desktop_header_box">
