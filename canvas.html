@@ -24,6 +24,28 @@
                 y: 300
             });
         };
+        arr = [{
+            x: 120,
+            y: 20
+        }, {
+            x: 220,
+            y: 20
+        }, {
+            x: 320,
+            y: 20
+        }, {
+            x: 420,
+            y: 20
+        }, {
+            x: 520,
+            y: 20
+        }, {
+            x: 620,
+            y: 20
+        }, {
+            x: 720,
+            y: 20
+        }]
         var radius = 10;
         //创建构造函数Circle
         function Circle(x, y, radius) {
@@ -31,29 +53,28 @@
             this.yy = y;
             this.radius = radius;
         };
-        Circle.prototype.radiu = function () {
-            radius += 0.2; //每一帧半径增加0.5
-            if (this.radius >= 12) {
-                radius = 6;
+        Circle.prototype.radiu = function() {
+            radius += 0.5; //每一帧半径增加0.5
+            if (this.radius >= 10) {
+                radius = 5;
             };
         };
         // 绘制圆形的方法
-        Circle.prototype.paint = function () {
+        Circle.prototype.paint = function() {
             context.beginPath();
             context.arc(this.xx, this.yy, 6, 0, Math.PI * 2);
-            context.fillStyle = "rgba(250,0,0,1)"; //填充颜色,默认是黑色
+            context.fillStyle = "rgba(250,0,0,0.5)"; //填充颜色,默认是黑色
             context.fill(); //画实心圆
             context.closePath();
             context.lineWidth = 2; //线条宽度
-            context.strokeStyle = 'rgba(250,0,0,1)'; //颜色
+            context.strokeStyle = 'rgba(250,0,0,0.5)'; //颜色
             context.stroke();
             this.paintkong();
             this.paintkong(0);
-            this.paintkong(6);
- this.paintkong(12);
-            // this.paintkong(20);
+            this.paintkong(5);
+            this.paintkong(10);
         };
-        Circle.prototype.paintkong = function (num) {
+        Circle.prototype.paintkong = function(num) {
             context.beginPath();
             context.arc(this.xx, this.yy, this.radius + num, 0, Math.PI * 2);
             context.closePath();
@@ -72,7 +93,7 @@
             newfun.radiu();
         };
         createCircles()
-        // 创建临时canvas 
+            // 创建临时canvas 
         var backCanvas = document.createElement('canvas'),
             backCtx = backCanvas.getContext('2d');
         backCanvas.width = width;
@@ -81,7 +102,7 @@
         context.globalAlpha = 0.7;
         //显示即将绘制的图像，忽略临时canvas中已存在的图像
         backCtx.globalCompositeOperation = 'copy';
-        var render = function () {
+        var render = function() {
             //先将主canvas的图像缓存到临时canvas中
             backCtx.drawImage(canvas, 0, 0, width, height);
             //清除主canvas上的图像

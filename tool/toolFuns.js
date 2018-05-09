@@ -69,13 +69,15 @@ const _zx = {
     format: function() {
         var s = '';
         s += this.getFullYear() + '-'; // 获取年份。
-        s += (this.getMonth() + 1) + "-"; // 获取月份。
-        s += this.getDate(); // 获取日。
+        s += (this.getMonth() + 1) > 9 ? (this.getMonth() + 1) : '0' + (this.getMonth() + 1) + "-"; // 获取月份。
+        s += this.getDate() > 9 ? this.getDate() : '0' + this.getDate(); // 获取日。
         return (s); // 返回日期。
     },
     //获取区间时间内所有的日期
     getDayAll: function(begin, end) {
         Date.prototype.format = this.format
+        begin = new Date(begin).format()
+        end = new Date(end).format()
         var dateAllArr = new Array();
         var ab = begin.split("-");
         var ae = end.split("-");
@@ -94,6 +96,8 @@ const _zx = {
     //获取区间时间内所有的周数，按周一计算
     getWeekAll: function(begin, end) {
         Date.prototype.format = this.format
+        begin = new Date(begin).format()
+        end = new Date(end).format()
         var dateAllArr = new Array();
         var ab = begin.split("-");
         var ae = end.split("-");
@@ -112,6 +116,8 @@ const _zx = {
     //获取区间时间内所有的月份
     getMonthAll: function(begin, end) {
         Date.prototype.format = this.format
+        begin = new Date(begin).format()
+        end = new Date(end).format()
         var d1 = begin;
         var d2 = end;
         var dateArry = new Array();
@@ -142,6 +148,9 @@ const _zx = {
     },
     //获取区间时间内所有的年份
     getYearAll: function(begin, end) {
+        Date.prototype.format = this.format
+        begin = new Date(begin).format()
+        end = new Date(end).format()
         var d1 = begin;
         var d2 = end;
         var dateArry = new Array();
