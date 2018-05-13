@@ -51,6 +51,7 @@ const _zx = {
             console.log("请传入数字！！")
             return
         }
+        
         if (parseInt(num) == num) {
             var s = num.toString() + '.';
             var i = 0;
