@@ -69,7 +69,7 @@ const _zx = {
     format: function() {
         var s = '';
         s += this.getFullYear() + '-'; // 获取年份。
-        s += (this.getMonth() + 1) > 9 ? (this.getMonth() + 1) : '0' + (this.getMonth() + 1) + "-"; // 获取月份。
+        s += (this.getMonth() + 1) > 9 ? (this.getMonth() + 1) + "-" : '0' + (this.getMonth() + 1) + "-"; // 获取月份。
         s += this.getDate() > 9 ? this.getDate() : '0' + this.getDate(); // 获取日。
         return (s); // 返回日期。
     },
@@ -164,4 +164,33 @@ const _zx = {
         }
         return dateArry;
     },
+    getAllWeeks: function(year) {
+        //获取year这年所有的周
+        var d = new Date(year, 0, 1);
+        while (d.getDay() != 1) {
+            d.setDate(d.getDate() - 1);
+        }
+        var to = new Date(year + 1, 0, 1); //界定条件
+        var i = 1;
+        var D = [];
+        for (var from = d; from < to;) {
+
+            var str1 = '';
+            var str2 = '';
+            str1 = str1 + from.getFullYear() + "-" + ((from.getMonth() + 1) <= 9 ? ('0' + (from.getMonth() + 1)) : (from.getMonth() + 1)) + "-" + (from.getDate() <= 9 ? ('0' + from.getDate()) : from.getDate());
+            from.setDate(from.getDate() + 6);
+            if (from < to) {
+                str2 = str2 + from.getFullYear() + "-" + ((from.getMonth() + 1) <= 9 ? ('0' + (from.getMonth() + 1)) : (from.getMonth() + 1)) + "-" + (from.getDate() <= 9 ? ('0' + from.getDate()) : from.getDate());
+                from.setDate(from.getDate() + 1);
+            } else {
+                // to.setDate(to.getDate() - 1);
+                str2 = str2 + from.getFullYear() + "-" + ((from.getMonth() + 1) <= 9 ? ('0' + (from.getMonth() + 1)) : (from.getMonth() + 1)) + "-" + (from.getDate() <= 9 ? ('0' + from.getDate()) : from.getDate());
+            }
+            D.push([str1, str2]);
+            i++;
+        }
+        return D;
+
+        // getAllWeeks(2015)
+    }
 }
