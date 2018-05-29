@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="jquery.js"></script>
-    <script src="rotation.js"></script>
+    <script src="vTicker.js"></script>
+    <script src="xinjs"></script>
     <link rel="stylesheet" href="rotation.css">
 </head>
 
@@ -19,21 +20,31 @@
                 <!-- 隐藏的辖区名称 -->
                 <!-- <input type="hidden" value="${key}" name="sitePerson_siteOrg_hidden_title" /> -->
                 <div class="rotation_banner_i">
-                    121212
-                </div>
-            </div>
-            <div class="rotation_banner">
-                <!-- 隐藏的辖区名称 -->
-                <!-- <input type="hidden" value="${key}" name="sitePerson_siteOrg_hidden_title" /> -->
-                <div class="rotation_banner_i">
-                    dfdfdf
-                </div>
-            </div>
-            <div class="rotation_banner">
-                <!-- 隐藏的辖区名称 -->
-                <!-- <input type="hidden" value="${key}" name="sitePerson_siteOrg_hidden_title" /> -->
-                <div class="rotation_banner_i">
-                    000
+                    <div style="overflow: hidden; position: relative; height: 114px;" id="news-vTicker_container">
+                        <ul style="position: absolute; margin: 0pt; padding: 0pt; top: 0px;">
+                            <li>
+                                <div> A </div>
+                            </li>
+                            <li>
+                                <div> B</div>
+                            </li>
+                            <li>
+                                <div> C </div>
+                            </li>
+                            <li>
+                                <div> D</div>
+                            </li>
+                            <li>
+                                <div> E</div>
+                            </li>
+                            <li>
+                                <div> F</div>
+                            </li>
+                            <li>
+                                <div> G</div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -46,9 +57,11 @@
             aRotation: 'rotation_content', //获取类名为rotation_content的id
             oNext: 'rotation_next', //获取类名为rotation_next的id
             Oprev: 'rotation_prev', //获取类名为rotation_prev的id
- timerNextPage: 1000 //翻页时间
+            timerNextPage: 1000 ,//翻页时间
+            newrotation:true,
+            vTickerID:'news-vTicker_container'
         }
- rotation.rotationFun(D);
+        rotation.rotationFun(D);
     </script>
 </body>
 

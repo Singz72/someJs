@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>jquery逐条文字向上滚动特效</title>
+  <link href="css/style.css" type="text/css" rel="stylesheet" />
+  <script src="http://www.jq22.com/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.vticker-min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $('#news-container').vTicker({
+        speed: 500, //滚动速度
+        pause: 1000, //滚动间歇
+        animation: 'fade', //默认为空，'fade'表示移动时，首位淡入淡出
+        mousePause: true, //布尔值 true 鼠标悬停是否停止滚动
+        showItems: 1, //显示滚动行数
+        direction: 'down', //滚动方向
+        isPaused: false, //布尔值 false 默认是否暂停
+        // height: 0 //整数 0 容器高度，默认为 0，即根据 showItems 个数自动计算
+      });
+
+ $('#b1').click(function(){
+   $('#news-container').vTicker({
+        speed: 500, //滚动速度
+        pause: 1000, //滚动间歇
+        animation: 'fade', //默认为空，'fade'表示移动时，首位淡入淡出
+        mousePause: true, //布尔值 true 鼠标悬停是否停止滚动
+        showItems: 1, //显示滚动行数
+        direction: 'up', //滚动方向
+        isPaused: false, //布尔值 false 默认是否暂停
+        // height: 0 //整数 0 容器高度，默认为 0，即根据 showItems 个数自动计算
+      });
+ })
+ $('#b2').click(function(){
+$('#news-container').vTicker({
+        speed: 500, //滚动速度
+        pause: 1000, //滚动间歇
+        animation: 'fade', //默认为空，'fade'表示移动时，首位淡入淡出
+        mousePause: true, //布尔值 true 鼠标悬停是否停止滚动
+        showItems: 1, //显示滚动行数
+        direction: 'up', //滚动方向
+        isPaused: false, //布尔值 false 默认是否暂停
+        // height: 0 //整数 0 容器高度，默认为 0，即根据 showItems 个数自动计算
+      });
+ })
+    });
+  </script>
+</head>
+
+<body>
+  <div style="overflow: hidden; position: relative; height: 114px;" id="news-container">
+    <ul style="position: absolute; margin: 0pt; padding: 0pt; top: 0px;">
+      <li>
+        <div> A </div>
+      </li>
+      <li>
+        <div> B</div>
+      </li>
+      <li>
+        <div> C </div>
+      </li>
+      <li>
+        <div> D</div>
+      </li>
+      <li>
+        <div> E</div>
+      </li>
+      <li>
+        <div> F</div>
+      </li>
+      <li>
+        <div> G</div>
+      </li>
+    </ul>
+  </div>
+
+  <button id="b1"></button>
+<button id="b2"></button>
+</body>
+
+</html>
