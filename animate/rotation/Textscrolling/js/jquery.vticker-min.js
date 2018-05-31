@@ -3,8 +3,8 @@
  * Tadas Juozapaitis ( kasp3rito@gmail.com )
  * http://plugins.jquery.com/project/vTicker
  */
-(function (a) {
-    a.fn.vTicker = function (b) {
+(function(a) {
+    a.fn.vTicker = function(b) {
         var c = {
             speed: 700,
             pause: 4000,
@@ -20,7 +20,7 @@
         var oncemoveUp = true;
         var oncemoveDown = true;
         var b = a.extend(c, b);
-        moveUp = function (g, d, e) {
+        moveUp = function(g, d, e) {
             if (e.isPaused) {
                 return
             }
@@ -35,7 +35,7 @@
             }
             f.animate({
                 top: "-=" + d + "px"
-            }, e.speed, function () {
+            }, e.speed, function() {
                 a(this).children("li:first").remove();
                 a(this).css("top", "0px")
             });
@@ -56,7 +56,7 @@
             h.appendTo(f)
 
         };
-        moveDown = function (g, d, e) {
+        moveDown = function(g, d, e) {
             if (e.isPaused) {
                 return
             }
@@ -72,7 +72,7 @@
             f.css("top", "-" + d + "px").prepend(h);
             f.animate({
                 top: 0
-            }, e.speed, function () {
+            }, e.speed, function() {
                 a(this).children("li:last").remove()
             });
             if (e.animation == "fade") {
@@ -90,7 +90,7 @@
                 num = li_l - 1;
             }
         };
-        return this.each(function () {
+        return this.each(function() {
             var f = a(this);
             var e = 0;
             f.css({
@@ -105,19 +105,19 @@
                 padding: 0
             });
             if (b.height == 0) {
-                f.children("ul").children("li").each(function () {
+                f.children("ul").children("li").each(function() {
                     if (a(this).height() > e) {
                         e = a(this).height()
                     }
                 });
-                f.children("ul").children("li").each(function () {
+                f.children("ul").children("li").each(function() {
                     a(this).height(e)
                 });
                 f.height(e * b.showItems)
             } else {
                 f.height(b.height)
             }
-            var d = setInterval(function () {
+            var d = setInterval(function() {
                 if (b.direction == "up") {
                     if (b.remake) {
                         clearInterval(d)
@@ -134,12 +134,12 @@
             }, b.pause);
 
             if (b.mousePause) {
-                f.bind("mouseenter", function () {
+                f.bind("mouseenter", function() {
                     b.isPaused = true
-                }).bind("mouseleave", function () {
+                }).bind("mouseleave", function() {
                     b.isPaused = false
-                }).bind("dblclick", function () {
-                    b.remake = true;
+                }).bind("dblclick", function() {
+                    b.remake = true; //手动清除计时器，关闭滑动
                 })
             }
         })

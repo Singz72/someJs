@@ -6,6 +6,7 @@ var D_makeCharts = {
         _legend: "", //必填 ['d','f','g','h']
         _color: "", //如果需要更改每个饼块的颜色可自定义 ['#aaaaaa','#cccccc'....] 没有就空着 但传入数据D中必须包含
         _title: "", //字符串，可以空值但必传
+        _xyColor: "", //条形图轴线颜色
         _gradient: "", //true表示颜色渐变，false或者""表示不渐变，数据中必有，目前只有条形图具备渐变条件
         _rotate: "", //横坐标文字倾斜程度，0为默认表示不倾斜，负数表示向右倾斜，正数反之
         _indicator: "", //雷达图专用，必需，格式[{name:'极点名字',max:'极点值，数字表示'},{name:'极点名字',max:'极点值，数字表示'},....]
@@ -14,11 +15,16 @@ var D_makeCharts = {
         _splitNumber: "", //条形图纵坐标的分割线间隔，传入数字
         _dataZoom: {
             _dataZoom: "", //是否加入x拖动框，true
-            start: "", //拖动框起始值，按横坐标数值区间判定，传入数值，（0-100），小于end
-            end: "" //拖动框结束值，按横坐标数值区间判定，传入数值，（0-100），大于start
+            _start: "", //拖动框起始值，按横坐标数值区间判定，传入数值，（0-100），小于end
+            _end: "", //拖动框结束值，按横坐标数值区间判定，传入数值，（0-100），大于start
+            _bottom: "" //拖动框距离底部的距离，默认为2%
         }, //条形图纵坐标拖动框
         _dateList: '', //日历图需要的数据，即包含全年的日期和其中某些日期含有的特殊事件
         _calendarTime: '', //日历显示的时间 格式为   2018-04
+        _markLine: {
+            _num: '',
+            _color: ''
+        }, //折线图条形图基准线，基准线数值和颜色
     }
     //十六进制颜色值的正则表达式  
 var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
@@ -165,6 +171,8 @@ var makeCharts = {
             }]
         };
         e.setOption(options);
+        //返回echarts对象
+        return echarts.getInstanceByDom(D._div)
     },
     makeRadar: function(D) {
         if (D._div == undefined || D._div == null) {
@@ -255,6 +263,8 @@ var makeCharts = {
             color: D._color
         }
         e.setOption(options);
+        //返回echarts对象
+        return echarts.getInstanceByDom(D._div)
     },
     makeGauge: function(D) {
         if (D._div == undefined || D._div == null) {
@@ -346,7 +356,7 @@ var makeCharts = {
                 name: D._legend,
                 data: D._data,
                 dataLabels: {
-                    format: '<div style="text-align:center;"><span style="font-size:25px;color:' +
+                    format: '<div style="text-align:center;"><span style="font-size:1.4em;color:' +
                         ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'white') +
                         '">{y}%</span><br/>' +
                         '<span style="font-size:12px;color:silver"></span></div>'
@@ -467,6 +477,8 @@ var makeCharts = {
             color: D._color
         };
         e.setOption(options);
+        //返回echarts对象
+        return echarts.getInstanceByDom(D._div)
     },
     makeLine: function(D) {
         if (D._div == undefined || D._div == null) {
@@ -493,12 +505,26 @@ var makeCharts = {
         } else {
             D._opacity = D._opacity == "" ? 0 : D._opacity;
         }
+        if (!D.hasOwnProperty("_xyColor")) {
+            D._xyColor = '#fff'
+        } else {
+            D._xyColor = D._xyColor == ' ' ? '#fff' : D._xyColor
+        }
+
+        if (!D.hasOwnProperty("_markLine")) {
+            //不需要基准线
+            D._markLine._num = 0;
+            D._markLine._color = 'rgba(0,0,0,0)'
+        } else {
+            D._markLine._num = D._markLine._num == ' ' ? 0 : D._markLine._num;
+            D._markLine._color = D._markLine._color == ' ' ? 'rgba(0,0,0,0)' : D._markLine._color;
+        }
 
         var options = {
             title: {
                 text: D._title,
                 textStyle: {
-                    color: '#fff'
+                    color: D._xyColor
                 },
             },
             tooltip: {
@@ -527,7 +553,7 @@ var makeCharts = {
                 data: D._xAxis,
                 axisLine: {
                     lineStyle: {
-                        color: '#fff',
+                        color: D._xyColor,
                     }
                 },
                 axisLabel: {
@@ -539,7 +565,7 @@ var makeCharts = {
                 type: 'value',
                 axisLine: {
                     lineStyle: {
-                        color: '#fff',
+                        color: D._xyColor,
                     }
                 },
             },
@@ -561,6 +587,14 @@ var makeCharts = {
                         },
                         animationDelay: function(idx) {
                             return idx * 10;
+                        },
+                        markLine: {
+                            data: [
+                                { type: 'Y 轴值为' + D._markLine._num + ' 的水平线', yAxis: D._markLine._num }
+                            ],
+                            lineStyle: {
+                                color: D._markLine._color
+                            }
                         }
                     })
                 }
@@ -569,6 +603,8 @@ var makeCharts = {
             color: D._color
         };
         e.setOption(options);
+        //返回echarts对象
+        return echarts.getInstanceByDom(D._div)
     },
     makePie: function(D) {
         if (D._div == undefined || D._div == null) {
@@ -645,6 +681,8 @@ var makeCharts = {
             color: D._color
         };
         e.setOption(options);
+        //返回echarts对象
+        return echarts.getInstanceByDom(D._div)
     },
     makeBar: function(D) {
 
@@ -703,6 +741,16 @@ var makeCharts = {
             D._xyColor = D._xyColor == ' ' ? '#fff' : D._xyColor
         }
 
+        if (!D.hasOwnProperty("_markLine")) {
+            //不需要基准线
+            D._markLine = {
+                _num: -1,
+                _color: 'rgba(0 ,0,0,0)'
+            }
+        } else {
+            D._markLine._num = D._markLine._num == ' ' ? 0 : D._markLine._num;
+            D._markLine._color = D._markLine._color == ' ' ? 'rgba(0,0,0,0)' : D._markLine._color;
+        }
 
 
         var options = {
@@ -721,7 +769,7 @@ var makeCharts = {
                         data.push({
                             name: D._legend[i],
                             textStyle: {
-                                color: 'rgba(255,255,255,0.8)'
+                                color: D._xyColor
                             }
                         });
                     }
@@ -767,6 +815,7 @@ var makeCharts = {
                 top: 40,
                 bottom: 35
             },
+            color: D._color,
             series: (function() {
                 let i = 0,
                     l = D._legend.length,
@@ -787,6 +836,14 @@ var makeCharts = {
                         data: D._data[i],
                         animationDelay: function(idx) {
                             return idx * 10;
+                        },
+                        markLine: {
+                            data: [
+                                { type: 'Y 轴值为' + D._markLine._num + ' 的水平线', yAxis: D._markLine._num }
+                            ],
+                            lineStyle: {
+                                color: D._markLine._color
+                            }
                         }
                     })
                 }
@@ -796,7 +853,7 @@ var makeCharts = {
             animationDelayUpdate: function(idx) {
                 return idx * 5;
             },
-            color: D._color
+            //	            color: D._color
         };
         if (D.hasOwnProperty("_splitNumber")) {
             options.yAxis.splitNumber = parseInt(D._splitNumber);
@@ -811,6 +868,11 @@ var makeCharts = {
                 D._dataZoom._end = 70;
             } else {
                 D._dataZoom._end = D._dataZoom._end == "" ? 70 : D._dataZoom._end
+            }
+            if (!D._dataZoom.hasOwnProperty("_bottom")) {
+                D._dataZoom._bottom = "2%"
+            } else {
+                D._dataZoom._bottom = D._dataZoom._bottom == "" ? "2%" : D._dataZoom._bottom;
             }
             if (D._dataZoom._dataZoom) {
                 options.dataZoom = [{
@@ -833,15 +895,17 @@ var makeCharts = {
                             shadowOffsetY: 2
                         },
                         height: 11,
-                        bottom: "2%",
+                        bottom: D._dataZoom._bottom,
                         textStyle: {
-                            color: '#fff'
+                            color: D._xyColor
                         },
                     }
                 ]
             }
         }
         e.setOption(options);
+        //返回echarts对象
+        return echarts.getInstanceByDom(D._div)
     },
     makeCalendar: function(D) {
         if (D._div == undefined || D._div == null) {
@@ -922,6 +986,14 @@ var makeCharts = {
                 left: 'center',
                 top: 'middle',
                 cellSize: [90, 65],
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: 'rgba(0,0,0,.4)',
+                        width: 1,
+                        type: 'solid'
+                    }
+                },
                 yearLabel: { show: false },
                 orient: 'vertical',
                 dayLabel: {
@@ -962,7 +1034,6 @@ var makeCharts = {
                                         } else {
                                             slice_str = params.value[3];
                                         }
-
                                         result += '\n\n' + slice_str
                                     }
                                 } else {
@@ -1012,7 +1083,7 @@ var makeCharts = {
                     type: 'heatmap',
                     coordinateSystem: 'calendar',
                     data: lunarData,
-                    color: '#fff'
+                    color: '#fff',
                 }
             ]
         };
