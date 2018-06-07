@@ -8,10 +8,7 @@ var D_makeCharts = {
             type: 'value', //y轴类型，默认为value
             max: '', //y轴最大值
             nameLocation: 'end', //y轴名称位于朝向的起始或终点位置
-            inverse: true, //y轴的朝向，true即从上往下，默认为false
-            splitArea: {
-                show: true //是否显示分各区域
-            }
+            inverse: true //y轴的朝向，true即从上往下，默认为false
         }],
         _legend: "", //必填 ['d','f','g','h']
         _color: "", //如果需要更改每个饼块的颜色可自定义 ['#aaaaaa','#cccccc'....] 没有就空着 但传入数据D中必须包含
@@ -604,8 +601,12 @@ var makeCharts = {
                             data: [
                                 { type: 'Y 轴值为' + D._markLine._num + ' 的水平线', yAxis: D._markLine._num }
                             ],
-                            lineStyle: {
-                                color: D._markLine._color
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        color: D._markLine._color
+                                    }
+                                }
                             }
                         }
                     })
@@ -614,6 +615,175 @@ var makeCharts = {
             })(),
             color: D._color
         };
+        e.setOption(options);
+        //返回echarts对象
+        return echarts.getInstanceByDom(D._div)
+    },
+    /*双y轴折线*/
+    //双y轴折线图
+    makeTwoYLine: function(D) {
+        if (D._div == undefined || D._div == null) {
+            alert('创建折线图时，未能成功获取到元素!')
+        } //验证元素
+        let e = echarts.init(D._div);
+        if (!D.hasOwnProperty("_color")) {
+            D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2']
+        } else {
+            D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
+        }
+        if (!D.hasOwnProperty("_title")) {
+            D._title = ""
+        } else {
+            D._title = D._title == "" ? "" : D._title;
+        }
+        if (!D.hasOwnProperty("_rotate")) {
+            D._rotate = 0
+        } else {
+            D._rotate = D._rotate == "" ? 0 : D._rotate;
+        }
+        if (!D.hasOwnProperty("_title")) {
+            D._opacity = 0
+        } else {
+            D._opacity = D._opacity == "" ? 0 : D._opacity;
+        }
+        if (!D.hasOwnProperty("_xyColor")) {
+            D._xyColor = '#fff'
+        } else {
+            D._xyColor = D._xyColor == ' ' ? '#fff' : D._xyColor
+        }
+
+        if (!D.hasOwnProperty("_markLine")) {
+            //不需要基准线
+            D._markLine = {
+                _num: -1,
+                _color: 'rgba(0,0,0,0)'
+            }
+        } else {
+            D._markLine._num = D._markLine._num == ' ' ? 0 : D._markLine._num;
+            D._markLine._color = D._markLine._color == ' ' ? 'rgba(0,0,0,0)' : D._markLine._color;
+        }
+
+        var options = {
+            title: {
+                text: D._title,
+                textStyle: {
+                    color: D._xyColor
+                },
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: (function() {
+                    let i = 0,
+                        l = D._legend.length,
+                        data = [];
+                    for (; i < l; i++) {
+                        data.push({
+                            name: D._legend[i],
+                            textStyle: {
+                                color: D._xyColor
+                            }
+                        });
+                    }
+                    return data;
+                })(),
+                align: 'left'
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: D._xAxis,
+                axisLine: {
+                    onZero: false,
+                    lineStyle: {
+                        color: D._xyColor,
+                    }
+                },
+            },
+            yAxis: D._yAxis,
+            grid: {
+                bottom: 65
+            },
+            series: (function() {
+                let i = 0,
+                    l = D._legend.length,
+                    seriesData = [];
+                for (; i < l; i++) {
+                    seriesData.push({
+                        name: D._legend[i],
+                        type: 'line',
+                        yAxisIndex: D._yAxisIndex[i],
+                        data: D._data[i],
+                        areaStyle: {
+                            opacity: D._opacity
+                        },
+                        animationDelay: function(idx) {
+                            return idx * 10;
+                        },
+                        markLine: {
+                            data: [
+                                { type: 'Y 轴值为' + D._markLine._num + ' 的水平线', yAxis: D._markLine._num }
+                            ],
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        color: D._markLine._color
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+                return seriesData;
+            })(),
+            color: D._color
+        };
+        if (D.hasOwnProperty("_dataZoom")) {
+            if (!D._dataZoom.hasOwnProperty("_start")) {
+                D._dataZoom._start = 30;
+            } else {
+                D._dataZoom._start = D._dataZoom._start == "" ? 30 : D._dataZoom._start
+            }
+            if (!D._dataZoom.hasOwnProperty("_end")) {
+                D._dataZoom._end = 70;
+            } else {
+                D._dataZoom._end = D._dataZoom._end == "" ? 70 : D._dataZoom._end
+            }
+            if (!D._dataZoom.hasOwnProperty("_bottom")) {
+                D._dataZoom._bottom = "2%"
+            } else {
+                D._dataZoom._bottom = D._dataZoom._bottom == "" ? "2%" : D._dataZoom._bottom;
+            }
+            if (D._dataZoom._dataZoom) {
+                options.dataZoom = [{
+                        type: 'inside',
+                        start: D._dataZoom._start,
+                        end: D._dataZoom._end,
+                        filterMode: 'filter',
+                    },
+                    {
+                        start: D._dataZoom._start,
+                        end: D._dataZoom._end,
+                        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                        handleSize: 14,
+                        handleStyle: {
+                            color: '#fff',
+                            borderWidth: 0,
+                            shadowBlur: 3,
+                            shadowColor: 'rgba(0, 0, 0, 0.6)',
+                            shadowOffsetX: 2,
+                            shadowOffsetY: 2
+                        },
+                        height: 11,
+                        bottom: D._dataZoom._bottom,
+                        textStyle: {
+                            color: D._xyColor
+                        },
+                    }
+                ]
+            }
+        }
         e.setOption(options);
         //返回echarts对象
         return echarts.getInstanceByDom(D._div)
@@ -757,7 +927,7 @@ var makeCharts = {
             //不需要基准线
             D._markLine = {
                 _num: -1,
-                _color: 'rgba(0,0,0,0)'
+                _color: 'rgba(0 ,0,0,0)'
             }
         } else {
             D._markLine._num = D._markLine._num == ' ' ? 0 : D._markLine._num;
@@ -853,8 +1023,12 @@ var makeCharts = {
                             data: [
                                 { type: 'Y 轴值为' + D._markLine._num + ' 的水平线', yAxis: D._markLine._num }
                             ],
-                            lineStyle: {
-                                color: D._markLine._color
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        color: D._markLine._color
+                                    }
+                                }
                             }
                         }
                     })
@@ -919,176 +1093,6 @@ var makeCharts = {
         //返回echarts对象
         return echarts.getInstanceByDom(D._div)
     },
-    /********************************************************************** */
-
-
-    //双y轴折线图
-    makeTwoYLine: function(D) {
-        if (D._div == undefined || D._div == null) {
-            alert('创建折线图时，未能成功获取到元素!')
-        } //验证元素
-        let e = echarts.init(D._div);
-        if (!D.hasOwnProperty("_color")) {
-            D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2']
-        } else {
-            D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
-        }
-        if (!D.hasOwnProperty("_title")) {
-            D._title = ""
-        } else {
-            D._title = D._title == "" ? "" : D._title;
-        }
-        if (!D.hasOwnProperty("_rotate")) {
-            D._rotate = 0
-        } else {
-            D._rotate = D._rotate == "" ? 0 : D._rotate;
-        }
-        if (!D.hasOwnProperty("_title")) {
-            D._opacity = 0
-        } else {
-            D._opacity = D._opacity == "" ? 0 : D._opacity;
-        }
-        if (!D.hasOwnProperty("_xyColor")) {
-            D._xyColor = '#fff'
-        } else {
-            D._xyColor = D._xyColor == ' ' ? '#fff' : D._xyColor
-        }
-
-        if (!D.hasOwnProperty("_markLine")) {
-            //不需要基准线
-            D._markLine = {
-                _num: -1,
-                _color: 'rgba(0,0,0,0)'
-            }
-        } else {
-            D._markLine._num = D._markLine._num == ' ' ? 0 : D._markLine._num;
-            D._markLine._color = D._markLine._color == ' ' ? 'rgba(0,0,0,0)' : D._markLine._color;
-        }
-
-        var options = {
-            title: {
-                text: D._title,
-                textStyle: {
-                    color: D._xyColor
-                },
-            },
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data: (function() {
-                    let i = 0,
-                        l = D._legend.length,
-                        data = [];
-                    for (; i < l; i++) {
-                        data.push({
-                            name: D._legend[i],
-                            textStyle: {
-                                color: D._xyColor
-                            }
-                        });
-                    }
-                    return data;
-                })(),
-                align: 'left'
-            },
-            xAxis: {
-                type: 'category',
-                boundaryGap: false,
-                data: D._xAxis,
-                axisLine: {
-                    onZero: false,
-                    lineStyle: {
-                        color: D._xyColor,
-                    }
-                },
-            },
-            yAxis: D._yAxis,
-            grid: {
-                bottom: 65
-            },
-            series: (function() {
-                let i = 0,
-                    l = D._legend.length,
-                    seriesData = [];
-                for (; i < l; i++) {
-                    seriesData.push({
-                        name: D._legend[i],
-                        type: 'line',
-                        yAxisIndex: D._yAxisIndex[i],
-                        data: D._data[i],
-                        areaStyle: {
-                            opacity: D._opacity
-                        },
-                        animationDelay: function(idx) {
-                            return idx * 10;
-                        },
-                        markLine: {
-                            data: [
-                                { type: 'Y 轴值为' + D._markLine._num + ' 的水平线', yAxis: D._markLine._num }
-                            ],
-                            lineStyle: {
-                                color: D._markLine._color
-                            }
-                        }
-                    })
-                }
-                return seriesData;
-            })(),
-            color: D._color
-        };
-        if (D.hasOwnProperty("_dataZoom")) {
-            if (!D._dataZoom.hasOwnProperty("_start")) {
-                D._dataZoom._start = 30;
-            } else {
-                D._dataZoom._start = D._dataZoom._start == "" ? 30 : D._dataZoom._start
-            }
-            if (!D._dataZoom.hasOwnProperty("_end")) {
-                D._dataZoom._end = 70;
-            } else {
-                D._dataZoom._end = D._dataZoom._end == "" ? 70 : D._dataZoom._end
-            }
-            if (!D._dataZoom.hasOwnProperty("_bottom")) {
-                D._dataZoom._bottom = "2%"
-            } else {
-                D._dataZoom._bottom = D._dataZoom._bottom == "" ? "2%" : D._dataZoom._bottom;
-            }
-            if (D._dataZoom._dataZoom) {
-                options.dataZoom = [{
-                        type: 'inside',
-                        start: D._dataZoom._start,
-                        end: D._dataZoom._end,
-                        filterMode: 'filter',
-                    },
-                    {
-                        start: D._dataZoom._start,
-                        end: D._dataZoom._end,
-                        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
-                        handleSize: 14,
-                        handleStyle: {
-                            color: '#fff',
-                            borderWidth: 0,
-                            shadowBlur: 3,
-                            shadowColor: 'rgba(0, 0, 0, 0.6)',
-                            shadowOffsetX: 2,
-                            shadowOffsetY: 2
-                        },
-                        height: 11,
-                        bottom: D._dataZoom._bottom,
-                        textStyle: {
-                            color: D._xyColor
-                        },
-                    }
-                ]
-            }
-        }
-        e.setOption(options);
-        //返回echarts对象
-        return echarts.getInstanceByDom(D._div)
-    },
-
-
-    /********************************************************************** */
     makeCalendar: function(D) {
         if (D._div == undefined || D._div == null) {
             alert('创建日历图时，未能成功获取到元素!')
