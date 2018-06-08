@@ -882,5 +882,70 @@ var getYearMonthDay = {
         }
         return dateAllArr;
     },
+    //计算倒推的时间，按小时算，返回倒退后的时间和当前时间
+    timeBack: function(n) {
+        //n:倒退的小时数0-24
+        if (n < 0 || n > 24) {
+            alert('反推时间必须在0至24小时以内')
+            return
+        }
+        var startTime = ""; //倒推的时间
+        var endTime = ""; //当前时间字符串
+
+        var now = new Date();
+        var now_y = now.getFullYear(), //当前年 
+            now_m = now.getMonth() + 1, //当前月
+            now_d = now.getDate(), //当前日
+            now_hour = now.getHours(), //当前时
+            now_min = now.getMinutes(), //当前分
+            now_sec = now.getSeconds(); //当前秒
+
+        endTime = now_y + '-' + now_m + '-' + now_d + ' ' + now_hour + ':' + now_min + ':' + now_sec;
+        var old_y, old_m, old_d, old_hour;
+
+        //前推n小时
+        old_hour = (now_hour - n);
+        //当天不够倒退
+        if (old_hour < 0) {
+            old_hour = 24 + old_hour; //到昨天某个时间
+            old_d = now_d - 1; //天数减1
+            //当月不足扣减 当天1号的时候
+            if (old_d == 0) {
+                //当月不足扣减，需要回到上一个月，如果本月为当年一月，则年份减一
+                if (now_m == 1) {
+                    //年份减一
+                    //在去年操作
+                    old_y = now_y - 1; //去年
+                    old_m = 12; //去年12月
+                    old_d = 31; //去年最后一天
+                } else {
+                    //在本年操作
+                    //判断上个月是31还是30，是28还是29
+                    //获取上月天数
+                    old_y = now_y;
+                    old_m = now_m - 1;
+                    var temp = new Date(old_y, old_m, 0)
+                    old_d = temp.getDate();
+                }
+            }
+            //当天不是1号
+            else {
+                old_y = now_y;
+                old_m = now_m;
+            }
+        }
+        //当天时间够减
+        else {
+            old_d = now_d;
+            old_y = now_y;
+            old_m = now_m;
+        }
+        startTime = old_y + '-' + old_m + '-' + old_d + ' ' + old_hour + ':' + now_min + ':' + now_sec;
+
+        return {
+            startTime: startTime,
+            endTime: endTime
+        }
+    }
 
 }
