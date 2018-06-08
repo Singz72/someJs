@@ -883,7 +883,7 @@ var getYearMonthDay = {
         return dateAllArr;
     },
     //计算倒推的时间，按小时算，返回倒退后的时间和当前时间
-    timeBack: function(n) {
+    timeBack: function(n, settime) {
         //n:倒退的小时数0-24
         if (n < 0 || n > 24) {
             alert('反推时间必须在0至24小时以内')
@@ -892,13 +892,23 @@ var getYearMonthDay = {
         var startTime = ""; //倒推的时间
         var endTime = ""; //当前时间字符串
 
-        var now = new Date();
-        var now_y = now.getFullYear(), //当前年 
-            now_m = now.getMonth() + 1, //当前月
-            now_d = now.getDate(), //当前日
-            now_hour = now.getHours(), //当前时
-            now_min = now.getMinutes(), //当前分
-            now_sec = now.getSeconds(); //当前秒
+        if (settime) {
+            var now = new Date(settime);
+            var now_y = now.getFullYear(), //指定时间年 
+                now_m = now.getMonth() + 1, //指定时间月
+                now_d = now.getDate(), //指定时间日
+                now_hour = now.getHours(), //指定时间时
+                now_min = now.getMinutes(), //指定时间分
+                now_sec = now.getSeconds(); //指定时间秒
+        } else {
+            var now = new Date();
+            var now_y = now.getFullYear(), //当前年 
+                now_m = now.getMonth() + 1, //当前月
+                now_d = now.getDate(), //当前日
+                now_hour = now.getHours(), //当前时
+                now_min = now.getMinutes(), //当前分
+                now_sec = now.getSeconds(); //当前秒
+        }
 
         endTime = now_y + '-' + now_m + '-' + now_d + ' ' + now_hour + ':' + now_min + ':' + now_sec;
         var old_y, old_m, old_d, old_hour;
