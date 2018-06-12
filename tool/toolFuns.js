@@ -956,6 +956,26 @@ var getYearMonthDay = {
             startTime: startTime,
             endTime: endTime
         }
+    },
+    //检查时间是否过期
+    checkTimeisOver: function(t) {
+        //检测传入时间与当前时间比较大小
+        //t:格式'2018-09-09 16:00:00'
+        //也可以不含有时分秒，叫自动设定为00:00:00
+        var str = t;
+        str_y = str.substring(0, 4);
+        str_m = str.substring(5, 7) - 1;
+        str_d = str.substring(8, 10);
+        str_h = str.substring(11, 13);
+        str_min = str.substring(14, 16);
+        str_sec = str.substring(17, 19);
+        var date = new Date(str_y, str_m, str_d, str_h, str_min, str_sec);
+        var now = new Date();
+        if (date < now) {
+            //过期
+            return true;
+        } else {
+            return false;
+        }
     }
-
 }
