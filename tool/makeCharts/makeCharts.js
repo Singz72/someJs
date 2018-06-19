@@ -72,7 +72,7 @@ var makeCharts = {
             alert('创建象柱形图时，未能成功获取到元素!')
         } //验证元素
         //判定是否有这个属性，再赋值
-        let e = echarts.init(D._div);
+        var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
             D._color = ['#1efcfd', '#fedf84', '#fd8bb8', '#71ecf2']
         } else {
@@ -185,7 +185,7 @@ var makeCharts = {
         if (D._div == undefined || D._div == null) {
             alert('创建雷达图时，未能成功获取到元素!')
         } //验证元素
-        let e = echarts.init(D._div);
+        var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
             D._color = ['#6decf3', '#2f4554', '#61a0a8', '#d48265', '#91c7ae']
         } else {
@@ -209,7 +209,7 @@ var makeCharts = {
             },
             legend: {
                 data: (function() {
-                    let i = 0,
+                    var i = 0,
                         l = D._legend.length,
                         data = [];
                     for (; i < l; i++) {
@@ -277,7 +277,7 @@ var makeCharts = {
         if (D._div == undefined || D._div == null) {
             alert('创建仪表图时，未能成功获取到元素!')
         } //验证元素
-        let e = echarts.init(D._div);
+        var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
             D._color = ['#fedf84', '#ccc']
         } else {
@@ -378,7 +378,7 @@ var makeCharts = {
         if (D._div == undefined || D._div == null) {
             alert('创建环形图时，未能成功获取到元素!')
         } //验证元素
-        let e = echarts.init(D._div);
+        var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
             D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2']
         } else {
@@ -441,7 +441,7 @@ var makeCharts = {
         options = {
             legend: {
                 data: (function() {
-                    let i = 0,
+                    var i = 0,
                         l = D._legend.length,
                         data = [];
                     for (; i < l; i++) {
@@ -491,7 +491,7 @@ var makeCharts = {
         if (D._div == undefined || D._div == null) {
             alert('创建折线图时，未能成功获取到元素!')
         } //验证元素
-        let e = echarts.init(D._div);
+        var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
             D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2']
         } else {
@@ -541,7 +541,7 @@ var makeCharts = {
             },
             legend: {
                 data: (function() {
-                    let i = 0,
+                    var i = 0,
                         l = D._legend.length,
                         data = [];
                     for (; i < l; i++) {
@@ -583,7 +583,7 @@ var makeCharts = {
                 bottom: 35
             },
             series: (function() {
-                let i = 0,
+                var i = 0,
                     l = D._legend.length,
                     seriesData = [];
                 for (; i < l; i++) {
@@ -625,7 +625,7 @@ var makeCharts = {
         if (D._div == undefined || D._div == null) {
             alert('创建折线图时，未能成功获取到元素!')
         } //验证元素
-        let e = echarts.init(D._div);
+        var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
             D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2']
         } else {
@@ -675,7 +675,7 @@ var makeCharts = {
             },
             legend: {
                 data: (function() {
-                    let i = 0,
+                    var i = 0,
                         l = D._legend.length,
                         data = [];
                     for (; i < l; i++) {
@@ -706,7 +706,7 @@ var makeCharts = {
                 bottom: 65
             },
             series: (function() {
-                let i = 0,
+                var i = 0,
                     l = D._legend.length,
                     seriesData = [];
                 for (; i < l; i++) {
@@ -792,7 +792,7 @@ var makeCharts = {
         if (D._div == undefined || D._div == null) {
             alert('创建饼状图时，未能成功获取到元素!')
         } //验证元素
-        let e = echarts.init(D._div);
+        var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
             D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2']
         } else {
@@ -821,7 +821,7 @@ var makeCharts = {
                 orient: 'horizontal',
                 left: 'left',
                 data: (function() {
-                    let i = 0,
+                    var i = 0,
                         l = D._legend.length,
                         data = [];
                     for (; i < l; i++) {
@@ -841,7 +841,7 @@ var makeCharts = {
                 radius: '55%',
                 center: ['50%', '60%'],
                 data: (function() {
-                    let i = 0,
+                    var i = 0,
                         data = [],
                         l = D._legend.length;
                     for (; i < l; i++) {
@@ -871,7 +871,7 @@ var makeCharts = {
         if (D._div == undefined || D._div == null) {
             alert('创建条形图时，未能成功获取到元素!')
         } //验证元素
-        let e = echarts.init(D._div);
+        var e = echarts.init(D._div);
         //颜色渐变判断、转换
         if (D._gradient) {
             if (!D.hasOwnProperty("_color")) {
@@ -944,7 +944,7 @@ var makeCharts = {
             },
             legend: {
                 data: (function() {
-                    let i = 0,
+                    var i = 0,
                         l = D._legend.length,
                         data = [];
                     for (; i < l; i++) {
@@ -999,7 +999,7 @@ var makeCharts = {
             },
             color: D._color,
             series: (function() {
-                let i = 0,
+                var i = 0,
                     l = D._legend.length,
                     seriesData = [];
                 for (; i < l; i++) {
@@ -1097,7 +1097,7 @@ var makeCharts = {
         if (D._div == undefined || D._div == null) {
             alert('创建日历图时，未能成功获取到元素!')
         } //验证元素
-        let e = echarts.init(D._div);
+        var e = echarts.init(D._div);
         //			e.on('click', function (params) {
         //			    // 控制台打印数据的名称
         //			    console.log(params.value);
