@@ -69,17 +69,17 @@ String.prototype.colorRgba = function(g) {
 var makeCharts = {
     makepictorialBar: function(D) {
         if (D._div == undefined || D._div == null) {
-            alert('创建象柱形图时，未能成功获取到元素!')
+            alert('创建象柱形图时，未能成功获取到元素!');
         } //验证元素
         //判定是否有这个属性，再赋值
         var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
-            D._color = ['#1efcfd', '#fedf84', '#fd8bb8', '#71ecf2']
+            D._color = ['#1efcfd', '#fedf84', '#fd8bb8', '#71ecf2'];
         } else {
             D._color = D._color == "" ? ['#1efcfd', '#fedf84', '#fd8bb8', '#71ecf2'] : D._color;
         }
         if (!D.hasOwnProperty("_title")) {
-            D._title = ""
+            D._title = "";
         } else {
             D._title = D._title == "" ? "" : D._title;
         }
@@ -107,7 +107,7 @@ var makeCharts = {
                     textStyle: {
                         color: '#fff'
                     }
-                },
+                }
             },
             grid: {
                 bottom: 30
@@ -131,7 +131,6 @@ var makeCharts = {
                 name: 'hill',
                 type: 'pictorialBar',
                 barCategoryGap: '10%',
-                // symbol: 'path://M0,10 L10,10 L5,0 L0,10 z',
                 symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
                 itemStyle: {
                     normal: {
@@ -183,11 +182,11 @@ var makeCharts = {
     },
     makeRadar: function(D) {
         if (D._div == undefined || D._div == null) {
-            alert('创建雷达图时，未能成功获取到元素!')
+            alert('创建雷达图时，未能成功获取到元素!');
         } //验证元素
         var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
-            D._color = ['#6decf3', '#2f4554', '#61a0a8', '#d48265', '#91c7ae']
+            D._color = ['#6decf3', '#2f4554', '#61a0a8', '#d48265', '#91c7ae'];
         } else {
             D._color = D._color == "" ? ['#6decf3', '#2f4554', '#61a0a8', '#d48265', '#91c7ae'] : D._color;
         }
@@ -202,7 +201,7 @@ var makeCharts = {
                 text: D._title,
                 textStyle: {
                     color: '#fff'
-                },
+                }
             },
             tooltip: {
                 trigger: 'axis'
@@ -220,10 +219,10 @@ var makeCharts = {
                             }
                         });
                     }
-                    return data;
+                    return data
                 })(),
                 orient: 'horizontal',
-                right: 'right',
+                right: 'right'
             },
             radar: {
                 // shape: 'circle',
@@ -264,7 +263,7 @@ var makeCharts = {
                             name: D._legend[i]
                         })
                     }
-                    return dataob;
+                    return dataob
                 })()
             }],
             color: D._color
@@ -275,16 +274,16 @@ var makeCharts = {
     },
     makeGauge: function(D) {
         if (D._div == undefined || D._div == null) {
-            alert('创建仪表图时，未能成功获取到元素!')
+            alert('创建仪表图时，未能成功获取到元素!');
         } //验证元素
         var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
-            D._color = ['#fedf84', '#ccc']
+            D._color = ['#fedf84', '#ccc'];
         } else {
             D._color = D._color == "" ? ['#fedf84', '#ccc'] : D._color;
         }
         if (!D.hasOwnProperty("_title")) {
-            D._title = ""
+            D._title = "";
         } else {
             D._title = D._title == "" ? "" : D._title;
         }
@@ -376,23 +375,23 @@ var makeCharts = {
     },
     makeRadiuspie: function(D) {
         if (D._div == undefined || D._div == null) {
-            alert('创建环形图时，未能成功获取到元素!')
+            alert('创建环形图时，未能成功获取到元素!');
         } //验证元素
         var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
-            D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2']
+            D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
         } else {
             D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
         }
         if (!D.hasOwnProperty("_title")) {
-            D._title = ""
+            D._title = "";
         } else {
             D._title = D._title == "" ? "" : D._title;
         }
         if (!D.hasOwnProperty("_rotation")) {
-            D._rotation = 0
+            D._rotation = 0;
         } else {
-            D._rotate = D._rotate == "" ? 0 : D._rotate
+            D._rotate = D._rotate == "" ? 0 : D._rotate;
         }
 
 
@@ -452,17 +451,17 @@ var makeCharts = {
                             }
                         });
                     }
-                    return data;
+                    return data
                 })(),
                 orient: 'horizontal',
-                left: 'left',
+                left: 'left'
             },
             title: {
                 text: D._title,
                 x: 'center',
                 textStyle: {
                     color: '#fff'
-                },
+                }
             },
             series: [{
                 type: 'pie',
@@ -489,33 +488,33 @@ var makeCharts = {
     },
     makeLine: function(D) {
         if (D._div == undefined || D._div == null) {
-            alert('创建折线图时，未能成功获取到元素!')
+            alert('创建折线图时，未能成功获取到元素!');
         } //验证元素
         var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
-            D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2']
+            D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
         } else {
             D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
         }
         if (!D.hasOwnProperty("_title")) {
-            D._title = ""
+            D._title = "";
         } else {
             D._title = D._title == "" ? "" : D._title;
         }
         if (!D.hasOwnProperty("_rotate")) {
-            D._rotate = 0
+            D._rotate = 0;
         } else {
             D._rotate = D._rotate == "" ? 0 : D._rotate;
         }
         if (!D.hasOwnProperty("_title")) {
-            D._opacity = 0
+            D._opacity = 0;
         } else {
             D._opacity = D._opacity == "" ? 0 : D._opacity;
         }
         if (!D.hasOwnProperty("_xyColor")) {
-            D._xyColor = '#fff'
+            D._xyColor = '#fff';
         } else {
-            D._xyColor = D._xyColor == ' ' ? '#fff' : D._xyColor
+            D._xyColor = D._xyColor == ' ' ? '#fff' : D._xyColor;
         }
 
         if (!D.hasOwnProperty("_markLine")) {
@@ -534,7 +533,7 @@ var makeCharts = {
                 text: D._title,
                 textStyle: {
                     color: D._xyColor
-                },
+                }
             },
             tooltip: {
                 trigger: 'axis'
@@ -552,7 +551,7 @@ var makeCharts = {
                             }
                         });
                     }
-                    return data;
+                    return data
                 })(),
                 align: 'left'
             },
@@ -562,7 +561,7 @@ var makeCharts = {
                 data: D._xAxis,
                 axisLine: {
                     lineStyle: {
-                        color: D._xyColor,
+                        color: D._xyColor
                     }
                 },
                 axisLabel: {
@@ -574,9 +573,9 @@ var makeCharts = {
                 type: 'value',
                 axisLine: {
                     lineStyle: {
-                        color: D._xyColor,
+                        color: D._xyColor
                     }
-                },
+                }
             },
             grid: {
                 top: 40,
@@ -595,7 +594,7 @@ var makeCharts = {
                             opacity: D._opacity
                         },
                         animationDelay: function(idx) {
-                            return idx * 10;
+                            return idx * 10
                         },
                         markLine: {
                             data: [
@@ -611,7 +610,7 @@ var makeCharts = {
                         }
                     })
                 }
-                return seriesData;
+                return seriesData
             })(),
             color: D._color
         };
@@ -623,33 +622,33 @@ var makeCharts = {
     //双y轴折线图
     makeTwoYLine: function(D) {
         if (D._div == undefined || D._div == null) {
-            alert('创建折线图时，未能成功获取到元素!')
+            alert('创建折线图时，未能成功获取到元素!');
         } //验证元素
         var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
-            D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2']
+            D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
         } else {
             D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
         }
         if (!D.hasOwnProperty("_title")) {
-            D._title = ""
+            D._title = "";
         } else {
             D._title = D._title == "" ? "" : D._title;
         }
         if (!D.hasOwnProperty("_rotate")) {
-            D._rotate = 0
+            D._rotate = 0;
         } else {
             D._rotate = D._rotate == "" ? 0 : D._rotate;
         }
         if (!D.hasOwnProperty("_title")) {
-            D._opacity = 0
+            D._opacity = 0;
         } else {
             D._opacity = D._opacity == "" ? 0 : D._opacity;
         }
         if (!D.hasOwnProperty("_xyColor")) {
-            D._xyColor = '#fff'
+            D._xyColor = '#fff';
         } else {
-            D._xyColor = D._xyColor == ' ' ? '#fff' : D._xyColor
+            D._xyColor = D._xyColor == ' ' ? '#fff' : D._xyColor;
         }
 
         if (!D.hasOwnProperty("_markLine")) {
@@ -668,7 +667,7 @@ var makeCharts = {
                 text: D._title,
                 textStyle: {
                     color: D._xyColor
-                },
+                }
             },
             tooltip: {
                 trigger: 'axis'
@@ -686,7 +685,7 @@ var makeCharts = {
                             }
                         });
                     }
-                    return data;
+                    return data
                 })(),
                 align: 'left'
             },
@@ -697,9 +696,9 @@ var makeCharts = {
                 axisLine: {
                     onZero: false,
                     lineStyle: {
-                        color: D._xyColor,
+                        color: D._xyColor
                     }
-                },
+                }
             },
             yAxis: D._yAxis,
             grid: {
@@ -719,7 +718,7 @@ var makeCharts = {
                             opacity: D._opacity
                         },
                         animationDelay: function(idx) {
-                            return idx * 10;
+                            return idx * 10
                         },
                         markLine: {
                             data: [
@@ -735,7 +734,7 @@ var makeCharts = {
                         }
                     })
                 }
-                return seriesData;
+                return seriesData
             })(),
             color: D._color
         };
@@ -743,15 +742,15 @@ var makeCharts = {
             if (!D._dataZoom.hasOwnProperty("_start")) {
                 D._dataZoom._start = 30;
             } else {
-                D._dataZoom._start = D._dataZoom._start == "" ? 30 : D._dataZoom._start
+                D._dataZoom._start = D._dataZoom._start == "" ? 30 : D._dataZoom._start;
             }
             if (!D._dataZoom.hasOwnProperty("_end")) {
                 D._dataZoom._end = 70;
             } else {
-                D._dataZoom._end = D._dataZoom._end == "" ? 70 : D._dataZoom._end
+                D._dataZoom._end = D._dataZoom._end == "" ? 70 : D._dataZoom._end;
             }
             if (!D._dataZoom.hasOwnProperty("_bottom")) {
-                D._dataZoom._bottom = "2%"
+                D._dataZoom._bottom = "2%";
             } else {
                 D._dataZoom._bottom = D._dataZoom._bottom == "" ? "2%" : D._dataZoom._bottom;
             }
@@ -760,7 +759,7 @@ var makeCharts = {
                         type: 'inside',
                         start: D._dataZoom._start,
                         end: D._dataZoom._end,
-                        filterMode: 'filter',
+                        filterMode: 'filter'
                     },
                     {
                         start: D._dataZoom._start,
@@ -779,7 +778,7 @@ var makeCharts = {
                         bottom: D._dataZoom._bottom,
                         textStyle: {
                             color: D._xyColor
-                        },
+                        }
                     }
                 ]
             }
@@ -790,16 +789,16 @@ var makeCharts = {
     },
     makePie: function(D) {
         if (D._div == undefined || D._div == null) {
-            alert('创建饼状图时，未能成功获取到元素!')
+            alert('创建饼状图时，未能成功获取到元素!');
         } //验证元素
         var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
-            D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2']
+            D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
         } else {
             D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
         }
         if (!D.hasOwnProperty("_title")) {
-            D._title = ""
+            D._title = "";
         } else {
             D._title = D._title == "" ? "" : D._title;
         }
@@ -811,7 +810,7 @@ var makeCharts = {
                 x: 'center',
                 textStyle: {
                     color: '#fff'
-                },
+                }
             },
             tooltip: {
                 trigger: 'item',
@@ -832,7 +831,7 @@ var makeCharts = {
                             }
                         });
                     }
-                    return data;
+                    return data
                 })(),
             },
             series: [{
@@ -850,7 +849,7 @@ var makeCharts = {
                             name: D._legend[i]
                         });
                     }
-                    return data;
+                    return data
                 })(),
                 itemStyle: {
                     emphasis: {
@@ -869,13 +868,13 @@ var makeCharts = {
     makeBar: function(D) {
 
         if (D._div == undefined || D._div == null) {
-            alert('创建条形图时，未能成功获取到元素!')
+            alert('创建条形图时，未能成功获取到元素!');
         } //验证元素
         var e = echarts.init(D._div);
         //颜色渐变判断、转换
         if (D._gradient) {
             if (!D.hasOwnProperty("_color")) {
-                D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2']
+                D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
             } else {
                 D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
             }
@@ -886,7 +885,7 @@ var makeCharts = {
                 l = D._color.length;
             for (; i < l; i++) {
                 if (D._color[i] instanceof Object) {
-                    newColor.push(D._color[i])
+                    newColor.push(D._color[i]);
                 } else {
                     newColor.push(new echarts.graphic.LinearGradient(0, 0, 0, 1, D._color[i].colorRgba(D._gradient)));
                 }
@@ -894,7 +893,7 @@ var makeCharts = {
             D._color = newColor;
         } else {
             if (!D.hasOwnProperty("_color")) {
-                D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2']
+                D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
             } else {
                 D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
             }
@@ -902,25 +901,25 @@ var makeCharts = {
                 l = D._color.length,
                 newColor = [];
             for (; i < l; i++) {
-                newColor.push(D._color[i].colorRgba(D._gradient))
+                newColor.push(D._color[i].colorRgba(D._gradient));
             }
             D._color = newColor;
         }
         if (!D.hasOwnProperty("_title")) {
-            D._title = ""
+            D._title = "";
         } else {
             D._title = D._title == "" ? "" : D._title;
         }
         if (!D.hasOwnProperty("_rotate")) {
-            D._rotate = ""
+            D._rotate = "";
         } else {
             D._rotate = D._rotate == "" ? 0 : D._rotate;
         }
 
         if (!D.hasOwnProperty("_xyColor")) {
-            D._xyColor = '#fff'
+            D._xyColor = '#fff';
         } else {
-            D._xyColor = D._xyColor == ' ' ? '#fff' : D._xyColor
+            D._xyColor = D._xyColor == ' ' ? '#fff' : D._xyColor;
         }
 
         if (!D.hasOwnProperty("_markLine")) {
@@ -940,7 +939,7 @@ var makeCharts = {
                 text: D._title,
                 textStyle: {
                     color: D._xyColor
-                },
+                }
             },
             legend: {
                 data: (function() {
@@ -955,10 +954,10 @@ var makeCharts = {
                             }
                         });
                     }
-                    return data;
+                    return data
                 })(),
                 orient: 'horizontal',
-                right: 'right',
+                right: 'right'
             },
 
             tooltip: {},
@@ -970,7 +969,7 @@ var makeCharts = {
                 },
                 axisLine: {
                     lineStyle: {
-                        color: D._xyColor,
+                        color: D._xyColor
                     }
                 },
                 axisLabel: {
@@ -981,7 +980,7 @@ var makeCharts = {
             yAxis: {
                 axisLine: {
                     lineStyle: {
-                        color: D._xyColor,
+                        color: D._xyColor
                     }
                 },
                 /*interval:0*/
@@ -1017,7 +1016,7 @@ var makeCharts = {
                         },
                         data: D._data[i],
                         animationDelay: function(idx) {
-                            return idx * 10;
+                            return idx * 10
                         },
                         markLine: {
                             data: [
@@ -1033,11 +1032,11 @@ var makeCharts = {
                         }
                     })
                 }
-                return seriesData;
+                return seriesData
             })(),
             animationEasing: 'elasticOut',
             animationDelayUpdate: function(idx) {
-                return idx * 5;
+                return idx * 5
             },
             //	            color: D._color
         };
@@ -1048,15 +1047,15 @@ var makeCharts = {
             if (!D._dataZoom.hasOwnProperty("_start")) {
                 D._dataZoom._start = 30;
             } else {
-                D._dataZoom._start = D._dataZoom._start == "" ? 30 : D._dataZoom._start
+                D._dataZoom._start = D._dataZoom._start == "" ? 30 : D._dataZoom._start;
             }
             if (!D._dataZoom.hasOwnProperty("_end")) {
                 D._dataZoom._end = 70;
             } else {
-                D._dataZoom._end = D._dataZoom._end == "" ? 70 : D._dataZoom._end
+                D._dataZoom._end = D._dataZoom._end == "" ? 70 : D._dataZoom._end;
             }
             if (!D._dataZoom.hasOwnProperty("_bottom")) {
-                D._dataZoom._bottom = "2%"
+                D._dataZoom._bottom = "2%";
             } else {
                 D._dataZoom._bottom = D._dataZoom._bottom == "" ? "2%" : D._dataZoom._bottom;
             }
@@ -1065,7 +1064,7 @@ var makeCharts = {
                         type: 'inside',
                         start: D._dataZoom._start,
                         end: D._dataZoom._end,
-                        filterMode: 'filter',
+                        filterMode: 'filter'
                     },
                     {
                         start: D._dataZoom._start,
@@ -1084,7 +1083,7 @@ var makeCharts = {
                         bottom: D._dataZoom._bottom,
                         textStyle: {
                             color: D._xyColor
-                        },
+                        }
                     }
                 ]
             }
@@ -1095,7 +1094,7 @@ var makeCharts = {
     },
     makeCalendar: function(D) {
         if (D._div == undefined || D._div == null) {
-            alert('创建日历图时，未能成功获取到元素!')
+            alert('创建日历图时，未能成功获取到元素!');
         } //验证元素
         var e = echarts.init(D._div);
         //			e.on('click', function (params) {
@@ -1114,7 +1113,7 @@ var makeCharts = {
             //给lunarData数组加值
             lunarData.push([D._dateList[i][0],
                 1,
-                D._dateList[i][1],
+                D._dateList[i][1]
                 //D._dateList[i][2]
             ]);
             for (var _dateList_i = 2; _dateList_i < D._dateList[i].length; _dateList_i++) {
@@ -1235,7 +1234,7 @@ var makeCharts = {
                                         }
                                     }
                                 }
-                                return result;
+                                return result
                             },
                             textStyle: {
                                 color: '#000',
@@ -1269,7 +1268,7 @@ var makeCharts = {
                     type: 'heatmap',
                     coordinateSystem: 'calendar',
                     data: lunarData,
-                    color: '#fff',
+                    color: '#fff'
                 }
             ]
         };
