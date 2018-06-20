@@ -399,6 +399,23 @@ var domFuns = {
         var T2 = '</span></div></div>';
         $("#" + D.id + " .ssg_panel").addClass('ssg_zhzay_titlePanel');
         div.prepend(T1 + D.text + T2)
+    },
+    //IE8
+    //判断getElemengtsByName是否存在
+    getByEleName: function(aname) {
+        var i = document.getElementsByName(aname);
+        if (i > 0) {
+            return i;
+        } else {
+            var aele = document.getElementsByTagName('*');
+            var arr = [];
+            for (var i = 0; i < aele.length; i++) {
+                if (aele[i].getAttribute("name") == aname) {
+                    arr.push(aele[i]);
+                }
+            }
+            return arr;
+        }
     }
 }
 
