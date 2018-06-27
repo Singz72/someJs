@@ -19,7 +19,7 @@ var D_makeCharts = {
         _indicator: "", //雷达图专用，必需，格式[{name:'极点名字',max:'极点值，数字表示'},{name:'极点名字',max:'极点值，数字表示'},....]
         _pathSymbols: "", //香柱形图专用，必需，图片路径，和传入的坐标名称必需一一对应 格式 pathSymbols = {man: 'image://font/man.png',woman: 'image://font/woman.png'}
         _opacity: "", //折线图专用，且折线图必传，内容为数字，0-1，表示折线图是否填充
-        _splitNumber: "", //条形图纵坐标的分割线间隔，传入数字
+        _splitNumber: "", //纵坐标的分割线间隔，传入数字
         _dataZoom: {
             _dataZoom: "", //是否加入x拖动框，true
             _start: "", //拖动框起始值，按横坐标数值区间判定，传入数值，（0-100），小于end
@@ -614,6 +614,54 @@ var makeCharts = {
             })(),
             color: D._color
         };
+        if (D.hasOwnProperty("_splitNumber")) {
+            options.yAxis.splitNumber = parseInt(D._splitNumber);
+        }
+        if (D.hasOwnProperty("_dataZoom")) {
+            if (!D._dataZoom.hasOwnProperty("_start")) {
+                D._dataZoom._start = 30;
+            } else {
+                D._dataZoom._start = D._dataZoom._start == "" ? 30 : D._dataZoom._start;
+            }
+            if (!D._dataZoom.hasOwnProperty("_end")) {
+                D._dataZoom._end = 70;
+            } else {
+                D._dataZoom._end = D._dataZoom._end == "" ? 70 : D._dataZoom._end;
+            }
+            if (!D._dataZoom.hasOwnProperty("_bottom")) {
+                D._dataZoom._bottom = "2%";
+            } else {
+                D._dataZoom._bottom = D._dataZoom._bottom == "" ? "2%" : D._dataZoom._bottom;
+            }
+            if (D._dataZoom._dataZoom) {
+                options.dataZoom = [{
+                        type: 'inside',
+                        start: D._dataZoom._start,
+                        end: D._dataZoom._end,
+                        filterMode: 'filter'
+                    },
+                    {
+                        start: D._dataZoom._start,
+                        end: D._dataZoom._end,
+                        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                        handleSize: 14,
+                        handleStyle: {
+                            color: '#fff',
+                            borderWidth: 0,
+                            shadowBlur: 3,
+                            shadowColor: 'rgba(0, 0, 0, 0.6)',
+                            shadowOffsetX: 2,
+                            shadowOffsetY: 2
+                        },
+                        height: 11,
+                        bottom: D._dataZoom._bottom,
+                        textStyle: {
+                            color: D._xyColor
+                        }
+                    }
+                ]
+            }
+        }
         e.setOption(options);
         //返回echarts对象
         return echarts.getInstanceByDom(D._div)
@@ -865,8 +913,235 @@ var makeCharts = {
         //返回echarts对象
         return echarts.getInstanceByDom(D._div)
     },
-    makeBar: function(D) {
+    makeYaxisBar: function(D) {
+        if (D._div == undefined || D._div == null) {
+            alert('创建条形图时，未能成功获取到元素!');
+        } //验证元素
+        var e = echarts.init(D._div);
+        //颜色渐变判断、转换
+        if (D._gradient) {
+            if (!D.hasOwnProperty("_color")) {
+                D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
+            } else {
+                D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
+            }
 
+
+            var i = 0,
+                newColor = [],
+                l = D._color.length;
+            for (; i < l; i++) {
+                if (D._color[i] instanceof Object) {
+                    newColor.push(D._color[i]);
+                } else {
+                    newColor.push(new echarts.graphic.LinearGradient(0, 0, 0, 1, D._color[i].colorRgba(D._gradient)));
+                }
+            }
+            D._color = newColor;
+        } else {
+            if (!D.hasOwnProperty("_color")) {
+                D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
+            } else {
+                D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
+            }
+            var i = 0,
+                l = D._color.length,
+                newColor = [];
+            for (; i < l; i++) {
+                newColor.push(D._color[i].colorRgba(D._gradient));
+            }
+            D._color = newColor;
+        }
+        if (!D.hasOwnProperty("_title")) {
+            D._title = "";
+        } else {
+            D._title = D._title == "" ? "" : D._title;
+        }
+        if (!D.hasOwnProperty("_rotate")) {
+            D._rotate = "";
+        } else {
+            D._rotate = D._rotate == "" ? 0 : D._rotate;
+        }
+
+        if (!D.hasOwnProperty("_xyColor")) {
+            D._xyColor = '#fff';
+        } else {
+            D._xyColor = D._xyColor == ' ' ? '#fff' : D._xyColor;
+        }
+
+        if (!D.hasOwnProperty("_markLine")) {
+            //不需要基准线
+            D._markLine = {
+                _num: -1,
+                _color: 'rgba(0 ,0,0,0)'
+            }
+        } else {
+            D._markLine._num = D._markLine._num == ' ' ? 0 : D._markLine._num;
+            D._markLine._color = D._markLine._color == ' ' ? 'rgba(0,0,0,0)' : D._markLine._color;
+        }
+
+
+        var options = {
+            title: {
+                text: D._title,
+                textStyle: {
+                    color: D._xyColor
+                }
+            },
+            legend: {
+                data: (function() {
+                    var i = 0,
+                        l = D._legend.length,
+                        data = [];
+                    for (; i < l; i++) {
+                        data.push({
+                            name: D._legend[i],
+                            textStyle: {
+                                color: D._xyColor
+                            }
+                        });
+                    }
+                    return data
+                })(),
+                orient: 'horizontal',
+                right: 'right'
+            },
+            tooltip: {},
+            //与bar的不同是x、y轴互换
+            yAxis: {
+                type: 'category',
+                data: D._xAxis,
+                silent: false,
+                splitLine: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: D._xyColor
+                    }
+                },
+                axisLabel: {
+                    interval: 0,
+                    rotate: D._rotate
+                }
+            },
+            xAxis: {
+                type: 'value',
+                axisLine: {
+                    lineStyle: {
+                        color: D._xyColor
+                    }
+                },
+                /*interval:0*/
+                /*splitNumber:4,*/
+                axisTick: {
+                    show: true
+                },
+                splitLine: {
+                    show: false
+                }
+            },
+            grid: {
+                top: 40,
+                bottom: 35
+            },
+            color: D._color,
+            series: (function() {
+                var i = 0,
+                    l = D._legend.length,
+                    seriesData = [];
+                for (; i < l; i++) {
+                    seriesData.push({
+                        name: D._legend[i],
+                        type: 'bar',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'insideRight',
+                                textStyle: {
+                                    // color: D._xyColor
+                                    color: 'rgba(0,0,0,.8)'
+                                }
+                            }
+                        },
+                        data: D._data[i],
+                        animationDelay: function(idx) {
+                            return idx * 10
+                        },
+                        markLine: {
+                            data: [
+                                { type: 'Y 轴值为' + D._markLine._num + ' 的水平线', yAxis: D._markLine._num }
+                            ],
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        color: D._markLine._color
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+                return seriesData
+            })(),
+            animationEasing: 'elasticOut',
+            animationDelayUpdate: function(idx) {
+                return idx * 5
+            }
+        };
+        if (D.hasOwnProperty("_splitNumber")) {
+            options.yAxis.splitNumber = parseInt(D._splitNumber);
+        }
+        if (D.hasOwnProperty("_dataZoom")) {
+            if (!D._dataZoom.hasOwnProperty("_start")) {
+                D._dataZoom._start = 30;
+            } else {
+                D._dataZoom._start = D._dataZoom._start == "" ? 30 : D._dataZoom._start;
+            }
+            if (!D._dataZoom.hasOwnProperty("_end")) {
+                D._dataZoom._end = 70;
+            } else {
+                D._dataZoom._end = D._dataZoom._end == "" ? 70 : D._dataZoom._end;
+            }
+            if (!D._dataZoom.hasOwnProperty("_bottom")) {
+                D._dataZoom._bottom = "2%";
+            } else {
+                D._dataZoom._bottom = D._dataZoom._bottom == "" ? "2%" : D._dataZoom._bottom;
+            }
+            if (D._dataZoom._dataZoom) {
+                options.dataZoom = [{
+                        type: 'inside',
+                        start: D._dataZoom._start,
+                        end: D._dataZoom._end,
+                        filterMode: 'filter'
+                    },
+                    {
+                        start: D._dataZoom._start,
+                        end: D._dataZoom._end,
+                        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                        handleSize: 14,
+                        handleStyle: {
+                            color: '#fff',
+                            borderWidth: 0,
+                            shadowBlur: 3,
+                            shadowColor: 'rgba(0, 0, 0, 0.6)',
+                            shadowOffsetX: 2,
+                            shadowOffsetY: 2
+                        },
+                        height: 11,
+                        bottom: D._dataZoom._bottom,
+                        textStyle: {
+                            color: D._xyColor
+                        }
+                    }
+                ]
+            }
+        }
+        e.setOption(options);
+        //返回echarts对象
+        return echarts.getInstanceByDom(D._div)
+    },
+    makeBar: function(D) {
         if (D._div == undefined || D._div == null) {
             alert('创建条形图时，未能成功获取到元素!');
         } //验证元素

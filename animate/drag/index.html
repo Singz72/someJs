@@ -1,0 +1,180 @@
+<!DOCTYPE>
+<html>
+<head>
+<title> jQuery拖拽插件drag.js </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Generator" content="EditPlus">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script type="text/javascript" src="js/drag.js"></script>
+
+<script>
+
+
+$(function(){
+	$('.drag-box-1 .drag').each(function(index){
+		$(this).myDrag({
+			direction:'x'
+		});
+	});
+	$('.drag-box-2 .drag').each(function(index){
+		$(this).myDrag({
+			randomPosition:true,
+			direction:'y',
+			handler:false
+		});
+	});
+	$('.drag-box-3 .drag').each(function(index){
+		$(this).myDrag({
+			randomPosition:true,
+			direction:'all',
+			handler:false
+		});
+	});
+	$('.drag-box-4 .drag').each(function(index){
+		$(this).myDrag({
+			randomPosition:true,
+			direction:'all',
+			handler:'.handler'
+		});
+	});
+	$('.drag-box-5 .drag').each(function(index){
+		$(this).myDrag({
+			parent:'.test',
+			randomPosition:false,
+			direction:'all'
+		});
+	});
+
+	$('.drag-box-6 .drag').each(function(index){
+		$(this).myDrag({
+			dragStart:function(x,y){
+				$('.lg span').html('').eq(0).html('开始拖动了! — 坐标 x：'+x+' y：'+y);
+			},
+			dragEnd:function(x,y){
+				$('.lg span').html('').eq(1).html('停止拖动了! — 坐标 x：'+x+' y：'+y);
+			},
+			dragMove:function(x,y){
+				$('.lg span').html('').eq(2).html('拖动中! — 坐标 x：'+x+' y：'+y);
+			}
+		});
+	});
+});
+</script>
+</head>
+<body>
+	<h1>drag插件<span>by zyp</span></h1>
+
+	
+	<div class='help'>
+		<pre>
+		  $(element).myDrag({
+			parent:'parent', //定义拖动不能超出的外框,拖动范围
+			randomPosition:true, //初始化随机位置
+			direction:'all', //方向
+			handler:false, //把手
+			dragStart:function(x,y){}, //拖动开始 x,y为当前坐标
+			dragEnd:function(x,y){}, //拖动停止 x,y为当前坐标
+			dragMove:function(x,y){} //拖动进行中 x,y为当前坐标
+		  });
+			/*
+			***说明
+			***1.代码34行，阻止除img元素外所有子元素冒泡事件，如有需要请自行修改
+			***2.一些浏览器无法阻止img默认浏览器事件（其实就是拖动img会新窗口打开），so，最好是把img做成背景，或者在img上再覆盖一个div层，再使用下面的handler拖动
+			***3.本插件有添加addClass功能，在拖动的时候，会给拖动元素添加'on'的样式，如有需要，可自行修改'on'的样式表，本例'on'的样式为z-index:9;为了保持拖动的时候，当前元素为最高层
+			*/
+		</pre>
+		<h2>拖动方向参数：direction 默认值all <i class='mk1'>(x/y/all)</i></h2>
+		<pre>
+		$('.drag-box-1 .drag').each(function(index){
+		  $(this).myDrag({
+			direction:'x'
+		  });
+		});</pre>
+	</div>
+	<h3>Demo1：(direction:'x')</h3>
+	<div class='drag-box drag-box-1'>
+		<div class='drag drag-1'><img src="img/04.jpg"><input type="text"></div>
+		<div class='drag drag-1'><img src="img/07.jpg"></div>
+	</div>
+	<h3>Demo2：(direction:'y')</h3>
+	<div class='drag-box drag-box-2'>
+		<div class='drag drag-2'><img src="img/03.jpg"></div>
+		<div class='drag drag-2'><img src="img/06.jpg"></div>
+	</div>
+	<h3>Demo3：(direction:'all')</h3>
+	<div class='drag-box drag-box-3'>
+		<div class='drag drag-3'><img src="img/05.jpg"></div>
+		<div class='drag drag-3'><img src="img/06.jpg"></div>
+	</div>
+
+	<div class='help'>
+		<h2>把手参数：handler 默认值false <i class='mk1'>('.handler')</i></h2>
+		<p>此用来添加元素内部 handler</p>
+		<pre>
+		$('.drag-box-1 .drag').each(function(index){
+		  $(this).myDrag({
+			handler:'.handler'
+		  });
+		});</pre>
+	</div>
+	<h3>Demo4：</h3>
+	<div class='drag-box drag-box-4'>
+		<div class='drag drag-4'><div class='handler'>class='handler'</div><img src="img/02.jpg"></div>
+		<div class='drag drag-4'><div class='handler'>class='handler'</div><img src="img/04.jpg"></div>
+	</div>
+
+	<div class='help'>
+		<h2>拖动范围参数：parent 默认值parent <i class='mk1'>('.test')</i></h2>
+		<p>定义拖动范围</p>
+		<pre>
+		$('.drag-box-1 .drag').each(function(index){
+		  $(this).myDrag({
+			parent'.test'
+		  });
+		});</pre>
+	</div>
+	<h3>Demo5：</h3>
+	<div class='test'>
+		<i>test Box</i>
+		<div class='drag-box drag-box-5'>
+			<div class='drag drag-5'><img src="img/05.jpg"></div>
+			<div class='drag drag-5'><img src="img/06.jpg"></div>
+		</div>
+	</div>
+
+	
+	<div class='help'>
+		<h2>回调函数：dragStart,dragEnd,dragMove</h2>
+		<p>定义函数</p>
+		<pre>
+	$('.drag-box-6 .drag').each(function(index){
+		$(this).myDrag({
+			dragStart:function(){
+				$('.lg span').html('').eq(0).html('开始拖动!');
+			},
+			dragEnd:function(){
+				$('.lg span').html('').eq(1).html('停止拖动!');
+			},
+			dragMove:function(){
+				$('.lg span').html('').eq(2).html('拖动中!');
+			}
+		});
+	});</pre>
+	</div>
+	<h3>Demo6：</h3>
+	<div class='log'>
+		<div class='lg log-1'>开始log：<span></span></div>
+		<div class='lg log-2'>结束log：<span></span></div>
+		<div class='lg log-3'>进行log：<span></span></div>
+	</div>
+	<div class='drag-box drag-box-6'>
+		<div class='drag drag-6'><img src="img/03.jpg"></div>
+	</div>
+
+</body>
+</html>
