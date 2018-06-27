@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="echarts.min.js"></script>
+    <script src="makeCharts.js"></script>
+</head>
+
+<body>
+    <div id="d" style="width: 1000px;height: 500px;"></div>
+    <script>
+        var dd = document.getElementById('d')
+        var d = {
+            _div: dd,
+            _data: [
+                [12, 2134, 45, 23, 54, 65]
+            ],
+            _legend: ["设备总数"],
+            _title: "",
+            _color: "",
+            _xAxis: ['A', 'B', 'C', 'D', 'E', 'F'],
+            _xyColor: '#000',
+            _dataZoom: {
+                _dataZoom: true,
+                _start: "20",
+                _end: "90",
+                _bottom: ""
+            }
+        }
+        makeCharts.makeBar(d);
+    </script>
+</body>
+
+</html>
