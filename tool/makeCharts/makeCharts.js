@@ -67,7 +67,13 @@ String.prototype.colorRgba = function(g) {
     }
 };
 var makeCharts = {
-    chartsColor: ['#6decf3', '#fedf84', '#9ff048', '#81c2d6', '#f6d6ff', '#dcf7a1', '#83fcd8'],
+    _chartsColor: ['#6decf3', '#fedf84', '#9ff048', '#81c2d6', '#f6d6ff', '#dcf7a1', '#83fcd8'],
+    get chartsColor() {
+        return this._chartsColor;
+    },
+    set chartsColor(value) {
+        this._chartsColor = value;
+    },
     makepictorialBar: function(D) {
         if (D._div == undefined || D._div == null) {
             alert('创建象柱形图时，未能成功获取到元素!');
