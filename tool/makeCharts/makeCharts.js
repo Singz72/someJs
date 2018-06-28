@@ -67,6 +67,7 @@ String.prototype.colorRgba = function(g) {
     }
 };
 var makeCharts = {
+    chartsColor: ['#6decf3', '#fedf84', '#9ff048', '#81c2d6', '#f6d6ff', '#dcf7a1', '#83fcd8'],
     makepictorialBar: function(D) {
         if (D._div == undefined || D._div == null) {
             alert('创建象柱形图时，未能成功获取到元素!');
@@ -186,9 +187,9 @@ var makeCharts = {
         } //验证元素
         var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
-            D._color = ['#6decf3', '#2f4554', '#61a0a8', '#d48265', '#91c7ae'];
+            D._color = this.chartsColor;
         } else {
-            D._color = D._color == "" ? ['#6decf3', '#2f4554', '#61a0a8', '#d48265', '#91c7ae'] : D._color;
+            D._color = D._color == "" ? this.chartsColor : D._color;
         }
         if (!D.hasOwnProperty("_title")) {
             D._title = ""
@@ -379,9 +380,9 @@ var makeCharts = {
         } //验证元素
         var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
-            D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
+            D._color = this.chartsColor;
         } else {
-            D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
+            D._color = D._color == "" ? this.chartsColor : D._color;
         }
         if (!D.hasOwnProperty("_title")) {
             D._title = "";
@@ -495,9 +496,9 @@ var makeCharts = {
         //颜色渐变判断、转换
         if (D._gradient) {
             if (!D.hasOwnProperty("_color")) {
-                D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
+                D._color = this.chartsColor;
             } else {
-                D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
+                D._color = D._color == "" ? this.chartsColor : D._color;
             }
 
 
@@ -514,9 +515,9 @@ var makeCharts = {
             D._color = newColor;
         } else {
             if (!D.hasOwnProperty("_color")) {
-                D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
+                D._color = this.chartsColor;
             } else {
-                D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
+                D._color = D._color == "" ? this.chartsColor : D._color;
             }
             var i = 0,
                 l = D._color.length,
@@ -739,9 +740,9 @@ var makeCharts = {
         } //验证元素
         var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
-            D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
+            D._color = this.chartsColor;
         } else {
-            D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
+            D._color = D._color == "" ? this.chartsColor : D._color;
         }
         if (!D.hasOwnProperty("_title")) {
             D._title = "";
@@ -923,9 +924,9 @@ var makeCharts = {
         } //验证元素
         var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
-            D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
+            D._color = this.chartsColor;
         } else {
-            D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
+            D._color = D._color == "" ? this.chartsColor : D._color;
         }
         if (!D.hasOwnProperty("_title")) {
             D._title = "";
@@ -1092,9 +1093,9 @@ var makeCharts = {
         } //验证元素
         var e = echarts.init(D._div);
         if (!D.hasOwnProperty("_color")) {
-            D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
+            D._color = this.chartsColor;
         } else {
-            D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
+            D._color = D._color == "" ? this.chartsColor : D._color;
         }
         if (!D.hasOwnProperty("_title")) {
             D._title = "";
@@ -1172,9 +1173,9 @@ var makeCharts = {
         //颜色渐变判断、转换
         if (D._gradient) {
             if (!D.hasOwnProperty("_color")) {
-                D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
+                D._color = this.chartsColor;
             } else {
-                D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
+                D._color = D._color == "" ? this.chartsColor : D._color;
             }
 
 
@@ -1191,9 +1192,9 @@ var makeCharts = {
             D._color = newColor;
         } else {
             if (!D.hasOwnProperty("_color")) {
-                D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
+                D._color = this.chartsColor;
             } else {
-                D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
+                D._color = D._color == "" ? this.chartsColor : D._color;
             }
             var i = 0,
                 l = D._color.length,
@@ -1402,9 +1403,9 @@ var makeCharts = {
         //颜色渐变判断、转换
         if (D._gradient) {
             if (!D.hasOwnProperty("_color")) {
-                D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
+                D._color = this.chartsColor;
             } else {
-                D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
+                D._color = D._color == "" ? this.chartsColor : D._color;
             }
 
 
@@ -1421,9 +1422,9 @@ var makeCharts = {
             D._color = newColor;
         } else {
             if (!D.hasOwnProperty("_color")) {
-                D._color = ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'];
+                D._color = this.chartsColor;
             } else {
-                D._color = D._color == "" ? ['#6decf3', '#fedf84', '#fedf84', '#1efcfd', '#fd8bb8', '#71ecf2'] : D._color;
+                D._color = D._color == "" ? this.chartsColor : D._color;
             }
             var i = 0,
                 l = D._color.length,
