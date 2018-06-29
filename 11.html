@@ -44,6 +44,39 @@
         console.log(insertSort([5, 4, 3, 2, 1]));
         // console.log(insertSort([3, 2, 1, 7, 8, 9, 0]));
     </script>
+    <script>
+        // 比较相邻两个元素，若前一个比后一个大，则交换位置；
+        // 第一轮结束之后，最后一个元素的值是最大的；
+        // 接着开始第二轮，但是不用再比较最后一个元素了；
+        // 第一轮除外，以后的每一轮都比前一轮少比较一次；
+
+        var bubbleSort = function(arr) {
+            var i, j, m, noswap;
+            var len = arr.length;
+
+            if (len <= 1) {
+                return arr;
+            }
+
+            for (i = 0; i < len - 1; i++) {
+                noswap = true;
+                for (j = 0; j < len - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        m = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = m;
+                        noswap = false;
+                    }
+                }
+                if (noswap) {
+                    break;
+                }
+            }
+            return arr
+        }
+
+        console.log(bubbleSort([12, 5, 3, 6, 435, 7, 11, 45, 76, 34]))
+    </script>
 </body>
 
 </html>
