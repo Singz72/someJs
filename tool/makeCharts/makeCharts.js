@@ -16,6 +16,8 @@ var D_makeCharts = {
         _xyColor: "", //条形图轴线颜色
         _gradient: "", //true表示颜色渐变，false或者""表示不渐变，数据中必有，目前只有条形图具备渐变条件
         _rotate: "", //横坐标文字倾斜程度，0为默认表示不倾斜，负数表示向右倾斜，正数反之
+        _pieRadius: "", //饼状图的大小
+        _pieFontSize: "", //饼状图的字体大小
         _indicator: "", //雷达图专用，必需，格式[{name:'极点名字',max:'极点值，数字表示'},{name:'极点名字',max:'极点值，数字表示'},....]
         _pathSymbols: "", //香柱形图专用，必需，图片路径，和传入的坐标名称必需一一对应 格式 pathSymbols = {man: 'image://font/man.png',woman: 'image://font/woman.png'}
         _opacity: "", //折线图专用，且折线图必传，内容为数字，0-1，表示折线图是否填充
@@ -67,7 +69,7 @@ String.prototype.colorRgba = function(g) {
     }
 };
 var makeCharts = {
-    _chartsColor: ['#6decf3', '#fedf84', '#9ff048', '#81c2d6', '#f6d6ff', '#dcf7a1', '#83fcd8'],
+    _chartsColor: ['#6decf3', '#fedf84', '#Aef4A4', '#ea5455', '#dcf7a1', '#e36488', '#f6d6ff', '#2f89f3', '#993399'],
     get chartsColor() {
         return this._chartsColor;
     },
@@ -401,6 +403,11 @@ var makeCharts = {
             D._rotate = D._rotate == "" ? 0 : D._rotate;
         }
 
+        if (!D.hasOwnProperty("_pieRadius")) {
+            D._pieRadius = [40, 55];
+        } else {
+            D._pieRadius = D._pieRadius == "" ? [40, 55] : D._pieRadius;
+        }
 
 
         var labelTop = {
@@ -433,7 +440,7 @@ var makeCharts = {
         }
         var labelBottom = {
             normal: {
-                color: '#ccc',
+                color: D._color[1],
                 label: {
                     show: true,
                     position: 'center'
@@ -443,7 +450,7 @@ var makeCharts = {
                 }
             }
         };
-        var radius = [40, 55];
+        var radius = D._pieRadius;
         options = {
             legend: {
                 data: (function() {
@@ -461,7 +468,7 @@ var makeCharts = {
                     return data
                 })(),
                 orient: 'horizontal',
-                left: 'left'
+                left: 'center'
             },
             title: {
                 text: D._title,
@@ -1108,6 +1115,16 @@ var makeCharts = {
         } else {
             D._title = D._title == "" ? "" : D._title;
         }
+        if (!D.hasOwnProperty("_pieRadius")) {
+            D._pieRadius = [0, "55%"];
+        } else {
+            D._pieRadius = D._pieRadius == "" ? [0, "55%"] : D._pieRadius;
+        }
+        if (!D.hasOwnProperty("_pieFontSize")) {
+            D._pieFontSize = 16;
+        } else {
+            D._pieFontSize = D._pieFontSize == "" ? 16 : D._pieFontSize;
+        }
 
         var options = {
             title: {
@@ -1143,7 +1160,7 @@ var makeCharts = {
             series: [{
                 name: D._title,
                 type: 'pie',
-                radius: '55%',
+                radius: D._pieRadius,
                 center: ['50%', '60%'],
                 data: (function() {
                     var i = 0,
@@ -1163,7 +1180,17 @@ var makeCharts = {
                         shadowOffsetX: 0,
                         shadowColor: 'rgba(0, 0, 0, 0.5)'
                     }
-                }
+                },
+                label: {
+                    normal: {
+                        formatter: '{b|{b}:}{c}',
+                        rich: {
+                            b: {
+                                fontSize: D._pieFontSize
+                            }
+                        }
+                    }
+                },
             }],
             color: D._color
         };
@@ -1422,7 +1449,7 @@ var makeCharts = {
                 if (D._color[i] instanceof Object) {
                     newColor.push(D._color[i]);
                 } else {
-                    newColor.push(new echarts.graphic.LinearGradient(0, 0, 0, 1, D._color[i].colorRgba(D._gradient)));
+                    newColor.push(new echarts.graphic.LinearGradient(0, 0.5, 0, 1, D._color[i].colorRgba(D._gradient)));
                 }
             }
             D._color = newColor;

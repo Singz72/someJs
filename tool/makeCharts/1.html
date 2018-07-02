@@ -17,73 +17,13 @@
         var d = {
             _div: dd,
             _data: [
-                [12, 2134, 45, 23, 54, 65]
+                12, 34, 45, 23, 54, 65, 22, 32, 44
             ],
-            _legend: ["设备总数"],
+            _legend: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
             _title: "",
-            _color: "",
-            _xAxis: ['A', 'B', 'C', 'D', 'E', 'F'],
-            _xyColor: '#000',
-            _dataZoom: {
-                _dataZoom: true,
-                _start: "20",
-                _end: "90",
-                _bottom: ""
-            }
+            _color: ""
         }
-        makeCharts.makeBar(d);
-    </script>
-    <script>
-        function memfactorial(n) {
-            if (!memfactorial.cache) {
-                memfactorial.cache = {
-                    '0': 0,
-                    '1': 1
-                }
-            }
-            if (!memfactorial.cache.hasOwnProperty(n)) {
-                memfactorial.cache[n] = n * memfactorial(n - 1);
-            }
-            return memfactorial.cache[n]
-        }
-    </script>
-    <script>
-        function merge(left, right) {
-            var result = [];
-
-            while (left.length > 0 && right.length > 0) {
-                if (left[0] < right[0]) {
-                    result.push(left.shift());
-                } else {
-                    result.push(right.shift());
-                }
-            }
-            return result.concat(left).concat(right);
-        }
-        var d = [300, 280, 250, 260, 270, 300, 550, 500, 400, 390, 380, 390, 111, 400, 500, 600, 750, 800, 700, 600, 400];
-
-        function mergeSort(items) {
-            if (items.length == 1) {
-                return items
-            }
-
-            var work = [];
-            for (var i = 0, len = items.length; i < len; i++) {
-                work.push([items[i]]);
-            }
-            work.push([]); //如果数组长度为奇数
-
-            for (var lim = len; lim > 1; lim = (lim + 1) / 2) {
-                debugger;
-                for (var j = 0, k = 0; k < lim; k += 2, j++) {
-                    work[j] = merge(work[k], work[k + 1]);
-                }
-                work[j] = []; //如果数组长度为奇数
-            }
-
-            return work[0]
-        }
-        mergeSort(d)
+        makeCharts.makePie(d);
     </script>
 </body>
 
