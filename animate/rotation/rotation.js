@@ -1,3 +1,6 @@
+/***********************轮播js*********************************/
+
+
 var D_rotation = {
     rotation: 'rotation', //获取类名为rotation的id
     aRotation: 'rotation_content', //获取类名为rotation_content的id
@@ -5,7 +8,8 @@ var D_rotation = {
     Oprev: 'rotation_prev', //获取类名为rotation_prev的id
     siteTitle: 'site_category_bar_header_title', //获取类名为site_category_bar_header_title的id
     title: [],
-    timerNextPage: '' //翻页时间
+    timerNextPage: '', //翻页时间
+    Aswitch: '', //控制竖向是否滚动，控制横向是否自动滚动
 }
 var rotation = {
 
@@ -26,7 +30,7 @@ var rotation = {
 <div class="rotation_next rotation_icon" id="rotation_next"></div>
 </div>*/
 
-    rotationFun: function (D) {
+    rotationFun: function(D) {
         var atitle = D.title;
         var notitle;
         var atitle;
@@ -59,6 +63,7 @@ var rotation = {
 
         var aRotation_height = aRotation.height();
         var aBanneri = $('#' + D.aRotation + ' .rotation_banner_i');
+        var aBanneri_l = aBanneri.length;
         aBanneri.height(aRotation_height) //内容框
 
         var num = 0; //锁定当前图片
@@ -69,46 +74,65 @@ var rotation = {
         }
         aBanner[0].style.display = 'block';
         aBanner[0].style.opacity = "1";
-        aBanner[0].classList.add('rotation_on')
+        aBanner[0].setAttribute("class", "rotation_banner rotation_on");
 
         var timerTop = null; //上移计时器
         var timerLeftright = null; //下一页计时器
+        var timerRemake = null; //重启动画计时器
+
 
         //动画启动
         function startAnimate() {
+            var bDiv_height;
             var bDiv = $('#' + D.aRotation + ' .rotation_on')
             var bDiv_height = bDiv.height();
+            //        	var bDiv_height = aBanneri_l*aRotation_height;
+
+
             if (aRotation_height < bDiv_height) {
-                console.log(1)
-                var h = bDiv_height - aRotation_height;
-                timerTop = setTimeout(function () {
+
+                //上移动化内部函数
+                if (D.Aswitch) {
+                    //不自动上下滚动
+                    return
+                }
+                var h = Math.round(bDiv_height - aRotation_height);
+                timerTop = setTimeout(function() {
                     var scroll_height = aRotation[0].scrollTop;
                     if (Math.round(scroll_height) < h) {
                         aRotation[0].scrollTop += aRotation_height;
+                        startAnimate();
                     } else {
                         clearTimeout(timerTop);
-                        timerLeftright = setTimeout(TimeToNext, timerNextPage);
+                        timerLeftright = setTimeout(TimeToNext, timerNextPage); //下一页
                     }
                 }, timerNextPage)
             } else {
+                //直接左右翻转动画
+                if (D.Aswitch) {
+                    //不自动翻转
+                    return
+                }
                 clearTimeout(timerTop);
                 clearTimeout(timerLeftright);
                 aRotation[0].scrollTop = 0;
                 timerLeftright = setTimeout(TimeToNext, timerNextPage);
+
             }
         }
         clearTimeout(timerTop);
         clearTimeout(timerLeftright);
-        // startAnimate();
+        startAnimate();
 
-        oNext.onclick = function () { //按下图片切换到后一张
+
+        oNext.onclick = function() { //按下图片切换到后一张
             clearTimeout(timerTop);
             var i = 0;
             for (; i < l; i++) {
                 if (aBanner[i].className == "rotation_banner rotation_on") {
                     var bDiv = $('#' + D.aRotation + ' .rotation_on')
                     aRotation[0].scrollTop = 0;
-                    aBanner[i].classList.remove("rotation_on");
+                    aBanner[i].setAttribute("class", "rotation_banner");
                     aBanner[i].style.opacity = "0";
                     aBanner[i].style.display = 'none';
                     i++;
@@ -123,7 +147,7 @@ var rotation = {
                         acitytitle.html(atitle[num]);
                     }
                     aBanner[i].style.display = 'block';
-                    aBanner[i].classList.add("rotation_on");
+                    aBanner[i].setAttribute("class", "rotation_banner rotation_on");
                     aBanner[i].style.opacity = "1";
                 }
             }
@@ -131,14 +155,14 @@ var rotation = {
             startAnimate();
         }
 
-        Oprev.onclick = function () { //按下图片切换到前一张
+        Oprev.onclick = function() { //按下图片切换到前一张
             clearTimeout(timerTop);
             var i = 0;
             for (; i < l; i++) {
                 if (aBanner[i].className == "rotation_banner rotation_on") {
                     var bDiv = $('#' + D.aRotation + ' .rotation_on')
                     aRotation[0].scrollTop = 0;
-                    aBanner[i].classList.remove("rotation_on");
+                    aBanner[i].setAttribute("class", "rotation_banner");
                     aBanner[i].style.opacity = "0";
                     aBanner[i].style.display = 'none';
                     i--;
@@ -154,7 +178,7 @@ var rotation = {
                     }
 
                     aBanner[i].style.display = 'block';
-                    aBanner[i].classList.add("rotation_on");
+                    aBanner[i].setAttribute("class", "rotation_banner rotation_on");
                     aBanner[i].style.opacity = "1";
                 }
             }
@@ -166,12 +190,12 @@ var rotation = {
         function showhide(num) {
             var i = 0;
             for (; i < l; i++) {
-                aBanner[i].classList.remove("rotation_on");
+                aBanner[i].setAttribute("class", "rotation_banner");
                 aBanner[i].style.opacity = "0";
                 aBanner[i].style.display = 'none';
             }
             aBanner[num].style.display = 'block';
-            aBanner[num].classList.add("rotation_on");
+            aBanner[num].setAttribute("class", "rotation_banner rotation_on");
             aBanner[num].style.opacity = "1";
 
             clearTimeout(timerLeftright);
@@ -196,14 +220,28 @@ var rotation = {
             }
         }
 
-        oBody.onmouseover = function () { /*鼠标引入，清除定时器，轮播图停止*/
+        oBody.onmouseover = function() { /*鼠标引入，清除定时器，轮播图停止*/
             clearTimeout(timerTop);
             clearTimeout(timerLeftright);
         };
-        oBody.onmouseout = function () { /*鼠标移出，重新调用定时器，轮播图开始*/
+        oBody.onmouseout = function() { /*鼠标移出，重新调用定时器，轮播图开始*/
             clearTimeout(timerTop);
             clearTimeout(timerLeftright);
             startAnimate();
         };
+
+        //停止动画，并且使其回到顶部,根据传入时间重启动画
+        function toTopFun(Time) {
+            clearTimeout(timerTop);
+            clearTimeout(timerLeftright);
+            clearTimeout(timerRemake);
+            aRotation[0].scrollTop = 0;
+
+            timerRemake = setTimeout(function() {
+                startAnimate();
+            }, Time)
+        }
+
+        return toTopFun;
     }
 }
