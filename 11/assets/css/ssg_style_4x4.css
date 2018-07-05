@@ -1,0 +1,172 @@
+.ssg_main_body_layout {
+    height: calc(100% - 4px);
+    float: left;
+    margin: 2px;
+}
+
+.ssg_panel_body {
+    box-sizing: border-box;
+    float: left;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin: 2px 0;
+    background: #00294d;
+    border: 5px solid #00294d;
+    border-radius: 7px;
+    border: none;
+    border-style: solid;
+    border-width: 32px 37px;
+    border-image-source: url(../img/border-bg.png);
+    border-image-slice: 32 37 fill;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+
+/* 区块中高度占比1/2小块 */
+
+.half_height {
+    height: calc(50% - 4px);
+}
+
+
+/* 区块中高度占比1/4小块 */
+
+.quarter_height {
+    height: calc(25% - 4px);
+}
+
+
+/* 区块中宽度占比1/2小块 */
+
+.half_width {
+    width: calc(50% - 4px);
+}
+
+
+/* 区块中宽度占比1/4小块 */
+
+.quarter_width {
+    width: calc(25% - 4px);
+}
+
+.ssg_panel {
+    height: 100%;
+}
+
+.ssg_panel_body_box {
+    box-sizing: border-box;
+    height: calc(100% + 54px);
+    width: calc(100% + 64px);
+    position: absolute;
+    top: -27px;
+    left: -32px;
+}
+
+.ssg_panel_body_box>div {
+    height: 100%;
+    width: 100%;
+}
+
+.ssg_panel_content {
+    height: 100%;
+    /* background:rgba(5,16,49,0.5); */
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#7f051031, endColorstr=#7f051031);
+    position: relative;
+}
+
+
+/***********************panel title*************************/
+
+.ssg_zhzay_title {
+    height: 5%;
+    box-sizing: border-box;
+    padding: 3px 0;
+    margin-bottom: 3px;
+}
+
+.ssg_zhzay_title_box {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    /* background: #00294d; */
+    background-color: rgba(0, 41, 77, 0.7);
+    text-align: center;
+    color: #6decf3;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px #fff inset;
+}
+
+.ssg_zhzay_titlePanel {
+    height: calc(95% - 3px);
+}
+
+.ssg_zhzay_width_1 {
+    width: calc(45% - 4px);
+}
+
+.ssg_zhzay_width_2 {
+    width: calc(30% - 4px);
+}
+
+.ssg_zhzay_height_1 {
+    height: calc(55% - 4px);
+}
+
+.ssg_zhzay_height_2 {
+    height: calc(45% - 4px);
+}
+
+.ssg_zhzay_height_3 {
+    height: calc(55% - 4px);
+}
+
+.ssg_zhzay_height_4 {
+    height: calc(45% - 4px);
+}
+
+
+/***/
+
+.ssg_panel_1_2content {
+    font-size: 0px;
+}
+
+.ssg_panel_1_2content_div {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    position: relative;
+}
+
+.Checkwork_content_header_time,
+.Checkwork_content_list_time {
+    width: 35%;
+}
+
+.Checkwork_content_list_time {
+    position: relative;
+}
+
+.Checkwork_content_header_name,
+.Checkwork_content_list_name {
+    width: 15%;
+}
+
+.Checkwork_content_header_address,
+.Checkwork_content_list_address {
+    width: 35%;
+}
+
+.Checkwork_content_header_result,
+.Checkwork_content_list_result {
+    width: 15%;
+}
+
+.Checkwork_content_list_name_radius {
+    left: 10%;
+}

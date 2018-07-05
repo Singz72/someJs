@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Gridster Responsive Demo</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/demo.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.gridster.min.css">
+    <style>
+        .removeli {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            color: red;
+        }
+    </style>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.gridster.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        var serialization = [{
+            "col": 1,
+            "row": 1,
+            "size_x": 2,
+            "size_y": 2
+        }, {
+            "col": 1,
+            "row": 3,
+            "size_x": 2,
+            "size_y": 2
+        }, {
+            "col": 3,
+            "row": 1,
+            "size_x": 4,
+            "size_y": 4
+        }, {
+            "col": 7,
+            "row": 1,
+            "size_x": 2,
+            "size_y": 2
+        }, {
+            "col": 7,
+            "row": 3,
+            "size_x": 2,
+            "size_y": 2
+        }, {
+            "col": 1,
+            "row": 5,
+            "size_x": 2,
+            "size_y": 2
+        }, {
+            "col": 3,
+            "row": 5,
+            "size_x": 4,
+            "size_y": 2
+        }, {
+            "col": 7,
+            "row": 5,
+            "size_x": 2,
+            "size_y": 2
+        }];
+
+        //页面基础结构
+        var templateStr = '<li><div class="removeli" onclick="removeTemplate(this)">x</div></li>'
+            //配置页
+            //在设置布局时可以增加
+        function addTemplate() {
+            var widgets = [
+                [templateStr, 1, 1]
+            ];
+            $.each(widgets, function(i, widget) {
+                gridster.add_widget.apply(gridster, widget)
+            });
+        }
+
+        //删除结构
+        function removeTemplate(e) {
+            gridster.remove_widget($(e).parent('li'))
+        }
+
+        //得到布局结构
+        //用以传输，重新渲染布局
+        function logTemplate() {
+            var s = gridster.serialize();
+            console.log(JSON.stringify(s));
+        }
+
+        var gridster = null;
+        $(function() {
+            gridster = $(".gridster ul").gridster({
+                widget_base_dimensions: ['auto', 140], //模块的宽高 [宽,高]
+                autogenerate_stylesheet: true,
+                min_cols: 1,
+                max_cols: 8,
+                widget_margins: [5, 5], //模块的间距 [上下,左右]
+                resize: {
+                    enabled: true
+                }
+            }).data('gridster');
+
+            $('.gridster  ul').css({
+                'padding': '0'
+            });
+
+            //渲染页面
+            //可以根绝接收到的布局信息，清除之前的布局，重新渲染页面
+            gridster.remove_all_widgets();
+            $.each(serialization, function() {
+                gridster.add_widget(templateStr, this.size_x, this.size_y, this.col, this.row);
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <div>
+        <button onclick="addTemplate()">add</button>
+        <button onclick="logTemplate()">dayin</button>
+    </div>
+    <div class="gridster">
+        <ul id="gridsterUl">
+
+        </ul>
+    </div>
+
+
+</body>
+
+</html>
