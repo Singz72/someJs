@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="keywords" content="${keywords}">
+    <meta http-equiv="description" content="${description}">
+    <link rel="stylesheet" type="text/css" href="assets/css/demo.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.gridster.min.css">
+    <link href="assets/css/ssg_style.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/ssg_style_4x4.css" rel="stylesheet" type="text/css"></link>
+    <style>
+        .removeli {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #ccc;
+            z-index: 20;
+            font-size: 20px;
+            opacity: 0;
+        }
+        
+        .gs-w:hover .removeli {
+            opacity: 1;
+        }
+        
+        .poi {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 20;
+        }
+    </style>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.gridster.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/js/echarts.min.js"></script>
+    <script src="assets/js/makeCharts.js"></script>
+    <script src="assets/js/Gridster_.js"></script>
+</head>
+
+<body>
+
+    <div class="ssg_main_header">
+        <div class="ssg_main_header_title">111</div>
+        <div class="ssg_main_header_mes">
+            <i class="iconfont">&#xe8f9;</i>
+            <span id="headerTime">
+				<script>
+					var t = null;
+					function headerTime() {
+						dt = new Date();
+						var y = dt.getFullYear();
+						var m = dt.getMonth()+1;
+						var d = dt.getDate();
+						var hour = dt.getHours();
+						var min = dt.getMinutes();
+						var sec = dt.getSeconds();
+						document.getElementById("headerTime").innerHTML = y + "-" + m + "-" + d + " " + hour + ":" + min + ":" + sec;
+						t = setTimeout(headerTime, 1000);
+					}
+					window.onload = function(){
+					    headerTime();
+					}
+				</script>
+			</span>
+        </div>
+        <div class="ssg_main_header_bac"></div>
+        <div class="ssg_main_header_button"><img style="vertical-align:middle;height:100%"><a href="${root}/index.do?plat=index" title="后台管理" target="_blank"><span class="icon iconfont icon-liebiaoshitucaidan"></span></a></div>
+    </div>
+
+    <div class="ssg_main_body" id="ssg_main_body">
+        <div class="gridster">
+            <ul id="gridsterUl">
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="poi">
+        <button onclick="addTemplate()">add</button>
+        <button onclick="logTemplate()">dayin</button>
+    </div>
+
+    <script type="text/javascript">
+        var serialization = [{
+            col: 1,
+            row: 1,
+            size_x: 2,
+            size_y: 3,
+            id: "colrow_0"
+        }, {
+            col: 1,
+            row: 4,
+            size_x: 2,
+            size_y: 3,
+            id: "colrow_1"
+        }, {
+            col: 1,
+            row: 7,
+            size_x: 2,
+            size_y: 3,
+            id: "colrow_2"
+        }, {
+            col: 1,
+            row: 10,
+            size_x: 2,
+            size_y: 3,
+            id: "colrow_3"
+        }, {
+            col: 3,
+            row: 1,
+            size_x: 4,
+            size_y: 7,
+            id: "colrow_4"
+        }, {
+            col: 3,
+            row: 8,
+            size_x: 4,
+            size_y: 5,
+            id: "colrow_5"
+        }, {
+            col: 7,
+            row: 1,
+            size_x: 2,
+            size_y: 4,
+            id: "colrow_6"
+        }, {
+            col: 7,
+            row: 5,
+            size_x: 2,
+            size_y: 4,
+            id: "colrow_7"
+        }, {
+            col: 7,
+            row: 9,
+            size_x: 2,
+            size_y: 4,
+            id: "colrow_8"
+        }]
+
+        var o = {
+            widget_base_dimensions: ['auto', 68], //模块的宽高 [宽,高]
+            autogenerate_stylesheet: true,
+            min_cols: 1,
+            max_cols: 8,
+            min_rows: 1,
+            max_rows: 12,
+            widget_margins: [5, 5], //模块的间距 [上下,左右]
+            nomove: true //不能移动
+        }
+        $(function() {
+            setGridster_('ssg_main_body', o, serialization)
+        });
+    </script>
+</body>
+
+</html>
