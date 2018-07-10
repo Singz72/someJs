@@ -76,6 +76,70 @@ var makeCharts = {
     set chartsColor(value) {
         this._chartsColor = value;
     },
+    //树状图
+    makeTree: function(D) {
+        if (D._div == undefined || D._div == null) {
+            alert('创建树状图时，未能成功获取到元素!');
+        } //验证元素
+        var e = echarts.init(D._div);
+        if (!D.hasOwnProperty("_color")) {
+            D._color = this.chartsColor;
+        } else {
+            D._color = D._color == "" ? this.chartsColor : D._color;
+        }
+        if (!D.hasOwnProperty("_title")) {
+            D._title = "";
+        } else {
+            D._title = D._title == "" ? "" : D._title;
+        }
+        if (!D.hasOwnProperty("_opacity")) {
+            D._opacity = 0;
+        } else {
+            D._opacity = D._opacity == "" ? 0 : D._opacity;
+        }
+
+        var options = {
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove'
+            },
+            series: [{
+                type: 'tree',
+                data: D._data,
+                top: '1%',
+                left: '7%',
+                bottom: '1%',
+                right: '20%',
+
+                symbolSize: 7,
+
+                label: {
+                    normal: {
+                        position: 'left',
+                        verticalAlign: 'middle',
+                        align: 'right',
+                        fontSize: 9
+                    }
+                },
+
+                leaves: {
+                    label: {
+                        normal: {
+                            position: 'right',
+                            verticalAlign: 'middle',
+                            align: 'left'
+                        }
+                    }
+                },
+                expandAndCollapse: true,
+                animationDuration: 550,
+                animationDurationUpdate: 750
+            }]
+        };
+        e.setOption(options);
+        //返回echarts对象
+        return echarts.getInstanceByDom(D._div)
+    },
     makepictorialBar: function(D) {
         if (D._div == undefined || D._div == null) {
             alert('创建象柱形图时，未能成功获取到元素!');
@@ -767,7 +831,7 @@ var makeCharts = {
         } else {
             D._rotate = D._rotate == "" ? 0 : D._rotate;
         }
-        if (!D.hasOwnProperty("_title")) {
+        if (!D.hasOwnProperty("_opacity")) {
             D._opacity = 0;
         } else {
             D._opacity = D._opacity == "" ? 0 : D._opacity;
@@ -951,7 +1015,7 @@ var makeCharts = {
         } else {
             D._rotate = D._rotate == "" ? 0 : D._rotate;
         }
-        if (!D.hasOwnProperty("_title")) {
+        if (!D.hasOwnProperty("_opacity")) {
             D._opacity = 0;
         } else {
             D._opacity = D._opacity == "" ? 0 : D._opacity;

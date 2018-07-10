@@ -13,17 +13,36 @@
 <body>
     <div id="d" style="width: 1000px;height: 500px;"></div>
     <script>
+        var tt = {
+            name: "flare", // 节点的名称，当前节点 label 对应的文本
+            label: { // 此节点特殊的 label 配置（如果需要的话）。
+                // label的格式参见 series-tree.label。
+            },
+            itemStyle: { // 此节点特殊的 itemStyle 配置（如果需要的话）。
+                // label的格式参见 series-tree.itemStyle。
+            },
+            children: [{
+                name: "flex",
+                value: 41161 // value 值，只在 tooltip 中显示
+            }, {
+                name: "flex2",
+                value: 41162 // value 值，只在 tooltip 中显示
+            }, {
+                name: "flex3",
+                value: 41163 // value 值，只在 tooltip 中显示
+            }, {
+                name: "flex4",
+                value: 41164 // value 值，只在 tooltip 中显示
+            }]
+        }
         var dd = document.getElementById('d')
         var d = {
             _div: dd,
-            _data: [
-                12, 34, 45, 23, 54, 65, 22, 32, 44
-            ],
-            _legend: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+            _data: tt,
             _title: "",
             _color: ""
         }
-        makeCharts.makePie(d);
+        makeCharts.makeTree(d);
     </script>
 </body>
 
