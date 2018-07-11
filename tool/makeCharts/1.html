@@ -14,25 +14,25 @@
     <div id="d" style="width: 1000px;height: 500px;"></div>
     <script>
         var tt = {
-            name: "flare", // 节点的名称，当前节点 label 对应的文本
-            label: { // 此节点特殊的 label 配置（如果需要的话）。
-                // label的格式参见 series-tree.label。
-            },
-            itemStyle: { // 此节点特殊的 itemStyle 配置（如果需要的话）。
-                // label的格式参见 series-tree.itemStyle。
-            },
+            name: "flare", // 节点的名称，当前节点 label 对应的文本{b}
+            value: '状态1',
+            time: '2019-09-03',
             children: [{
                 name: "flex",
-                value: 41161 // value 值，只在 tooltip 中显示
+                value: '状态4', // value 值，只在 tooltip 中显示{c}
+                time: '2016-09-17',
             }, {
                 name: "flex2",
-                value: 41162 // value 值，只在 tooltip 中显示
+                value: '状态2', // value 值，只在 tooltip 中显示{c}
+                time: '2019-04-08',
             }, {
                 name: "flex3",
-                value: 41163 // value 值，只在 tooltip 中显示
+                value: '状态6', // value 值，只在 tooltip 中显示{c}
+                time: '2012-11-33',
             }, {
                 name: "flex4",
-                value: 41164 // value 值，只在 tooltip 中显示
+                value: '状态9', // value 值，只在 tooltip 中显示{c}
+                time: '2018-05-24',
             }]
         }
         var dd = document.getElementById('d')
@@ -40,7 +40,8 @@
             _div: dd,
             _data: tt,
             _title: "",
-            _color: ""
+            _color: "",
+            _formatter: true
         }
         makeCharts.makeTree(d);
     </script>

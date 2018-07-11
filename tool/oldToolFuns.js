@@ -1,13 +1,3 @@
-/**.
- * 工作中需要的代码
- * 和工作里的代码格式保持一致
- * 但粘贴复制时
- * 不能把这段带入工作的使用代码中
- * 从这里的代码重新整理到tool.js里
- */
-
-
-
 /***********************轮播js*********************************/
 
 
@@ -983,6 +973,65 @@ var getYearMonthDay = {
             startTime: startTime,
             endTime: endTime
         }
+    },
+    //返回时间所在年份的所有周数
+    //obj:为true则返回对象格式
+    getAllWeeks: function(arg, obj) {
+        var year = arg.getFullYear();
+        //获取year这年所有的周
+        var d = new Date(year, 0, 1);
+        while (d.getDay() != 1) {
+            d.setDate(d.getDate() - 1);
+        }
+        var to = new Date(year + 1, 0, 1);
+        var D = [];
+        for (var from = d; from < to;) {
+            var str1 = '';
+            var str2 = '';
+            str1 = str1 + from.getFullYear() + "-" + ((from.getMonth() + 1) <= 9 ? ('0' + (from.getMonth() + 1)) : (from.getMonth() + 1)) + "-" + (from.getDate() <= 9 ? ('0' + from.getDate()) : from.getDate());
+            from.setDate(from.getDate() + 6);
+            if (from < to) {
+                str2 = str2 + from.getFullYear() + "-" + ((from.getMonth() + 1) <= 9 ? ('0' + (from.getMonth() + 1)) : (from.getMonth() + 1)) + "-" + (from.getDate() <= 9 ? ('0' + from.getDate()) : from.getDate());
+                from.setDate(from.getDate() + 1);
+            } else {
+                str2 = str2 + from.getFullYear() + "-" + ((from.getMonth() + 1) <= 9 ? ('0' + (from.getMonth() + 1)) : (from.getMonth() + 1)) + "-" + (from.getDate() <= 9 ? ('0' + from.getDate()) : from.getDate());
+            }
+            D.push([str1, str2]);
+        }
+        if (obj) {
+            var oi = 0,
+                ol = D.length,
+                Do = [];
+            for (; oi < ol; oi++) {
+
+                Do.push({
+                    name: oi + 1,
+                    value: D[oi]
+                });
+            }
+            return Do
+        }
+        return D
+    },
+    //根据时间获取该时间在当年所在的第几周
+    //arg:时间
+    getPointNumForWeek: function(arg) {
+        var that = this;
+        var D = that.getAllWeeks(new Date(arg)); //week array
+        var d1 = new Date(arg);
+        var d2 = new Date(D[0][1]);
+        var rq = d1 - d2;
+        var s1 = Math.ceil(rq / (24 * 60 * 60 * 1000));
+        var s2 = Math.ceil(s1 / 7) + 1;
+        return s2
+    },
+    //根据当年第几周获取所在的时间段
+    //arg:数字
+    //T:年份
+    getPointWeekForNum: function(arg, T) {
+        var that = this;
+        var D = that.getAllWeeks(new Date(T)); //week array
+        return D[arg - 1]
     },
     //检查时间是否过期
     checkTimeisOver: function(t) {

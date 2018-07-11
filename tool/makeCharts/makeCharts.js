@@ -34,6 +34,7 @@ var D_makeCharts = {
             _num: '',
             _color: ''
         }, //折线图条形图基准线，基准线数值和颜色
+        _formatter: '', //是否启用formatter字符数据格式方式  true为使用
     }
     //十六进制颜色值的正则表达式  
 var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
@@ -77,26 +78,42 @@ var makeCharts = {
         this._chartsColor = value;
     },
     //树状图
+    /**
+     * data数据格式
+     * {
+     *  name:'',
+     *  type1:'',
+     *  type2:'',
+     *  ...
+     *  children:[
+     *      {
+     *          name:'',
+     *          type1:'',
+     *          type2:'',
+     *          ...
+     *       },
+     *      {
+     *          name:'',
+     *          type1:'',
+     *          type2:'',
+     *          ...
+     *          children:[
+     *              {
+     *                  name:'',
+     *                  type1:'',
+     *                  type2:'',
+     *                  ...
+     *              }
+     *           ]
+     *       }
+     *  ]
+     * }
+     */
     makeTree: function(D) {
         if (D._div == undefined || D._div == null) {
             alert('创建树状图时，未能成功获取到元素!');
         } //验证元素
         var e = echarts.init(D._div);
-        if (!D.hasOwnProperty("_color")) {
-            D._color = this.chartsColor;
-        } else {
-            D._color = D._color == "" ? this.chartsColor : D._color;
-        }
-        if (!D.hasOwnProperty("_title")) {
-            D._title = "";
-        } else {
-            D._title = D._title == "" ? "" : D._title;
-        }
-        if (!D.hasOwnProperty("_opacity")) {
-            D._opacity = 0;
-        } else {
-            D._opacity = D._opacity == "" ? 0 : D._opacity;
-        }
 
         var options = {
             tooltip: {
@@ -104,10 +121,11 @@ var makeCharts = {
                 triggerOn: 'mousemove'
             },
             series: [{
+                name: 'asas',
                 type: 'tree',
-                data: D._data,
+                data: [D._data],
                 top: '1%',
-                left: '7%',
+                left: '17%',
                 bottom: '1%',
                 right: '20%',
 
@@ -118,10 +136,15 @@ var makeCharts = {
                         position: 'left',
                         verticalAlign: 'middle',
                         align: 'right',
-                        fontSize: 9
+                        fontSize: 20,
+                        formatter: function(params) {
+                            if (D._formatter) {
+                                return params.data.name + '\n' + params.data.value + '\n' + params.data.time
+                            }
+                            return
+                        }
                     }
                 },
-
                 leaves: {
                     label: {
                         normal: {
