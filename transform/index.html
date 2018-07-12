@@ -6,12 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="style.scss">
+    <style>
+        .demo {
+            width: 300px;
+            height: 300px;
+            perspective: 1000px;
+            position: relative;
+            margin: 30px auto;
+        }
+        
+        .cube {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            position: absolute;
+            transition: transform ease 1s;
+            animation: aniTrans 5s ease infinite;
+            transform: translateZ(-150px);
+        }
+        /* .show-default {
+            transform: translateZ(-150px) rotateY( -15deg) rotateX(-15deg);
+        }
+        
+        .show-left {
+            transform: translateZ(-150px) rotateY( 90deg);
+        } */
+        
+        @keyframes aniTrans {
+            0% {
+                transform: translateZ(-150px) rotateY( 90deg);
+            }
+            25% {
+                transform: translateZ(-150px) rotateY( -15deg) rotateX(-15deg);
+            }
+            50% {
+                transform: translateZ(-150px) rotateY( -45deg) rotateX(55deg);
+            }
+            75% {
+                transform: translateZ(-150px) rotateY( -115deg) rotateX(-115deg);
+            }
+            100% {
+                transform: translateZ(-150px) rotateY( 45deg) rotateX(-105deg);
+            }
+        }
+        
+        .cube-face {
+            border: 2px solid #000;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            overflow: hidden;
+            opacity: 0.6;
+            backface-visibility: visible;
+        }
+        
+        .is-front {
+            transform: translateZ(150px);
+        }
+        
+        .is-back {
+            transform: rotateX(-180deg) translateZ(150px);
+        }
+        
+        .is-right {
+            transform: rotateY(90deg) translateZ(150px);
+        }
+        
+        .is-left {
+            transform: rotateY(-90deg) translateZ(150px);
+        }
+        
+        .is-top {
+            transform: rotateX(90deg) translateZ(150px);
+        }
+        
+        .is-bottom {
+            transform: rotateX(-90deg) translateZ(150px);
+        }
+        
+        img {
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
     <div class="demo">
-        <div class="cube show-default">
+        <div class="cube show-default show-left">
             <div class="cube-face is-front">
                 <img src="https://rawcdn.githack.com/o2team/misc/gh-pages/o2/img/mms/s1/1.jpg" alt="pic1" />
             </div>
