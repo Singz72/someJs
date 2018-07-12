@@ -44,3 +44,48 @@ $cube-radius:$cube-size/2;
         width: 100%;
     }
 }
+
+.cube_box {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    -webkit-transform: rotateX(-30deg) rotateY(30deg) translateX(400px) translateY(400px);
+    transform: rotateX(-30deg) rotateY(30deg) translateX(400px) translateY(400px);
+    transform-style: preserve-3d;
+    &_div {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background: radial-gradient(transparent 30%, rgba(0, 0, 0, .5) 100%);
+        &.up {
+            -webkit-transform: rotateX(90deg) translateZ(50px);
+            transform: rotateX(90deg) translateZ(50px);
+        }
+        &.down {
+            -webkit-transform: rotateX(-90deg) translateZ(50px);
+            transform: rotateX(-90deg) translateZ(50px);
+        }
+        &.left {
+            -webkit-transform: rotateY(180deg) translateZ(50px);
+            transform: rotateY(180deg) translateZ(50px);
+        }
+        &.right {
+            -webkit-transform: translateZ(50px);
+            transform: translateZ(50px);
+        }
+        &.front {
+            -webkit-transform: rotateY(-90deg) translateZ(50px);
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+        &.back {
+            -webkit-transform: rotateY(90deg) translateZ(50px);
+            transform: rotateY(90deg) translateZ(50px);
+        }
+    }
+    &_shadow {
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, .7);
+        filter: blur(10px);
+    }
+}

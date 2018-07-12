@@ -5,67 +5,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.scss">
     <title>Document</title>
     <style>
-        .content {
+        .cube_box {
+            width: 100px;
+            height: 100px;
             position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 100px auto;
-            margin-left: -100px;
-            left: 50%;
+            -webkit-transform: rotateX(-30deg) rotateY(30deg) translateX(400px) translateY(400px);
+            transform: rotateX(-30deg) rotateY(30deg) translateX(400px) translateY(400px);
             transform-style: preserve-3d;
-            transform: rotateX(57deg) rotateY(-30deg);
         }
         
-        .adiv {
-            width: 200px;
-            height: 200px;
+        .cube_box_div {
+            width: 100px;
+            height: 100px;
             position: absolute;
-            color: #fff;
-            opacity: 0.7;
+            background: radial-gradient(transparent 30%, rgba(0, 0, 0, .5) 100%);
         }
         
-        .adiv1 {
-            background: #860f44;
-            transform: rotateX(90deg) translateZ(100px);
+        .up {
+            -webkit-transform: rotateX(90deg) translateZ(50px);
+            transform: rotateX(90deg) translateZ(50px);
         }
         
-        .adiv2 {
-            background: #17bebb;
-            transform: rotateX(-90deg) translateZ(100px);
+        .down {
+            -webkit-transform: rotateX(-90deg) translateZ(50px);
+            transform: rotateX(-90deg) translateZ(50px);
         }
         
-        .adiv3 {
-            background: #ffeaa5;
-            transform: rotateY(-90deg) translateZ(100px);
+        .left {
+            -webkit-transform: rotateY(180deg) translateZ(50px);
+            transform: rotateY(180deg) translateZ(50px);
         }
         
-        .adiv4 {
-            background: #35477d;
-            transform: rotateY(90deg) translateZ(100px);
+        .right {
+            -webkit-transform: translateZ(50px);
+            transform: translateZ(50px);
         }
         
-        .adiv5 {
-            background: #eda1c1;
-            transform: translateZ(100px);
+        .front {
+            -webkit-transform: rotateY(-90deg) translateZ(50px);
+            transform: rotateY(-90deg) translateZ(50px);
         }
         
-        .adiv6 {
-            background: #1a2c5b;
-            transform: translateZ(-100px);
+        .back {
+            -webkit-transform: rotateY(90deg) translateZ(50px);
+            transform: rotateY(90deg) translateZ(50px);
+        }
+        
+        .cube_box_shadow {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, .7);
+            filter: blur(10px);
         }
     </style>
 </head>
 
 <body>
-    <div class="content">
-        <div class="adiv adiv1">正</div>
-        <div class="adiv adiv2">正</div>
-        <div class="adiv adiv3">正</div>
-        <div class="adiv adiv4">正</div>
-        <div class="adiv adiv5">正</div>
-        <div class="adiv adiv6">正</div>
+    <div class="cube_box">
+        <div class="cube_box_div up">
+            <div class="cube_box_shadow"></div>
+        </div>
+        <div class="cube_box_div down">
+            <div class="cube_box_shadow"></div>
+        </div>
+        <div class="cube_box_div left">
+            <div class="cube_box_shadow"></div>
+        </div>
+        <div class="cube_box_div right">
+            <div class="cube_box_shadow"></div>
+        </div>
+        <div class="cube_box_div front">
+            <div class="cube_box_shadow"></div>
+        </div>
+        <div class="cube_box_div back">
+            <div class="cube_box_shadow"></div>
+        </div>
     </div>
 </body>
 
