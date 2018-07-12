@@ -138,6 +138,7 @@ var makeCharts = {
                         align: 'right',
                         fontSize: 20,
                         formatter: function(params) {
+                            console.log(params)
                             if (D._formatter) {
                                 return params.data.name + '\n' + params.data.value + '\n' + params.data.time
                             }
