@@ -14,6 +14,19 @@ var D_makeCharts = {
         _color: "", //如果需要更改每个饼块的颜色可自定义 ['#aaaaaa','#cccccc'....] 没有就空着 但传入数据D中必须包含
         _title: "", //字符串，可以空值但必传
         _xyColor: "", //条形图轴线颜色
+        _legendBar: "", //条形折线图中条形图的legend
+        _legendLine: "", //条形折线图中折线图的legend
+        _dataBar: [
+            []
+        ], //条形折线图中条形图的data
+        _dataLine: [
+            []
+        ], //条形折线图中折线图的data
+        _yAxis: [{
+            min: '',
+            max: ''
+        }], //条形折线图中对Y轴设置大小值，需要就设置
+        _yAxisIndex: 0, //条形折线图中对折线图设置用于第几个y轴，0：和bar用相同的Y，1用第二个Y，类推，默认为0
         _gradient: "", //true表示颜色渐变，false或者""表示不渐变，数据中必有，目前只有条形图具备渐变条件
         _rotate: "", //横坐标文字倾斜程度，0为默认表示不倾斜，负数表示向右倾斜，正数反之
         _pieRadius: "", //饼状图的大小
@@ -138,7 +151,6 @@ var makeCharts = {
                         align: 'right',
                         fontSize: 20,
                         formatter: function(params) {
-                            console.log(params)
                             if (D._formatter) {
                                 return params.data.name + '\n' + params.data.value + '\n' + params.data.time
                             }
@@ -588,7 +600,7 @@ var makeCharts = {
         //返回echarts对象
         return echarts.getInstanceByDom(D._div)
     },
-    //线性条形图
+    //线性条形图  
     makeBarAndLine: function(D) {
         if (D._div == undefined || D._div == null) {
             alert('创建线性条形图时，未能成功获取到元素!');
@@ -656,6 +668,18 @@ var makeCharts = {
             D._markLine._color = D._markLine._color == ' ' ? 'rgba(0,0,0,0)' : D._markLine._color;
         }
 
+        if (!D.hasOwnProperty("_dataLine")) {
+            D._dataLine = D._dataBar;
+        }
+
+        if (!D.hasOwnProperty("_legendLine")) {
+            D._legendLine = D._legendBar;
+            D._legend = D._legendBar;
+        } else {
+            D._legend = D._legendLine.concat(D._legendBar);
+        }
+
+
 
         var options = {
             title: {
@@ -700,21 +724,35 @@ var makeCharts = {
                     rotate: D._rotate
                 }
             },
-            yAxis: {
-                axisLine: {
-                    lineStyle: {
-                        color: D._xyColor
+            yAxis: (function() {
+                var y = [],
+                    i = 0,
+                    l = D._legend.length;
+                for (; i < l; i++) {
+                    y.push({
+                        name: D._legend[i], //y轴名称
+                        type: 'value', //y轴类型，默认为value
+                        axisLine: {
+                            lineStyle: {
+                                color: D._xyColor
+                            }
+                        },
+                        /*interval:0*/
+                        /*splitNumber:4,*/
+                        axisTick: {
+                            show: true
+                        },
+                        splitLine: {
+                            show: false
+                        }
+                    });
+                    if (D.hasOwnProperty('_yAxis')) {
+                        y[i].min = D._yAxis[i].min;
+                        y[i].max = D._yAxis[i].max;
                     }
-                },
-                /*interval:0*/
-                /*splitNumber:4,*/
-                axisTick: {
-                    show: true
-                },
-                splitLine: {
-                    show: false
                 }
-            },
+                return y
+            })(),
             grid: {
                 top: 40,
                 bottom: 35
@@ -723,11 +761,12 @@ var makeCharts = {
             series: (function() {
                 var i = 0,
                     j = 0,
-                    l = D._legend.length,
+                    l1 = D._legendBar.length,
+                    l2 = D._legendLine.length,
                     seriesData = [];
-                for (; i < l; i++) {
+                for (; i < l1; i++) {
                     seriesData.push({
-                        name: D._legend[i],
+                        name: D._legendBar[i],
                         type: 'bar',
                         label: {
                             normal: {
@@ -738,7 +777,7 @@ var makeCharts = {
                                 }
                             }
                         },
-                        data: D._data[i],
+                        data: D._dataBar[i],
                         animationDelay: function(idx) {
                             return idx * 10
                         },
@@ -756,11 +795,11 @@ var makeCharts = {
                         }
                     })
                 }
-                for (; j < l; j++) {
+                for (; j < l2; j++) {
                     seriesData.push({
-                        name: D._legend[j],
+                        name: D._legendLine[j],
                         type: 'line',
-                        data: D._data[j],
+                        data: D._dataLine[j],
                         animationDelay: function(idx) {
                             return idx * 10
                         },
@@ -770,7 +809,8 @@ var makeCharts = {
                                     color: D._color[1]
                                 }
                             }
-                        }
+                        },
+                        yAxisIndex: D._yAxisIndex || 0
                     })
                 }
                 return seriesData

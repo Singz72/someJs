@@ -12,6 +12,7 @@
 
 <body>
     <div id="d" style="width: 1000px;height: 500px;"></div>
+    <div id="linebar" style="width: 1000px;height: 500px;"></div>
     <script>
         var tt = {
             name: "flare", // 节点的名称，当前节点 label 对应的文本{b}
@@ -42,6 +43,44 @@
             _formatter: true
         }
         makeCharts.makeTree(d);
+
+        var D1 = document.getElementById('linebar')
+        var D = {
+                _div: D1,
+                _dataBar: [
+                    [1, 2, 3, 4, 5, 6]
+                ],
+                _dataLine: [
+                    [2, 5, 1, 37, 6, 7]
+                ],
+                _legendBar: ['N'],
+                _legendLine: ['M'],
+                _xAxis: ['A', 'B', 'C', 'D', 'E', 'F'],
+                _yAxis: [{
+                    min: 0,
+                    max: 10,
+                }, {
+                    min: 0,
+                    max: 50,
+                }],
+                _yAxisIndex: 1,
+                _xyColor: '#000'
+            }
+            // var D = {
+            //     _div: D1,
+            //     _dataBar: [
+            //         [1, 2, 3, 4, 5, 6]
+            //     ],
+            //     _legendBar: ['N'],
+            //     _xAxis: ['A', 'B', 'C', 'D', 'E', 'F'],
+            //     // _yAxis: [{
+            //     //     min: 0,
+            //     //     max: 10,
+            //     // }],
+            //     // _yAxisIndex: 0,
+            //     _xyColor: '#000'
+            // }
+        makeCharts.makeBarAndLine(D);
     </script>
 </body>
 
