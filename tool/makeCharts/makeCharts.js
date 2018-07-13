@@ -815,7 +815,6 @@ var makeCharts = {
                         yAxisIndex: D._yAxisIndex || 0
                     })
                 }
-                console.log(seriesData)
                 return seriesData
             })(),
             animationEasing: 'elasticOut',
