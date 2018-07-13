@@ -704,7 +704,7 @@ var makeCharts = {
                     return data
                 })(),
                 orient: 'horizontal',
-                right: 'right'
+                right: 'auto'
             },
 
             tooltip: {},
@@ -727,10 +727,10 @@ var makeCharts = {
             yAxis: (function() {
                 var y = [],
                     i = 0,
-                    l = D._legend.length;
+                    l = D._yAxis.length;
                 for (; i < l; i++) {
                     y.push({
-                        name: D._legend[i], //y轴名称
+                        name: D._yAxis[i].name, //y轴名称
                         type: 'value', //y轴类型，默认为value
                         axisLine: {
                             lineStyle: {
@@ -746,23 +746,24 @@ var makeCharts = {
                             show: false
                         }
                     });
-                    if (D.hasOwnProperty('_yAxis')) {
+                    if (D._yAxis.hasOwnProperty('min')) {
                         y[i].min = D._yAxis[i].min;
+                    }
+                    if (D._yAxis.hasOwnProperty('max')) {
                         y[i].max = D._yAxis[i].max;
                     }
                 }
                 return y
             })(),
             grid: {
-                top: 40,
+                top: 50,
                 bottom: 35
             },
-            color: D._color,
             series: (function() {
                 var i = 0,
                     j = 0,
-                    l1 = D._legendBar.length,
-                    l2 = D._legendLine.length,
+                    l1 = D._dataBar.length,
+                    l2 = D._dataLine.length,
                     seriesData = [];
                 for (; i < l1; i++) {
                     seriesData.push({
@@ -796,6 +797,7 @@ var makeCharts = {
                     })
                 }
                 for (; j < l2; j++) {
+
                     seriesData.push({
                         name: D._legendLine[j],
                         type: 'line',
@@ -806,20 +808,21 @@ var makeCharts = {
                         itemStyle: {
                             normal: {
                                 lineStyle: {
-                                    color: D._color[1]
+                                    color: D._color[l1 + j]
                                 }
                             }
                         },
                         yAxisIndex: D._yAxisIndex || 0
                     })
                 }
+                console.log(seriesData)
                 return seriesData
             })(),
             animationEasing: 'elasticOut',
             animationDelayUpdate: function(idx) {
                 return idx * 5
             },
-            //	            color: D._color
+            color: D._color
         };
         if (D.hasOwnProperty("_splitNumber")) {
             options.yAxis.splitNumber = parseInt(D._splitNumber);
@@ -1278,7 +1281,7 @@ var makeCharts = {
                         data.push({
                             name: D._legend[i],
                             textStyle: {
-                                color: 'rgba(255,255,255,0.8)'
+                                color: D._xyColor
                             }
                         });
                     }

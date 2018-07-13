@@ -11,55 +11,28 @@
 </head>
 
 <body>
-    <div id="d" style="width: 1000px;height: 500px;"></div>
     <div id="linebar" style="width: 1000px;height: 500px;"></div>
     <script>
-        var tt = {
-            name: "flare", // 节点的名称，当前节点 label 对应的文本{b}
-            value: '状态1',
-            time: '2019-09-03',
-            children: [{
-                name: "flex",
-                value: '状态4', // value 值，只在 tooltip 中显示{c}
-                time: '2016-09-17',
-            }, {
-                name: "flex2",
-                value: '状态2', // value 值，只在 tooltip 中显示{c}
-                time: '2019-04-08',
-            }, {
-                name: "flex3",
-                value: '状态6', // value 值，只在 tooltip 中显示{c}
-                time: '2012-11-33',
-            }, {
-                name: "flex4",
-                value: '状态9', // value 值，只在 tooltip 中显示{c}
-                time: '2018-05-24',
-            }]
-        }
-        var dd = document.getElementById('d')
-        var d = {
-            _div: dd,
-            _data: tt,
-            _formatter: true
-        }
-        makeCharts.makeTree(d);
-
         var D1 = document.getElementById('linebar')
         var D = {
                 _div: D1,
                 _dataBar: [
+                    [1, 2, 3, 4, 5, 6],
                     [1, 2, 3, 4, 5, 6]
                 ],
                 _dataLine: [
                     [2, 5, 1, 37, 6, 7]
                 ],
-                _legendBar: ['N'],
-                _legendLine: ['M'],
+                _legendBar: ['NNNNNNNNNNNNNNN', 'NNNNNNNNNNNNNNN2'],
+                _legendLine: ['wewewe'],
                 _xAxis: ['A', 'B', 'C', 'D', 'E', 'F'],
+                //y轴设置
                 _yAxis: [{
+                    name: '我是左边',
                     min: 0,
                     max: 10,
                 }, {
+                    name: '我是右边',
                     min: 0,
                     max: 50,
                 }],
