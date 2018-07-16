@@ -15,45 +15,20 @@
     <script>
         var D1 = document.getElementById('linebar')
         var D = {
-                _div: D1,
-                _dataBar: [
-                    [1, 2, 3, 4, 5, 6],
-                    [1, 2, 3, 4, 5, 6]
-                ],
-                _dataLine: [
-                    [2, 5, 1, 37, 6, 7]
-                ],
-                _legendBar: ['NNNNNNNNNNNNNNN', 'NNNNNNNNNNNNNNN2'],
-                _legendLine: ['wewewe'],
-                _xAxis: ['A', 'B', 'C', 'D', 'E', 'F'],
-                //y轴设置
-                _yAxis: [{
-                    name: '我是左边',
-                    min: 0,
-                    max: 10,
-                }, {
-                    name: '我是右边',
-                    min: 0,
-                    max: 50,
-                }],
-                _yAxisIndex: 1,
-                _xyColor: '#000'
-            }
-            // var D = {
-            //     _div: D1,
-            //     _dataBar: [
-            //         [1, 2, 3, 4, 5, 6]
-            //     ],
-            //     _legendBar: ['N'],
-            //     _xAxis: ['A', 'B', 'C', 'D', 'E', 'F'],
-            //     // _yAxis: [{
-            //     //     min: 0,
-            //     //     max: 10,
-            //     // }],
-            //     // _yAxisIndex: 0,
-            //     _xyColor: '#000'
-            // }
-        makeCharts.makeBarAndLine(D);
+            _div: D1,
+            _data: [
+                [1, 2, 3, 4, 5, 6],
+                [16, 12, 43, 24, 45, 63],
+                [10, 28, 83, 44, 5, 67],
+                [23, 12, 4, 54, 2, 34],
+                [65, 32, 33, 41, 51, 16]
+            ],
+            _stack: ['A', 'A', 'B', 'B', ''],
+            _legend: ['M', 'N', 'O', 'P', 'Q'],
+            _xAxis: ['A', 'B', 'C', 'D', 'E', 'F'],
+            _xyColor: '#000'
+        }
+        makeCharts.makeBar(D);
     </script>
 </body>
 

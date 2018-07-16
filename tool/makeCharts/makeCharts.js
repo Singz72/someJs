@@ -19,6 +19,7 @@ var D_makeCharts = {
         _dataBar: [
             []
         ], //条形折线图中条形图的data
+        _stack: '', //条形图堆叠的类名，每组数据对应个名称，名称相同的就堆叠在一起，例如['A', 'A', 'B', 'B', '']分为三类：A、B和''
         _dataLine: [
             []
         ], //条形折线图中折线图的data
@@ -1649,7 +1650,7 @@ var makeCharts = {
                     return data
                 })(),
                 orient: 'horizontal',
-                right: 'right'
+                right: 'auto'
             },
 
             tooltip: {},
@@ -1722,7 +1723,10 @@ var makeCharts = {
                                 }
                             }
                         }
-                    })
+                    });
+                    if (D.hasOwnProperty('_stack')) {
+                        seriesData[i].stack = D._stack[i];
+                    }
                 }
                 return seriesData
             })(),
