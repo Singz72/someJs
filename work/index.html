@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="easyui.css">
+</head>
+
+<body>
+    <div class="">
+        <div class="">
+            <ul class="" id="ajyp1-main-list">
+                <li class="">
+                    <div class="">
+                        <h3>
+                            <p>
+                                <a class=""><span>{item.index}</span><b>[{item.jjdwName}]{item.ypcs}{item.ypName}</b></a>
+                            </p>
+                        </h3>
+                        <dl>
+                            <dd>
+                                <p class="">
+                                    <span class="">研判编号:&nbsp;<i class="">{item.ajbh}</i></span><b class="">研判发起时间:<i class="">{item.djTime}</i></b>
+                                </p>
+                                <p class="">
+                                    <span class="">研判负责人:&nbsp;<i class="">{item.jjdwfzrName}</i></span><b class="">研判最新时间:<i class="">{item.ypfqzxTimeStr}</i></b>
+                                </p>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class=""></div>
+                    <div class="">
+                        <ul>
+                            <div class="">{item.status}</div>
+                            {item.ypq} {item.tlq} {item.hsq}
+                        </ul>
+                        {item.ypBgZt}
+                        <div class="">
+                            <div class="">{item.szjdName}</div>
+                            <div class=""></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="pageGro_ajyp" class="datagrid-pager" data-options="links:5"></div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="jquery.easyui.min.js"></script>
+    <script src="z.js"></script>
+    <script src="z.plugin.NewBasePlugin.js"></script>
+    <script src="z.plugin.AjypPlugin.js"></script>
+    <script src="zp.js"></script>
+</body>
+
+</html>

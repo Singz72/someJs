@@ -1701,9 +1701,9 @@ var makeCharts = {
                         label: {
                             normal: {
                                 show: true,
-                                position: 'top',
+                                position: 'insideTop',
                                 textStyle: {
-                                    color: D._color
+                                    color: '#000'
                                 }
                             }
                         },
