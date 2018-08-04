@@ -11,11 +11,12 @@
 
 html {
     height: 100%;
-    background: #333;
+    background: #456ca5;
 }
 
 body {
     font-family: montserrat, arial, verdana;
+    background: none;
 }
 
 
@@ -23,7 +24,7 @@ body {
 
 #msform {
     width: 375px;
-    margin: 170px auto;
+    margin: 100px auto;
     text-align: center;
     position: relative;
 }
@@ -33,10 +34,10 @@ body {
     border: 0 none;
     border-radius: 3px;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-    padding: 20px 30px;
+    padding: 10px 30px 20px;
     box-sizing: border-box;
     width: 80%;
-    margin: 0 10%;
+    margin: 0 10% 30px;
     /*stacking fieldsets above each other*/
     position: absolute;
 }
@@ -69,7 +70,7 @@ body {
 
 #msform .action-button {
     width: 100px;
-    background: #27AE60;
+    background: #068adf;
     font-weight: bold;
     color: white;
     border: 0 none;
@@ -81,7 +82,43 @@ body {
 
 #msform .action-button:hover,
 #msform .action-button:focus {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #068adf;
+}
+
+.msform-info {
+    height: 150px;
+    overflow: hidden;
+}
+
+.msform-info-img,
+.msform-info-text {
+    height: 100%;
+    float: left;
+    box-sizing: border-box;
+    padding: 10px 20px 20px;
+}
+
+.msform-info-img {
+    width: 40%;
+    padding-right: 5px;
+}
+
+.msform-info-text {
+    width: 60%;
+    padding-left: 5px;
+}
+
+.msform-info-img img {
+    width: 100%;
+    height: 80%;
+    display: block;
+}
+
+.msform-info-text-div {
+    height: 100%;
+    color: rgba(255, 255, 255, .8);
+    font-size: 12px;
+    text-align: left;
 }
 
 
@@ -105,6 +142,7 @@ body {
     width: 100%;
     height: 170px;
     position: relative;
+    margin-bottom: 20px;
 }
 
 .fs-uploadImg {
@@ -143,7 +181,7 @@ body {
     color: white;
     text-transform: uppercase;
     font-size: 9px;
-    width: 50%;
+    width: 25%;
     float: left;
     position: relative;
 }
@@ -189,6 +227,134 @@ body {
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-    background: #27AE60;
+    background: #068adf;
     color: white;
+}
+
+
+/* 确认框 */
+
+.fadePanel {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: none;
+}
+
+.fadePanelBk {
+    width: 100%;
+    height: 100%;
+    background: #333;
+    filter: opacity(30%);
+}
+
+.fadeInUpdiv {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.QRbox {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+}
+
+.QRcodebox {
+    width: 240px;
+    height: 240px;
+    border-radius: 4px;
+    background: #fff;
+    position: relative;
+}
+
+.QRcode {
+    width: 197px;
+    height: 197px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.QRcode img {
+    width: 100%;
+    height: 100%;
+}
+
+.animated {
+    height: 100%;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.fadeText {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+.fadeTextson {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    color: #068adf;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+
+/* 标题 */
+
+.header {
+    height: 80px;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+}
+
+.headerBox {
+    width: 90%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 10px;
+    height: 100%;
+}
+
+.headerimg {
+    width: 50px;
+    float: left;
+}
+
+.headerimg img {
+    width: 100%;
+}
+
+.headertitle {
+    width: calc(100% - 50px);
+    height: 100%;
+    display: table;
+    float: right;
+}
+
+.headertitletext {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    /* color: #068adf; */
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    letter-spacing: 2px;
 }
