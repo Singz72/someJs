@@ -88,6 +88,7 @@ var idcardFuns = {
             } else {
                 data.push(" ")
             }
+
         }
         return data
     },
