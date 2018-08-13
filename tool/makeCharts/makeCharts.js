@@ -49,6 +49,8 @@ var D_makeCharts = {
             _color: ''
         }, //折线图条形图基准线，基准线数值和颜色
         _formatter: '', //是否启用formatter字符数据格式方式  true为使用
+        _barLabelPosition: false, //bar中条形图数字的位置 true为位置在条形图内部，false为默认值。
+        _grid: {}, //图表canvas布局
     }
     //十六进制颜色值的正则表达式  
 var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
@@ -124,6 +126,7 @@ var makeCharts = {
      * }
      */
     makeTree: function(D) {
+
         if (D._div == undefined || D._div == null) {
             alert('创建树状图时，未能成功获取到元素!');
         } //验证元素
@@ -139,9 +142,9 @@ var makeCharts = {
                 type: 'tree',
                 data: [D._data],
                 top: '1%',
-                left: '17%',
+                left: '27%',
                 bottom: '1%',
-                right: '20%',
+                right: '27%',
 
                 symbolSize: 7,
 
@@ -153,7 +156,8 @@ var makeCharts = {
                         fontSize: 20,
                         formatter: function(params) {
                             if (D._formatter) {
-                                return params.data.name + '\n' + params.data.value + '\n' + params.data.time
+                                //                                return params.data.name + '\n' + params.data.value + '\n' + params.data.time
+                                return params.data.text + '\n' + params.data.target + '\n' + params.data.jType
                             }
                             return
                         }
@@ -1626,6 +1630,25 @@ var makeCharts = {
             D._markLine._color = D._markLine._color == ' ' ? 'rgba(0,0,0,0)' : D._markLine._color;
         }
 
+        if (!D.hasOwnProperty("_barLabelPosition")) {
+            D._barLabelPosition = false;
+        } else {
+            D._barLabelPosition = D._barLabelPosition == ' ' ? false : D._barLabelPosition;
+        }
+
+        if (!D.hasOwnProperty("_grid")) {
+            //不需要基准线
+            D._grid = {
+                top: 40,
+                bottom: 35
+            };
+        } else {
+            D._grid = D._grid == ' ' ? {
+                top: 40,
+                bottom: 35
+            } : D._grid;
+        }
+
 
         var options = {
             title: {
@@ -1685,10 +1708,7 @@ var makeCharts = {
                     show: false
                 }
             },
-            grid: {
-                top: 40,
-                bottom: 35
-            },
+            grid: D._grid,
             color: D._color,
             series: (function() {
                 var i = 0,
@@ -1700,7 +1720,7 @@ var makeCharts = {
                         type: 'bar',
                         label: {
                             normal: {
-                                show: true,
+                                show: D._barLabelPosition,
                                 position: 'insideTop',
                                 textStyle: {
                                     color: '#000'
