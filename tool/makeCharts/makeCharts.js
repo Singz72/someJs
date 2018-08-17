@@ -51,6 +51,7 @@ var D_makeCharts = {
         _formatter: '', //是否启用formatter字符数据格式方式  true为使用
         _barLabelPosition: false, //bar中条形图数字的位置 true为位置在条形图内部，false为默认值。
         _grid: {}, //图表canvas布局
+        _barLabelPositionValue: 'insideTop', //条形图标签的位置
     }
     //十六进制颜色值的正则表达式  
 var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
@@ -1636,6 +1637,12 @@ var makeCharts = {
             D._barLabelPosition = D._barLabelPosition == ' ' ? false : D._barLabelPosition;
         }
 
+        if (!D.hasOwnProperty("_barLabelPositionValue")) {
+            D._barLabelPositionValue = 'insideTop';
+        } else {
+            D._barLabelPositionValue = D._barLabelPositionValue == ' ' ? 'insideTop' : D._barLabelPositionValue;
+        }
+
         if (!D.hasOwnProperty("_grid")) {
             //不需要基准线
             D._grid = {
@@ -1721,7 +1728,7 @@ var makeCharts = {
                         label: {
                             normal: {
                                 show: D._barLabelPosition,
-                                position: 'insideTop',
+                                position: D._barLabelPositionValue,
                                 textStyle: {
                                     color: '#000'
                                 }
