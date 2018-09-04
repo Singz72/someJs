@@ -1,0 +1,34 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/week/week",
+        "pages/month/month"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "list": [{
+            "pagePath": "pages/index/index",
+            "text": "日统计"
+        }, {
+            "pagePath": "pages/week/week",
+            "text": "周统计"
+        }, {
+            "pagePath": "pages/month/month",
+            "text": "月统计"
+        }],
+        "color": "#cccccc",
+        "backgroundColor": "#ffffff",
+        "selectedColor": "#26ab68"
+    },
+    "networkTimeout": {
+        "request": 20000,
+        "connectSocket": 20000,
+        "uploadFile": 20000,
+        "downloadFile": 20000
+    }
+}
