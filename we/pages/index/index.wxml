@@ -1,6 +1,0 @@
-<!--index.wxml-->
-<view class="container">
-    <view class="userinfo">
-        <text class="userinfo-nickname">{{name}}</text>
-    </view>
-</view>
