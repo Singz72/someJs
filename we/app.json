@@ -1,0 +1,34 @@
+{
+    "pages": [
+        "pages/record/record",
+        "pages/account/account",
+        "pages/person/person"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "list": [{
+            "pagePath": "pages/record/record",
+            "text": "记录"
+        }, {
+            "pagePath": "pages/account/account",
+            "text": "账目"
+        }, {
+            "pagePath": "pages/person/person",
+            "text": "个人"
+        }],
+        "color": "#475457",
+        "backgroundColor": "#ffffff",
+        "selectedColor": "#5ae6c5"
+    },
+    "networkTimeout": {
+        "request": 20000,
+        "connectSocket": 20000,
+        "uploadFile": 20000,
+        "downloadFile": 20000
+    }
+}
