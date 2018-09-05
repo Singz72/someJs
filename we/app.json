@@ -21,9 +21,9 @@
             "pagePath": "pages/month/month",
             "text": "月统计"
         }],
-        "color": "#cccccc",
+        "color": "#475457",
         "backgroundColor": "#ffffff",
-        "selectedColor": "#26ab68"
+        "selectedColor": "#5ae6c5"
     },
     "networkTimeout": {
         "request": 20000,
