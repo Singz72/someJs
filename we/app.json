@@ -13,17 +13,17 @@
     "tabBar": {
         "list": [{
             "pagePath": "pages/record/record",
-            "text": "记录"
+            "text": "日常"
         }, {
             "pagePath": "pages/account/account",
-            "text": "账目"
+            "text": "消费"
         }, {
             "pagePath": "pages/person/person",
             "text": "个人"
         }],
         "color": "#7f8389",
         "backgroundColor": "#ffffff",
-        "selectedColor": "#5ae6c5"
+        "selectedColor": "#F6C540"
     },
     "networkTimeout": {
         "request": 20000,
