@@ -8,7 +8,7 @@ Page({
     },
     onLoad: function() {
         this.setData({
-            name: '记录'
+            name: '记录今日的各种消费'
         })
     }
 })

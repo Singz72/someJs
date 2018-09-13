@@ -8,7 +8,7 @@ Page({
     },
     onLoad: function() {
         this.setData({
-            name: '账目'
+            name: '年月消费图表'
         })
     }
 })

@@ -8,7 +8,7 @@ Page({
     },
     onLoad: function() {
         this.setData({
-            name: '个人'
+            name: '个人界面'
         })
     }
 })

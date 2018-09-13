@@ -6,20 +6,26 @@
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "WeChat",
+        "navigationBarBackgroundColor": "#ffcc33",
+        "navigationBarTitleText": "今日消费",
         "navigationBarTextStyle": "black"
     },
     "tabBar": {
         "list": [{
             "pagePath": "pages/record/record",
-            "text": "日常"
+            "text": "日常",
+            "iconPath": "img/UI/icon/money.png",
+            "selectedIconPath": "img/UI/icon/money-active.png"
         }, {
             "pagePath": "pages/account/account",
-            "text": "消费"
+            "text": "消费",
+            "iconPath": "img/UI/icon/chart.png",
+            "selectedIconPath": "img/UI/icon/chart-active.png"
         }, {
             "pagePath": "pages/person/person",
-            "text": "个人"
+            "text": "个人",
+            "iconPath": "img/UI/icon/user.png",
+            "selectedIconPath": "img/UI/icon/user-active.png"
         }],
         "color": "#7f8389",
         "backgroundColor": "#ffffff",
