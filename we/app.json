@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/Line/index",
         "pages/record/record",
         "pages/account/account",
         "pages/person/person"
@@ -12,6 +13,11 @@
     },
     "tabBar": {
         "list": [{
+            "pagePath": "pages/Line/index",
+            "text": "线条",
+            "iconPath": "img/UI/icon/money.png",
+            "selectedIconPath": "img/UI/icon/money-active.png"
+        }, {
             "pagePath": "pages/record/record",
             "text": "日常",
             "iconPath": "img/UI/icon/money.png",
