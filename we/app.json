@@ -1,6 +1,5 @@
 {
     "pages": [
-        "pages/Line/index",
         "pages/record/record",
         "pages/account/account",
         "pages/person/person"
@@ -9,15 +8,11 @@
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#ffcc33",
         "navigationBarTitleText": "今日消费",
-        "navigationBarTextStyle": "black"
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#ffcc33"
     },
     "tabBar": {
         "list": [{
-            "pagePath": "pages/Line/index",
-            "text": "线条",
-            "iconPath": "img/UI/icon/money.png",
-            "selectedIconPath": "img/UI/icon/money-active.png"
-        }, {
             "pagePath": "pages/record/record",
             "text": "日常",
             "iconPath": "img/UI/icon/money.png",
@@ -35,7 +30,8 @@
         }],
         "color": "#7f8389",
         "backgroundColor": "#ffffff",
-        "selectedColor": "#F6C540"
+        "selectedColor": "#F6C540",
+        "borderStyle": "white"
     },
     "networkTimeout": {
         "request": 20000,

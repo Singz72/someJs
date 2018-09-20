@@ -4,11 +4,15 @@ const app = getApp()
 
 Page({
     data: {
-        name: ''
+        date: '2018-09-20',
+        count: '437.00'
     },
     onLoad: function() {
+
+    },
+    bindDateChange: function(e) {
         this.setData({
-            name: '记录今日的各种消费'
+            date: e.detail.value
         })
     }
 })

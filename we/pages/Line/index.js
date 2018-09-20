@@ -122,10 +122,10 @@ function initCharts(canvas, width, height) {
     return chart;
 }
 
-Page({
-    data: {
-        ec: {
-            onInit: initCharts
-        }
-    }
-})
+// Page({
+//     data: {
+//         ec: {
+//             onInit: initCharts
+//         }
+//     }
+// })
