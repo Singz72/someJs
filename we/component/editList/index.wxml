@@ -1,0 +1,17 @@
+<view class="editlist">
+    <!-- editlist=>el -->
+    <view class="el-content">
+        <view class="el-icon">
+            {{iconPath}}
+        </view>
+        <view class="el-title">
+            {{title}}
+        </view>
+        <view class="el-num">
+            <input name="input" value="{{value}}" bindblur="numToFixed" placeholder="00.00" type='number' style="text-align:right" />
+        </view>
+    </view>
+    <view class="el-bottomline">
+
+    </view>
+</view>
