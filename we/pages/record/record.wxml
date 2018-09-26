@@ -19,10 +19,6 @@
     <!-- editList -->
     <!-- editLists => els -->
     <view class="r-els">
-        <editList iconPath='sd' title="sd2"></editList>
-        <editList iconPath='sd234' title="sd34532"></editList>
-        <editList iconPath='sdsfsdfd' title="sgdfgd2"></editList>
-        <editList iconPath='sesddd' title="sdsdcs2"></editList>
-        <editList iconPath='ssdgsdd' title="sdvcvds2"></editList>
+        <editList iconPath='{{foodIcon}}' title="{{foodTitle}}"></editList>
     </view>
 </view>

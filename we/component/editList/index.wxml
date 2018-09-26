@@ -2,7 +2,7 @@
     <!-- editlist=>el -->
     <view class="el-content">
         <view class="el-icon">
-            {{iconPath}}
+            <image src="{{iconPath}}" class="r-date-icon"></image>
         </view>
         <view class="el-title">
             {{title}}

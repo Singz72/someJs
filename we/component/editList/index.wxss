@@ -1,0 +1,16 @@
+.editlist {
+    width: 650rpx;
+    height: 150rpx;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.el-content {
+    height: 100%;
+    display: flex;
+}
+
+.r-date-icon {
+    width: 71rpx;
+    height: 71rpx;
+}

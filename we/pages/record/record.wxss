@@ -43,4 +43,5 @@
 .r-els {
     height: 984rpx;
     background: #fff;
+    padding-top: 83rpx;
 }
