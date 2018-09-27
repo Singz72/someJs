@@ -18,15 +18,30 @@ Component({
     },
     data: {
         value: "",
+        num: 0,
         right: "../../img/UI/icon/right.png"
     },
     methods: {
         numToFixed(e) {
             var num = e.detail.value - 1 + 1;
-            console.log(num)
+            if (num) {
+                this.setData({
+                    value: num.toFixed(2)
+                })
+            }
+        },
+        changeNum(e) {
+            var that = this;
+            //判断是否有输入值
+            var val = e.detail.value ? e.detail.value : that.data.num;
+            val = val - 1 + 1;
             this.setData({
-                value: num.toFixed(2)
+                num: val
             })
+            var myEditListEventDetail = {
+                val: val
+            }
+            this.triggerEvent('myEditListEvent', myEditListEventDetail);
         }
     }
 })

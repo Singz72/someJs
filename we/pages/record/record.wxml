@@ -19,7 +19,11 @@
     <!-- editList -->
     <!-- editLists => els -->
     <view class="r-els">
-        <editList iconPath='{{foodIcon}}' title="{{foodTitle}}"></editList>
-        <editList iconPath='{{drinkIcon}}' title="{{drinkTitle}}"></editList>
+        <editList iconPath='{{foodIcon}}' title="{{foodTitle}}" bind:myEditListEvent="onGetEditListNum"></editList>
+        <editList iconPath='{{drinkIcon}}' title="{{drinkTitle}}" bind:myEditListEvent="onGetEditListNum"></editList>
+        <editList iconPath='{{travelIcon}}' title="{{travelTitle}}"></editList>
+        <editList iconPath='{{gameIcon}}' title="{{gameTitle}}"></editList>
+        <editList iconPath='{{wearIcon}}' title="{{wearTitle}}"></editList>
+        <editList iconPath='{{otherIcon}}' title="{{otherTitle}}"></editList>
     </view>
 </view>

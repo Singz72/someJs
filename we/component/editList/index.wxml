@@ -8,7 +8,7 @@
             {{title}}
         </view>
         <view class="el-con-box el-num">
-            <input name="input" value="{{value}}" bindblur="numToFixed" placeholder="00.00" type='number' style="text-align:right" />
+            <input name="input" value="{{value}}" bindblur="numToFixed" bindinput="changeNum" placeholder="00.00" type='number' style="text-align:right" />
         </view>
         <view class="el-con-box el-right">
             <image src="{{right}}" class="r-date-icon-right"></image>

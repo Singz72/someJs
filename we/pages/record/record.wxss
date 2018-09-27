@@ -1,13 +1,13 @@
 /**index.wxss**/
 
 .main-page {
-    height: 1108rpx;
+    height: 118rpx;
     background: #ffcc33;
     color: rgba(0, 0, 0, .8);
 }
 
 .r-date {
-    height: 124rpx;
+    height: 118rpx;
     font-size: 28rpx;
     text-align: right;
     padding-top: 13rpx;
@@ -45,4 +45,5 @@
     height: 984rpx;
     background: #fff;
     padding-top: 83rpx;
+    box-sizing: border-box;
 }
