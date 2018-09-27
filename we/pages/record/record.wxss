@@ -3,6 +3,7 @@
 .main-page {
     height: 1108rpx;
     background: #ffcc33;
+    color: rgba(0, 0, 0, .8);
 }
 
 .r-date {

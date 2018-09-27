@@ -20,5 +20,6 @@
     <!-- editLists => els -->
     <view class="r-els">
         <editList iconPath='{{foodIcon}}' title="{{foodTitle}}"></editList>
+        <editList iconPath='{{drinkIcon}}' title="{{drinkTitle}}"></editList>
     </view>
 </view>

@@ -17,7 +17,8 @@ Component({
         }
     },
     data: {
-        value: ""
+        value: "",
+        right: "../../img/UI/icon/right.png"
     },
     methods: {
         numToFixed(e) {
