@@ -5,7 +5,7 @@ const app = getApp()
 Page({
     data: {
         date: '2018-09-20',
-        count: '437.00',
+        count: '00.00',
         countNum: 0,
         foodTitle: 'Food',
         foodIcon: '../../img/UI/icon/meh.png',
@@ -28,23 +28,29 @@ Page({
             date: e.detail.value
         })
     },
+    //总额随着输入框数值变化
     onGetEditListNum: function(e) {
+        // 原因见组件
+        // var that = this;
+        // var num;
+        // if (e.detail.val == 0) {
+        //     num = that.data.countNum;
+        // } else {
+        //     num = that.data.countNum + e.detail.val;
+        // }
+        // var count = (num).toFixed(2);
+        // this.setData({
+        //     count: count
+        // })
+    },
+    onGetEditListstateNum: function(e) {
         var that = this;
-        var num;
-        if (e.detail.title == that.data.countTitle) {
-            num = e.detail.val;
-        } else {
-            debugger
-            this.setData({
-                countTitle: e.detail.title
-            })
-            num = that.data.countNum + e.detail.val;
-        }
-        var count = (num).toFixed(2);
-        console.log(num)
-        console.log(count)
+        var num = e.detail.val + that.data.countNum;
         this.setData({
-            countNum: num,
+            countNum: num
+        });
+        var count = (num).toFixed(2);
+        this.setData({
             count: count
         })
     }
