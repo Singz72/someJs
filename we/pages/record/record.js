@@ -30,11 +30,22 @@ Page({
     },
     onGetEditListNum: function(e) {
         var that = this;
-        console.log(e);
-        var num = (that.data.countNum + e.detail.val).toFixed(2);
+        var num;
+        if (e.detail.title == that.data.countTitle) {
+            num = e.detail.val;
+        } else {
+            debugger
+            this.setData({
+                countTitle: e.detail.title
+            })
+            num = that.data.countNum + e.detail.val;
+        }
+        var count = (num).toFixed(2);
+        console.log(num)
+        console.log(count)
         this.setData({
-            countNum: that.data.countNum + e.detail.val,
-            count: num
+            countNum: num,
+            count: count
         })
     }
 })

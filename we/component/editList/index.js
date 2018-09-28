@@ -39,7 +39,8 @@ Component({
                 num: val
             })
             var myEditListEventDetail = {
-                val: val
+                val: val,
+                title: that.data.title
             }
             this.triggerEvent('myEditListEvent', myEditListEventDetail);
         }
