@@ -45,13 +45,17 @@ Page({
     },
     onGetEditListstateNum: function(e) {
         var that = this;
-        var num = e.detail.val + that.data.countNum;
-        this.setData({
-            countNum: num
-        });
-        var count = (num).toFixed(2);
-        this.setData({
-            count: count
-        })
+        var nowVal = e.detail.val,
+            oldVal = e.detail.oldVal;
+        if (nowVal !== oldVal) {
+            var num = nowVal + that.data.countNum;
+            var count = (num).toFixed(2);
+            this.setData({
+                count: count,
+                countNum: num
+            })
+        } else {
+            console.log('未改变值')
+        }
     }
 })

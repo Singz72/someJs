@@ -18,7 +18,7 @@ Component({
     },
     data: {
         value: "",
-        // oldVal: 0,
+        oldVal: 0,
         right: "../../img/UI/icon/right.png"
     },
     methods: {
@@ -28,11 +28,12 @@ Component({
             if (num) {
                 // var oldVal = that.data.oldVal;
                 var myBlurEditListValDetail = {
-                    val: num
+                    val: num - that.data.oldVal,
+                    oldVal: that.data.oldVal
                 }
                 this.setData({
-                    value: num.toFixed(2)
-                        // oldVal: num
+                    value: num.toFixed(2),
+                    oldVal: num
                 });
                 this.triggerEvent('myBlurEditListVal', myBlurEditListValDetail);
             }

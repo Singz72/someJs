@@ -42,6 +42,6 @@
 
 .el-bottomline {
     height: 1rpx;
-    background: #fbfbfb;
-    box-shadow: 0 0 20rpx 1rpx #fbfbfb;
+    background: #ececec;
+    box-shadow: 0 0 20rpx 1rpx #ececec;
 }

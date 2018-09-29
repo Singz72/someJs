@@ -19,11 +19,11 @@
     <!-- editList -->
     <!-- editLists => els -->
     <view class="r-els">
-        <editList iconPath='{{foodIcon}}' title="{{foodTitle}}" bind:myEditListEvent="onGetEditListNum" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
-        <editList iconPath='{{drinkIcon}}' title="{{drinkTitle}}" bind:myEditListEvent="onGetEditListNum"></editList>
-        <editList iconPath='{{travelIcon}}' title="{{travelTitle}}"></editList>
-        <editList iconPath='{{gameIcon}}' title="{{gameTitle}}"></editList>
-        <editList iconPath='{{wearIcon}}' title="{{wearTitle}}"></editList>
-        <editList iconPath='{{otherIcon}}' title="{{otherTitle}}"></editList>
+        <editList iconPath='{{foodIcon}}' title="{{foodTitle}}" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
+        <editList iconPath='{{drinkIcon}}' title="{{drinkTitle}}" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
+        <editList iconPath='{{travelIcon}}' title="{{travelTitle}}" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
+        <editList iconPath='{{gameIcon}}' title="{{gameTitle}}" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
+        <editList iconPath='{{wearIcon}}' title="{{wearTitle}}" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
+        <editList iconPath='{{otherIcon}}' title="{{otherTitle}}" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
     </view>
 </view>
