@@ -28,34 +28,19 @@ Page({
             date: e.detail.value
         })
     },
-    //总额随着输入框数值变化
-    onGetEditListNum: function(e) {
-        // 原因见组件
-        // var that = this;
-        // var num;
-        // if (e.detail.val == 0) {
-        //     num = that.data.countNum;
-        // } else {
-        //     num = that.data.countNum + e.detail.val;
-        // }
-        // var count = (num).toFixed(2);
-        // this.setData({
-        //     count: count
-        // })
-    },
     onGetEditListstateNum: function(e) {
         var that = this;
         var nowVal = e.detail.val,
             oldVal = e.detail.oldVal;
         if (nowVal !== oldVal) {
             var num = nowVal + that.data.countNum;
-            var count = (num).toFixed(2);
+            var count = (num).toFixed(0);
             this.setData({
                 count: count,
                 countNum: num
             })
         } else {
-            console.log('未改变值')
+            // console.log('未改变值')
         }
     }
 })

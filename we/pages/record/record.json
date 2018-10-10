@@ -1,5 +1,6 @@
 {
     "usingComponents": {
         "editList": "../../component/editList/index"
-    }
+    },
+    "navigationBarTitleText": "今日消费"
 }

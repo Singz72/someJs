@@ -5,9 +5,9 @@
         "pages/person/person"
     ],
     "window": {
-        "backgroundTextStyle": "light",
+        "backgroundTextStyle": "dark",
         "navigationBarBackgroundColor": "#ffcc33",
-        "navigationBarTitleText": "今日消费",
+        "navigationBarTitleText": "我的记账本",
         "navigationBarTextStyle": "black",
         "backgroundColor": "#ffcc33"
     },
