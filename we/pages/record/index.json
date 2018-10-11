@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "editList": "../../component/editList/index",
+        "timeHaveIcon": "../../component/timeHaveIcon/index"
+    },
+    "navigationBarTitleText": "今日消费"
+}

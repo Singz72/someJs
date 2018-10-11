@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="main-page">
+    <!-- account => a -->
+    <!-- count -->
+    <view class="a-count">
+        <view class="a-count-text">
+            ¥{{count}}
+        </view>
+    </view>
+    <!-- chart -->
+    <view class="a-chart">
+        <!-- category -->
+        <view class="a-category">
+            <view class="a-category-text">
+
+            </view>
+        </view>
+        <!-- time selector -->
+        <view class="a-chart-date">
+            <timeHaveIcon startTime='2017-01-01' endTime="2029-12-31" id="timeHaveIcon"></timeHaveIcon>
+        </view>
+        <!-- echarts -->
+        <view class="a-chart-data"></view>
+    </view>
+</view>

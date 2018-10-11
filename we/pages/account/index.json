@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "timeHaveIcon": "../../component/timeHaveIcon/index"
+    },
+    "navigationBarTitleText": "消费查询"
+}

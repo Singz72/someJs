@@ -1,0 +1,30 @@
+/**index.wxss**/
+
+.main-page {
+    height: 418rpx;
+    color: rgba(0, 0, 0, .8);
+}
+
+.a-count {
+    height: 362rpx;
+    font-size: 80rpx;
+    display: flex;
+    align-items: center;
+}
+
+.a-count-text {
+    width: 100%;
+    text-align: center;
+}
+
+.a-chart {
+    position: relative;
+}
+
+.a-category {
+    position: absolute;
+    background: #fff;
+    width: 420rpx;
+    height: 87rpx;
+    border-radius: 43.5rpx;
+}
