@@ -837,14 +837,14 @@ var getYearMonthDay = {
         var t = new Date(T)
         var s = '';
         s += t.getFullYear() + '-'; // 获取年份。
-        s += (t.getMonth() + 1) > 9 ? (t.getMonth() + 1) : '0' + (t.getMonth() + 1) + "-"; // 获取月份。
+        s += (t.getMonth() + 1) > 9 ? (t.getMonth() + 1) + "-" : '0' + (t.getMonth() + 1) + "-"; // 获取月份。
         s += t.getDate() > 9 ? t.getDate() : '0' + t.getDate(); // 获取日。
         return (s); // 返回日期。
     },
     format: function() {
         var s = '';
         s += this.getFullYear() + '-'; // 获取年份。
-        s += (this.getMonth() + 1) > 9 ? (this.getMonth() + 1) : '0' + (this.getMonth() + 1) + "-"; // 获取月份。
+        s += (this.getMonth() + 1) > 9 ? (this.getMonth() + 1) + "-" : '0' + (this.getMonth() + 1) + "-"; // 获取月份。
         s += this.getDate() > 9 ? this.getDate() : '0' + this.getDate(); // 获取日。
         return (s); // 返回日期。
     },

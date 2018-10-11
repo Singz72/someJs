@@ -278,7 +278,7 @@ var TimeFuns = {
         var t = T ? new Date(T) : this;
         var s = '';
         s += t.getFullYear() + '-'; // 获取年份。
-        s += (t.getMonth() + 1) > 9 ? (t.getMonth() + 1) : '0' + (t.getMonth() + 1) + "-"; // 获取月份。
+        s += (t.getMonth() + 1) > 9 ? (t.getMonth() + 1) + "-" : '0' + (t.getMonth() + 1) + "-"; // 获取月份。
         s += t.getDate() > 9 ? t.getDate() : '0' + t.getDate(); // 获取日。
         return (s); // 返回日期。
     },
