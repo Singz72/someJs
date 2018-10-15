@@ -841,10 +841,33 @@ var getYearMonthDay = {
         s += t.getDate() > 9 ? t.getDate() : '0' + t.getDate(); // 获取日。
         return (s); // 返回日期。
     },
+    //在原有日期基础上，增加days天数，默认增加1天
+    addDaysOnDate: function(date, days) {
+        if (days == undefined || days == '') {
+            days = 1;
+        }
+        var date = new Date(date);
+        date.setDate(date.getDate() + days);
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        return date.getFullYear() + '-' + this.getFormatDate(month) + '-' + this.getFormatDate(day);
+    },
+    //日期月份/天的显示，如果是1位数，则在前面加上'0'
+    getFormatDate: function(arg) {
+        if (arg == undefined || arg == '') {
+            return '';
+        }
+        var re = arg + '';
+        if (re.length < 2) {
+            re = '0' + re;
+        }
+        return re;
+    },
+    //对日期进行处理，返回xxxx-xx-xx格式
     format: function() {
         var s = '';
         s += this.getFullYear() + '-'; // 获取年份。
-        s += (this.getMonth() + 1) > 9 ? (this.getMonth() + 1) + "-" : '0' + (this.getMonth() + 1) + "-"; // 获取月份。
+        s += (this.getMonth() + 1) > 9 ? (this.getMonth() + 1) : '0' + (this.getMonth() + 1) + "-"; // 获取月份。
         s += this.getDate() > 9 ? this.getDate() : '0' + this.getDate(); // 获取日。
         return (s); // 返回日期。
     },
@@ -1053,5 +1076,35 @@ var getYearMonthDay = {
         } else {
             return false;
         }
+    },
+    //判断时间是否为今天
+    checkTimeisToday: function(d) {
+        var td = new Date();
+        td = new Date(td.getFullYear(), td.getMonth(), td.getDate());
+        var checkd = new Date(d);
+        checkd = new Date(checkd.getFullYear(), checkd.getMonth(), checkd.getDate());
+        var x = (checkd - td) / 1000 / 60 / 60 / 24;
+        if (x == 0) {
+            return true
+        }
+        return false
+    }
+}
+
+//跳转函数
+var hopLink = {
+    goToURL: function(URL, data, openUrl) {
+        $.ajax({
+            type: "GET",
+            async: false,
+            data: data,
+            url: URL,
+            success: function(msg) {
+                window.open(openUrl);
+            },
+            error: function() {
+                window.open(openUrl);
+            }
+        });
     }
 }

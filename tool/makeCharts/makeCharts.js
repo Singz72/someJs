@@ -52,6 +52,8 @@ var D_makeCharts = {
         _barLabelPosition: false, //bar中条形图数字的位置 true为位置在条形图内部，false为默认值。
         _grid: {}, //图表canvas布局
         _barLabelPositionValue: 'insideTop', //条形图标签的位置
+        _lineAreaStyle: false, //是否对折线面积图使用面积渐变色
+        _YaxisBarLeft: 40, //横向条形图距离左边的距离，默认40
     }
     //十六进制颜色值的正则表达式  
 var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
@@ -883,6 +885,190 @@ var makeCharts = {
         //返回echarts对象
         return echarts.getInstanceByDom(D._div)
     },
+    //折线面积图
+    makeLineArea: function(D) {
+        if (D._div == undefined || D._div == null) {
+            alert('创建折线面积图时，未能成功获取到元素!');
+        } //验证元素
+        var e = echarts.init(D._div);
+        if (!D.hasOwnProperty("_color")) {
+            D._color = this.chartsColor;
+        } else {
+            D._color = D._color == "" ? this.chartsColor : D._color;
+        }
+        if (!D.hasOwnProperty("_title")) {
+            D._title = "";
+        } else {
+            D._title = D._title == "" ? "" : D._title;
+        }
+        if (!D.hasOwnProperty("_rotate")) {
+            D._rotate = 0;
+        } else {
+            D._rotate = D._rotate == "" ? 0 : D._rotate;
+        }
+        if (!D.hasOwnProperty("_opacity")) {
+            D._opacity = 0;
+        } else {
+            D._opacity = D._opacity == "" ? 0 : D._opacity;
+        }
+        if (!D.hasOwnProperty("_xyColor")) {
+            D._xyColor = '#fff';
+        } else {
+            D._xyColor = D._xyColor == ' ' ? '#fff' : D._xyColor;
+        }
+
+        if (!D.hasOwnProperty("_markLine")) {
+            //不需要基准线
+            D._markLine = {
+                _num: -1,
+                _color: 'rgba(0,0,0,0)'
+            }
+        } else {
+            D._markLine._num = D._markLine._num == ' ' ? 0 : D._markLine._num;
+            D._markLine._color = D._markLine._color == ' ' ? 'rgba(0,0,0,0)' : D._markLine._color;
+        }
+
+        if (!D.hasOwnProperty("_lineAreaStyle")) {
+            //不需要面积渐变
+            D._lineAreaStyle = {}
+        } else {
+            D._lineAreaStyle = !D._lineAreaStyle ? {} : {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(
+                        0, 0, 0, 1, [
+                            { offset: 0, color: D._color },
+                            { offset: 1, color: D._color }
+                        ]
+                    )
+                }
+            };
+        }
+
+        var options = {
+            title: {
+                text: D._title,
+                textStyle: {
+                    color: D._xyColor
+                }
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: (function() {
+                    var i = 0,
+                        l = D._legend.length,
+                        data = [];
+                    for (; i < l; i++) {
+                        data.push({
+                            name: D._legend[i],
+                            textStyle: {
+                                color: D._xyColor
+                            }
+                        });
+                    }
+                    return data
+                })(),
+                align: 'left'
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: D._xAxis,
+                axisLine: {
+                    lineStyle: {
+                        color: D._xyColor
+                    }
+                },
+                axisLabel: {
+                    interval: 0,
+                    rotate: D._rotate
+                }
+            },
+            yAxis: {
+                type: 'value',
+                axisLine: {
+                    lineStyle: {
+                        color: D._xyColor
+                    }
+                }
+            },
+            grid: {
+                top: 40,
+                bottom: 35
+            },
+            series: (function() {
+                var i = 0,
+                    l = D._legend.length,
+                    seriesData = [];
+                for (; i < l; i++) {
+                    seriesData.push({
+                        name: D._legend[i],
+                        type: 'line',
+                        data: D._data[i],
+                        smooth: true,
+                        sampling: 'average',
+                        areaStyle: D._lineAreaStyle
+                    })
+                }
+                return seriesData
+            })(),
+            color: D._color
+        };
+        if (D.hasOwnProperty("_splitNumber")) {
+            options.yAxis.splitNumber = parseInt(D._splitNumber);
+        }
+        if (D.hasOwnProperty("_dataZoom")) {
+            if (!D._dataZoom.hasOwnProperty("_start")) {
+                D._dataZoom._start = 30;
+            } else {
+                D._dataZoom._start = D._dataZoom._start == "" ? 30 : D._dataZoom._start;
+            }
+            if (!D._dataZoom.hasOwnProperty("_end")) {
+                D._dataZoom._end = 70;
+            } else {
+                D._dataZoom._end = D._dataZoom._end == "" ? 70 : D._dataZoom._end;
+            }
+            if (!D._dataZoom.hasOwnProperty("_bottom")) {
+                D._dataZoom._bottom = "2%";
+            } else {
+                D._dataZoom._bottom = D._dataZoom._bottom == "" ? "2%" : D._dataZoom._bottom;
+            }
+            if (D._dataZoom._dataZoom) {
+                var roomstart = Number(D._dataZoom._start);
+                var roomstartend = Number(D._dataZoom._end);
+                options.dataZoom = [{
+                        type: 'inside',
+                        start: roomstart,
+                        end: roomstartend,
+                        filterMode: 'filter'
+                    },
+                    {
+                        start: roomstart,
+                        end: roomstartend,
+                        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                        handleSize: 14,
+                        handleStyle: {
+                            color: '#fff',
+                            borderWidth: 0,
+                            shadowBlur: 3,
+                            shadowColor: 'rgba(0, 0, 0, 0.6)',
+                            shadowOffsetX: 2,
+                            shadowOffsetY: 2
+                        },
+                        height: 11,
+                        bottom: D._dataZoom._bottom,
+                        textStyle: {
+                            color: D._xyColor
+                        }
+                    }
+                ]
+            }
+        }
+        e.setOption(options);
+        //返回echarts对象
+        return echarts.getInstanceByDom(D._div)
+    },
     makeLine: function(D) {
         if (D._div == undefined || D._div == null) {
             alert('创建折线图时，未能成功获取到元素!');
@@ -1004,7 +1190,13 @@ var makeCharts = {
                                     }
                                 }
                             }
-                        }
+                        },
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top'
+                            }
+                        },
                     })
                 }
                 return seriesData
@@ -1390,15 +1582,20 @@ var makeCharts = {
             D._xyColor = D._xyColor == ' ' ? '#fff' : D._xyColor;
         }
 
-        if (!D.hasOwnProperty("_markLine")) {
-            //不需要基准线
-            D._markLine = {
-                _num: -1,
-                _color: 'rgba(0 ,0,0,0)'
-            }
+        //        if (!D.hasOwnProperty("_markLine")) {
+        //            D._markLine = {
+        //                _num: -1,
+        //                _color: 'rgba(0 ,0,0,0)'
+        //            }
+        //        } else {
+        //            D._markLine._num = D._markLine._num == ' ' ? 0 : D._markLine._num;
+        //            D._markLine._color = D._markLine._color == ' ' ? 'rgba(0,0,0,0)' : D._markLine._color;
+        //        }
+
+        if (!D.hasOwnProperty("_YaxisBarLeft")) {
+            D._YaxisBarLeft = 40
         } else {
-            D._markLine._num = D._markLine._num == ' ' ? 0 : D._markLine._num;
-            D._markLine._color = D._markLine._color == ' ' ? 'rgba(0,0,0,0)' : D._markLine._color;
+            D._YaxisBarLeft = D._YaxisBarLeft == ' ' ? 40 : D._YaxisBarLeft;
         }
 
 
@@ -1424,8 +1621,7 @@ var makeCharts = {
                     }
                     return data
                 })(),
-                orient: 'horizontal',
-                right: 'right'
+                orient: 'horizontal'
             },
             tooltip: {},
             //与bar的不同是x、y轴互换
@@ -1464,7 +1660,8 @@ var makeCharts = {
             },
             grid: {
                 top: 40,
-                bottom: 35
+                bottom: 35,
+                left: D._YaxisBarLeft
             },
             color: D._color,
             series: (function() {
@@ -1486,22 +1683,25 @@ var makeCharts = {
                             }
                         },
                         data: D._data[i],
-                        animationDelay: function(idx) {
-                            return idx * 10
-                        },
-                        markLine: {
-                            data: [
-                                { type: 'Y 轴值为' + D._markLine._num + ' 的水平线', yAxis: D._markLine._num }
-                            ],
-                            itemStyle: {
-                                normal: {
-                                    lineStyle: {
-                                        color: D._markLine._color
-                                    }
-                                }
-                            }
-                        }
+                        //                        animationDelay: function(idx) {
+                        //                            return idx * 10
+                        //                        },
+                        //                        markLine: {
+                        //                            data: [
+                        //                                { type: 'Y 轴值为' + D._markLine._num + ' 的水平线', yAxis: D._markLine._num }
+                        //                            ],
+                        //                            itemStyle: {
+                        //                                normal: {
+                        //                                    lineStyle: {
+                        //                                        color: D._markLine._color
+                        //                                    }
+                        //                                }
+                        //                            }
+                        //                        }
                     })
+                    if (D.hasOwnProperty('_stack')) {
+                        seriesData[i].stack = D._stack[i];
+                    }
                 }
                 return seriesData
             })(),

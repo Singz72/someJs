@@ -282,6 +282,28 @@ var TimeFuns = {
         s += t.getDate() > 9 ? t.getDate() : '0' + t.getDate(); // 获取日。
         return (s); // 返回日期。
     },
+    //在原有日期基础上，增加days天数，默认增加1天
+    _addDaysOnDate: function(date, days) {
+        if (days == undefined || days == '') {
+            days = 1;
+        }
+        var date = new Date(date);
+        date.setDate(date.getDate() + days);
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        return date.getFullYear() + '-' + this.getFormatDate(month) + '-' + this.getFormatDate(day);
+    },
+    //日期月份/天的显示，如果是1位数，则在前面加上'0'
+    _getFormatDate: function(arg) {
+        if (arg == undefined || arg == '') {
+            return '';
+        }
+        var re = arg + '';
+        if (re.length < 2) {
+            re = '0' + re;
+        }
+        return re;
+    },
     //获取时间区间内所有的月份 参数格式: '2018-05-23'
     _getMonthsAll: function(begin, end) {
         var d1 = begin;
@@ -488,9 +510,22 @@ var TimeFuns = {
         } else {
             return false;
         }
+    },
+    //判断时间是否为今天
+    checkTimeisToday: function(d) {
+        var td = new Date();
+        td = new Date(td.getFullYear(), td.getMonth(), td.getDate());
+        var checkd = new Date(d);
+        checkd = new Date(checkd.getFullYear(), checkd.getMonth(), checkd.getDate());
+        var x = (checkd - td) / 1000 / 60 / 60 / 24;
+        if (x == 0) {
+            return true
+        }
+        return false
     }
 }
 
+//数值函数
 var NumFuns = {
     /**
      * 保留小数函数
@@ -517,14 +552,10 @@ var NumFuns = {
             }
             return Math.round(num * Math.pow(10, x)) / Math.pow(10, x);
         }
-    },
-    //判断某个数组中是否含有某个值
-    IsInArray: function(arr, val) {
-        var testStr = ',' + arr.join(',') + ',';
-        return testStr.indexOf("," + val + ",") != -1;
     }
 }
 
+//数组函数
 var arrayFun = {
     //去重，也可以用ES6的set()去重
     distinct: function(arr) {
@@ -544,5 +575,28 @@ var arrayFun = {
             sourceCopy[item] = typeof source[item] === 'object' ? objDeepCopy(source[item]) : source[item];
         }
         return sourceCopy;
+    },
+    //判断某个数组中是否含有某个值
+    IsInArray: function(arr, val) {
+        var testStr = ',' + arr.join(',') + ',';
+        return testStr.indexOf("," + val + ",") != -1;
+    }
+}
+
+//跳转函数
+var hopLink = {
+    goToURL: function(URL, data, openUrl) {
+        $.ajax({
+            type: "GET",
+            async: false,
+            data: data,
+            url: URL,
+            success: function(msg) {
+                window.open(openUrl);
+            },
+            error: function() {
+                window.open(openUrl);
+            }
+        });
     }
 }
