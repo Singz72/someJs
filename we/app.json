@@ -1,8 +1,8 @@
 {
     "pages": [
-        "pages/record/record",
-        "pages/account/account",
-        "pages/person/person"
+        "pages/account/index",
+        "pages/record/index",
+        "pages/person/index"
     ],
     "window": {
         "backgroundTextStyle": "dark",
@@ -13,17 +13,17 @@
     },
     "tabBar": {
         "list": [{
-            "pagePath": "pages/record/record",
+            "pagePath": "pages/record/index",
             "text": "日常",
             "iconPath": "img/UI/icon/money.png",
             "selectedIconPath": "img/UI/icon/money-active.png"
         }, {
-            "pagePath": "pages/account/account",
+            "pagePath": "pages/account/index",
             "text": "消费",
             "iconPath": "img/UI/icon/chart.png",
             "selectedIconPath": "img/UI/icon/chart-active.png"
         }, {
-            "pagePath": "pages/person/person",
+            "pagePath": "pages/person/index",
             "text": "个人",
             "iconPath": "img/UI/icon/user.png",
             "selectedIconPath": "img/UI/icon/user-active.png"

@@ -20,6 +20,8 @@
             <timeHaveIcon startTime='2017-01-01' endTime="2029-12-31" id="timeHaveIcon"></timeHaveIcon>
         </view>
         <!-- echarts -->
-        <view class="a-chart-data"></view>
+        <view class="a-chart-data">
+            <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+        </view>
     </view>
 </view>

@@ -1,7 +1,7 @@
 /**index.wxss**/
 
 .main-page {
-    height: 418rpx;
+    height: 100%;
     color: rgba(0, 0, 0, .8);
 }
 
@@ -18,7 +18,10 @@
 }
 
 .a-chart {
+    height: calc(100% - 362rpx);
     position: relative;
+    background: #fff;
+    box-sizing: border-box;
 }
 
 .a-category {
@@ -27,4 +30,18 @@
     width: 420rpx;
     height: 87rpx;
     border-radius: 43.5rpx;
+    box-shadow: 0 0 10rpx 1rpx #ebeaea;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.a-chart-date {
+    text-align: center;
+    padding-top: 60rpx;
+    margin-bottom: 30rpx;
+}
+
+.a-chart-data {
+    width: 100%;
+    height: calc(100% - 142rpx);
 }
