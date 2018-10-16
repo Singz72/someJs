@@ -18,7 +18,6 @@ Component({
     methods: {
         loadChangeDate: function() {
             var nowDate = this.dateFormat(new Date());
-            console.log(nowDate)
             this.setData({
                 date: nowDate
             })
