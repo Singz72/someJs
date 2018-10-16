@@ -11,8 +11,25 @@
     <view class="a-chart">
         <!-- category -->
         <view class="a-category">
-            <view class="a-category-text">
-
+            <view class="a-category-icon">
+                <view class="a-category-icon-box" bindtap="categoryChangeIcon">
+                    <image class="a-category-icon-img" src="../../img/UI/icon/{{aFood}}.png"></image>
+                </view>
+            </view>
+            <view class="a-category-icon">
+                <view class="a-category-icon-box">
+                    <image class="a-category-icon-img" src="../../img/UI/icon/{{aCar}}.png"></image>
+                </view>
+            </view>
+            <view class="a-category-icon">
+                <view class="a-category-icon-box">
+                    <image class="a-category-icon-img" src="../../img/UI/icon/{{aShopping}}.png"></image>
+                </view>
+            </view>
+            <view class="a-category-icon">
+                <view class="a-category-icon-box">
+                    <image class="a-category-icon-img" src="../../img/UI/icon/{{aMoney}}.png"></image>
+                </view>
             </view>
         </view>
         <!-- time selector -->
