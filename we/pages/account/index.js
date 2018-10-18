@@ -24,69 +24,84 @@ var Chart = null;
 Page({
     data: {
         count: '100.00',
+        title: '总额',
         ec: {
             lazyLoad: true
         },
-        a_food: 'a_food',
-        a_car: 'a_car',
-        a_shopping: 'a_shopping',
-        a_money: 'a_money',
-        a_food_data: [
-            [1, 1],
-            [2, 5],
-            [3, 10],
-            [4, 15],
-            [5, 3],
-            [6, 5],
-            [7, 7],
-            [8, 4],
-            [9, 10],
-            [10, 13],
-            [11, 11],
-            [12, 5]
-        ],
-        a_car_data: [
-            [1, 11],
-            [2, 15],
-            [3, 2],
-            [4, 10],
-            [5, 13],
-            [6, 15],
-            [7, 17],
-            [8, 14],
-            [9, 10],
-            [10, 3],
-            [11, 11],
-            [12, 5]
-        ],
-        a_shopping_data: [
-            [1, 11],
-            [2, 5],
-            [3, 13],
-            [4, 6],
-            [5, 3],
-            [6, 15],
-            [7, 9],
-            [8, 14],
-            [9, 3],
-            [10, 13],
-            [11, 5],
-            [12, 9]
-        ],
-        a_money_data: [
-            [1, 4],
-            [2, 6],
-            [3, 2],
-            [4, 19],
-            [5, 13],
-            [6, 11],
-            [7, 17],
-            [8, 8],
-            [9, 12],
-            [10, 5],
-            [11, 2],
-            [12, 16]
-        ],
+        state: {
+            a_food: {
+                title: '饮食',
+                type: 'a_food',
+                data: [
+                    [1, 1],
+                    [2, 5],
+                    [3, 10],
+                    [4, 15],
+                    [5, 3],
+                    [6, 5],
+                    [7, 7],
+                    [8, 4],
+                    [9, 10],
+                    [10, 13],
+                    [11, 11],
+                    [12, 5]
+                ]
+            },
+            a_car: {
+                title: '出行',
+                type: 'a_car',
+                data: [
+                    [1, 11],
+                    [2, 15],
+                    [3, 2],
+                    [4, 10],
+                    [5, 13],
+                    [6, 15],
+                    [7, 17],
+                    [8, 14],
+                    [9, 10],
+                    [10, 3],
+                    [11, 11],
+                    [12, 5]
+                ]
+            },
+            a_shopping: {
+                title: '娱乐',
+                type: 'a_shopping',
+                data: [
+                    [1, 11],
+                    [2, 5],
+                    [3, 13],
+                    [4, 6],
+                    [5, 3],
+                    [6, 15],
+                    [7, 9],
+                    [8, 14],
+                    [9, 3],
+                    [10, 13],
+                    [11, 5],
+                    [12, 9]
+                ]
+            },
+            a_money: {
+                title: '总额',
+                type: 'a_money',
+                data: [
+                    [1, 4],
+                    [2, 6],
+                    [3, 2],
+                    [4, 19],
+                    [5, 13],
+                    [6, 11],
+                    [7, 17],
+                    [8, 8],
+                    [9, 12],
+                    [10, 5],
+                    [11, 2],
+                    [12, 16]
+                ]
+            }
+        }
     },
     onLoad: function() {
         this.echartsComponment = this.selectComponent('#mychart-dom-line');
@@ -124,12 +139,6 @@ Page({
                 left: 'center'
             },
             color: ["#ffcc33"],
-            legend: {
-                data: [''],
-                top: 50,
-                left: 'center',
-                z: 100
-            },
             grid: {
                 containLabel: true
             },
@@ -200,22 +209,34 @@ Page({
         return option
     },
     categoryChangeIcon: function(e) {
-        const category = e.currentTarget.dataset.state.split('_active');
-        const state = category.length > 1;
-        const key = category[0];
-        const data = key + '_data';
-        if (state) {
+
+        const stateObj = this.data.state;
+        const key = e.currentTarget.dataset.state.split('_active')[0];
+
+        //设置所有据处于未激活状态
+        Object.keys(stateObj).forEach((k) => {
+            var val = stateObj[k].type.split('_active')[0];
+            var keys = `state.${k}.type`;
             this.setData({
-                [key]: key
+                [keys]: val
             })
-        } else {
-            let val = key + '_active';
-            this.setData({
-                [key]: val
-            })
-        }
+        })
+
+        //激活当前点击状态
+        let val = key + '_active';
+        let keys = `state.${key}.type`;
+        this.setData({
+            [keys]: val
+        })
+
+        //设置总额title
+        let title = stateObj[key].title;
+        this.setData({
+            title: title
+        })
+
         //根据key发送对应请求
-        dataList = this.data[data];
+        dataList = stateObj[key].data;
         this.set_option(Chart);
     }
 })

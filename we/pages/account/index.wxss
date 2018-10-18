@@ -10,11 +10,12 @@
     font-size: 80rpx;
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
-.a-count-text {
-    width: 100%;
-    text-align: center;
+.a-count-title {
+    margin-top: 60rpx;
+    font-size: 40rpx;
 }
 
 .a-chart {

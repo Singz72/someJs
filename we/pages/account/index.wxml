@@ -3,7 +3,10 @@
     <!-- account => a -->
     <!-- count -->
     <view class="a-count">
-        <view class="a-count-text">
+        <view class="a-count-title">
+            {{title}}
+        </view>
+        <view class="a-count-num">
             ¥{{count}}
         </view>
     </view>
@@ -12,23 +15,23 @@
         <!-- category -->
         <view class="a-category">
             <view class="a-category-icon">
-                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{a_food}}">
-                    <image class="a-category-icon-img" src="../../img/UI/icon/{{a_food}}.png"></image>
+                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{state.a_food.type}}">
+                    <image class="a-category-icon-img" src="../../img/UI/icon/{{state.a_food.type}}.png"></image>
                 </view>
             </view>
             <view class="a-category-icon">
-                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{a_car}}">
-                    <image class="a-category-icon-img" src="../../img/UI/icon/{{a_car}}.png"></image>
+                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{state.a_car.type}}">
+                    <image class="a-category-icon-img" src="../../img/UI/icon/{{state.a_car.type}}.png"></image>
                 </view>
             </view>
             <view class="a-category-icon">
-                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{a_shopping}}">
-                    <image class="a-category-icon-img" src="../../img/UI/icon/{{a_shopping}}.png"></image>
+                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{state.a_shopping.type}}">
+                    <image class="a-category-icon-img" src="../../img/UI/icon/{{state.a_shopping.type}}.png"></image>
                 </view>
             </view>
             <view class="a-category-icon">
-                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{a_money}}">
-                    <image class="a-category-icon-img" src="../../img/UI/icon/{{a_money}}.png"></image>
+                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{state.a_money.type}}">
+                    <image class="a-category-icon-img" src="../../img/UI/icon/{{state.a_money.type}}.png"></image>
                 </view>
             </view>
         </view>
