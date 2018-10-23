@@ -7,7 +7,7 @@
             {{title}}
         </view>
         <view class="a-count-num">
-            ¥{{count}}
+            ¥ {{count}}
         </view>
     </view>
     <!-- chart -->

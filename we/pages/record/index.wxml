@@ -14,7 +14,7 @@
     <!-- count -->
     <view class="r-count">
         <view class="r-count-text">
-            ¥{{count}}
+            ¥ {{count}}
         </view>
     </view>
     <!-- editList -->
