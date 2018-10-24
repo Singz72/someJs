@@ -19,7 +19,8 @@
 }
 
 .a-chart {
-    height: calc(100% - 362rpx);
+    /* height: calc(100% - 362rpx); */
+    height: 748rpx;
     position: relative;
     background: #fff;
     box-sizing: border-box;
@@ -64,4 +65,18 @@
 .a-chart-data {
     width: 100%;
     height: calc(100% - 142rpx);
+}
+
+.a-list {
+    width: 100%;
+    padding-bottom: 40rpx;
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+}
+
+.a-list-block {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 20rpx 25rpx;
 }

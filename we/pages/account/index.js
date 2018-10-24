@@ -23,6 +23,7 @@ var Chart = null;
 
 Page({
         data: {
+            date: '2018',
             count: '100.00',
             title: '总额',
             ec: {
@@ -102,6 +103,11 @@ Page({
                     ]
                 }
             }
+        },
+        selectDateChangeDisplay: function(e) {
+            this.setData({
+                date: e.detail.value
+            })
         },
         onLoad: function() {
             this.echartsComponment = this.selectComponent('#mychart-dom-line');
@@ -242,7 +248,7 @@ Page({
             let num = dataList.reduce((sum, arr) => {
                 return sum + arr[1];
             }, 0)
-            console.log(this.changeTheShowMoney(num))
+            this.changeTheShowMoney(num)
         },
         //改变显示的金钱数
         changeTheShowMoney: function(num) {

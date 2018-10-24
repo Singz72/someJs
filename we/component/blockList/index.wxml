@@ -1,0 +1,14 @@
+<view class="blocklist">
+    <!-- blocklist=>bl -->
+    <view class="bl-left bl-box">
+        <view class="bl-left-box">
+
+        </view>
+        <view class="bl-left-box">
+
+        </view>
+    </view>
+    <view class="bl-right bl-box">
+
+    </view>
+</view>
