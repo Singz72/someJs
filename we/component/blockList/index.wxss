@@ -1,25 +1,52 @@
 .blocklist {
     width: 100%;
     height: 200rpx;
-    background: #f4f2f2;
+    background: #fff;
     border-radius: 4px;
-    box-shadow: 0 0 10rpx 1rpx #f4f2f2;
+    /* box-shadow: 0 0 10rpx 1rpx #fff; */
     display: flex;
 }
 
 .bl-left {
-    width: 40%;
+    width: 50%;
     height: 100%;
-    background: red;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .bl-left-box {
-    height: 50%;
+    width: 74rpx;
+    height: 74rpx;
+}
+
+.bl-left-box image {
+    height: 100%;
     width: 100%;
 }
 
 .bl-right {
-    width: 60%;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.bl-right-box {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.bl-right-top-box {
+    align-items: flex-end;
+    font-weight: bolder;
+}
+
+.bl-right-bottom-box {
+    align-items: flex-start;
+    padding-top: 10rpx;
+    opacity: .7;
 }

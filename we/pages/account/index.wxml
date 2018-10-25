@@ -29,11 +29,6 @@
                     <image class="a-category-icon-img" src="../../img/UI/icon/{{state.a_shopping.type}}.png"></image>
                 </view>
             </view>
-            <view class="a-category-icon">
-                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{state.a_money.type}}">
-                    <image class="a-category-icon-img" src="../../img/UI/icon/{{state.a_money.type}}.png"></image>
-                </view>
-            </view>
         </view>
         <!-- time selector -->
         <view class="a-chart-date">
@@ -46,13 +41,13 @@
     </view>
     <view class="a-list">
         <view class="a-list-block">
-            <blockList></blockList>
+            <blockList title="{{food.title}}" count="{{food.count}}" iconPath="{{food.iconPath}}"></blockList>
         </view>
         <view class="a-list-block">
-            <blockList></blockList>
+            <blockList title="{{travel.title}}" count="{{travel.count}}" iconPath="{{travel.iconPath}}"></blockList>
         </view>
         <view class="a-list-block">
-            <blockList></blockList>
+            <blockList title="{{recreation.title}}" count="{{recreation.count}}" iconPath="{{recreation.iconPath}}"></blockList>
         </view>
     </view>
 </view>

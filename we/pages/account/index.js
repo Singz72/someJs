@@ -25,13 +25,13 @@ Page({
         data: {
             date: '2018',
             count: '100.00',
-            title: '总额',
+            title: '月花费',
             ec: {
                 lazyLoad: true
             },
             state: {
                 a_food: {
-                    title: '饮食',
+                    title: '年花费',
                     type: 'a_food',
                     data: [
                         [1, 1],
@@ -49,7 +49,7 @@ Page({
                     ]
                 },
                 a_car: {
-                    title: '出行',
+                    title: '月花费',
                     type: 'a_car',
                     data: [
                         [1, 11],
@@ -67,7 +67,7 @@ Page({
                     ]
                 },
                 a_shopping: {
-                    title: '娱乐',
+                    title: '日花费',
                     type: 'a_shopping',
                     data: [
                         [1, 11],
@@ -83,25 +83,22 @@ Page({
                         [11, 5],
                         [12, 9]
                     ]
-                },
-                a_money: {
-                    title: '总额',
-                    type: 'a_money',
-                    data: [
-                        [1, 4],
-                        [2, 6],
-                        [3, 2],
-                        [4, 19],
-                        [5, 13],
-                        [6, 11],
-                        [7, 17],
-                        [8, 8],
-                        [9, 12],
-                        [10, 5],
-                        [11, 2],
-                        [12, 16]
-                    ]
                 }
+            },
+            food: {
+                title: "饮食",
+                count: "12",
+                iconPath: "../../img/UI/icon/a_food_active.png"
+            },
+            travel: {
+                title: "出行",
+                count: "8",
+                iconPath: "../../img/UI/icon/a_car_active.png"
+            },
+            recreation: {
+                title: "娱乐",
+                count: "453",
+                iconPath: "../../img/UI/icon/a_shopping_active.png"
             }
         },
         selectDateChangeDisplay: function(e) {
