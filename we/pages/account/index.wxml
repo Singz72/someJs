@@ -15,18 +15,18 @@
         <!-- category -->
         <view class="a-category">
             <view class="a-category-icon">
-                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{state.a_food.type}}">
-                    <image class="a-category-icon-img" src="../../img/UI/icon/{{state.a_food.type}}.png"></image>
+                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{state.year.type}}">
+                    <image class="a-category-icon-img" src="../../img/UI/icon/{{state.year.type}}.png"></image>
                 </view>
             </view>
             <view class="a-category-icon">
-                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{state.a_car.type}}">
-                    <image class="a-category-icon-img" src="../../img/UI/icon/{{state.a_car.type}}.png"></image>
+                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{state.month.type}}">
+                    <image class="a-category-icon-img" src="../../img/UI/icon/{{state.month.type}}.png"></image>
                 </view>
             </view>
             <view class="a-category-icon">
-                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{state.a_shopping.type}}">
-                    <image class="a-category-icon-img" src="../../img/UI/icon/{{state.a_shopping.type}}.png"></image>
+                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{state.day.type}}">
+                    <image class="a-category-icon-img" src="../../img/UI/icon/{{state.day.type}}.png"></image>
                 </view>
             </view>
         </view>
