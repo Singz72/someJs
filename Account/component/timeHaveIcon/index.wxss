@@ -1,0 +1,9 @@
+.date {
+    height: 100%;
+    width: 100%;
+}
+
+.date-icon {
+    height: 24rpx;
+    width: 24rpx;
+}

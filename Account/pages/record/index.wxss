@@ -1,0 +1,49 @@
+/**index.wxss**/
+
+.main-page {
+    height: 118rpx;
+    background: #ffcc33;
+    color: rgba(0, 0, 0, .8);
+}
+
+.r-date {
+    height: 118rpx;
+    font-size: 28rpx;
+    text-align: right;
+    padding-top: 13rpx;
+    padding-right: 63rpx;
+}
+
+.r-date-icon {
+    height: 24rpx;
+    width: 24rpx;
+}
+
+.r-count {
+    width: 650rpx;
+    height: 150rpx;
+    background: #fff;
+    position: absolute;
+    top: 69rpx;
+    left: 49rpx;
+    border-radius: 4rpx;
+    box-shadow: 0 0 20rpx 1rpx #e9e9e9;
+}
+
+.r-count-text {
+    width: 100%;
+    height: 72rpx;
+    font-size: 72rpx;
+    line-height: 72rpx;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.r-els {
+    /* height: 984rpx; */
+    background: #fff;
+    padding-top: 83rpx;
+    box-sizing: border-box;
+}

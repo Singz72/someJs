@@ -1,0 +1,31 @@
+<!--index.wxml-->
+<view class="main-page">
+    <!-- record => r -->
+    <!-- date -->
+    <view class="r-date">
+        <!-- <picker mode="date" value="{{date}}" start="2017-01-01" end="2029-12-31" bindchange="bindDateChange">
+            <view>
+                {{date}}
+                <image src="../../img/UI/icon/calendar.png" class="r-date-icon"></image>
+            </view>
+        </picker> -->
+        <timeHaveIcon startTime='2017-01-01' endTime="2029-12-31" id="timeHaveIcon" bind:loadDate="bindDateChange"></timeHaveIcon>
+    </view>
+    <!-- count -->
+    <view class="r-count">
+        <view class="r-count-text">
+            ¥ {{count}}
+        </view>
+    </view>
+    <!-- editList -->
+    <!-- editLists => els -->
+    <view class="r-els">
+        <editList iconPath='{{food.icon}}' title="{{food.title}}" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
+        <editList iconPath='{{travel.icon}}' title="{{travel.title}}" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
+        <editList iconPath='{{game.icon}}' title="{{game.title}}" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
+        <editList iconPath='{{other.icon}}' title="{{other.title}}" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
+    </view>
+    <view>
+        <button bindtap="submitForm" size="mini">确认</button>
+    </view>
+</view>

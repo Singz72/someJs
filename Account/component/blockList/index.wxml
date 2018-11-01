@@ -1,0 +1,16 @@
+<view class="blocklist">
+    <!-- blocklist=>bl -->
+    <view class="bl-left bl-box">
+        <view class="bl-left-box">
+            <image src="{{iconPath}}"></image>
+        </view>
+    </view>
+    <view class="bl-right bl-box">
+        <view class="bl-right-box bl-right-top-box">
+            <view>{{title}}</view>
+        </view>
+        <view class="bl-right-box bl-right-bottom-box">
+            <view>¥ {{count}}</view>
+        </view>
+    </view>
+</view>

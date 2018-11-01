@@ -1,0 +1,8 @@
+<view class="date">
+    <picker mode="date" value="{{date}}" start="{{startTime}}" end="{{endtTime}}" bindchange="selectDateChangeDisplay">
+        <view>
+            {{date}}
+            <image src="../../img/UI/icon/calendar.png" class="date-icon"></image>
+        </view>
+    </picker>
+</view>
