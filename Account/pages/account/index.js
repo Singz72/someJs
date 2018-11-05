@@ -13,25 +13,9 @@ Page({
         ec: {
             lazyLoad: true
         },
+        dateArray: [],
+        dateIndex: [],
         state: {
-            year: {
-                title: '年花费',
-                type: 'year',
-                data: [
-                    [1, 1],
-                    [2, 5],
-                    [3, 10],
-                    [4, 15],
-                    [5, 3],
-                    [6, 5],
-                    [7, 7],
-                    [8, 4],
-                    [9, 10],
-                    [10, 13],
-                    [11, 11],
-                    [12, 5]
-                ]
-            },
             month: {
                 title: '月花费',
                 type: 'month_active',
@@ -48,24 +32,6 @@ Page({
                     [10, 3],
                     [11, 11],
                     [12, 5]
-                ]
-            },
-            day: {
-                title: '日花费',
-                type: 'day',
-                data: [
-                    [1, 11],
-                    [2, 5],
-                    [3, 13],
-                    [4, 6],
-                    [5, 3],
-                    [6, 15],
-                    [7, 9],
-                    [8, 14],
-                    [9, 3],
-                    [10, 13],
-                    [11, 5],
-                    [12, 9]
                 ]
             }
         },
@@ -91,11 +57,44 @@ Page({
         })
     },
     onLoad: function() {
+        //时间下拉框
+        this.setDateArray();
         this.echartsComponment = this.selectComponent('#mychart-dom-line');
-        this.categoryChangeIconFun('month')
+        this.categoryChangeIconFun('month');
     },
     onReady: function() {
-        this.selectComponent('#timeHaveIcon').loadChangeDate();
+        // this.selectComponent('#timeHaveIcon').loadChangeDate();
+    },
+    onShow() {
+        wx.getStorage({
+            key: 'todayData',
+            success(res) {
+                // console.log(res.data)
+            }
+        });
+    },
+    setDateArray() {
+        let monthArr = [],
+            yearArr = [],
+            nowDate = new Date(),
+            nowYear = nowDate.getFullYear(),
+            nowMonth = nowDate.getMonth();
+        for (let i = 0; i < 12; i++) {
+            monthArr.push((i + 1) + '月');
+        }
+        for (let j = 1989; j < 2051; j++) {
+            yearArr.push(j)
+        }
+
+        this.setData({
+            dateArray: [yearArr, monthArr],
+            dateIndex: [nowYear - 1989, nowMonth]
+        })
+    },
+    bindPickerDateChange(e) {
+        this.setData({
+            dateIndex: [e.detail.value[0], e.detail.value[1]]
+        })
     },
     init_charts: function() {
         const that = this;

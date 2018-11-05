@@ -12,27 +12,16 @@
     </view>
     <!-- chart -->
     <view class="a-chart">
-        <!-- category -->
-        <view class="a-category">
-            <view class="a-category-icon">
-                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{state.year.type}}">
-                    <image class="a-category-icon-img" src="../../img/UI/icon/{{state.year.type}}.png"></image>
-                </view>
-            </view>
-            <view class="a-category-icon">
-                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{state.month.type}}">
-                    <image class="a-category-icon-img" src="../../img/UI/icon/{{state.month.type}}.png"></image>
-                </view>
-            </view>
-            <view class="a-category-icon">
-                <view class="a-category-icon-box" bindtap="categoryChangeIcon" data-state="{{state.day.type}}">
-                    <image class="a-category-icon-img" src="../../img/UI/icon/{{state.day.type}}.png"></image>
-                </view>
-            </view>
-        </view>
         <!-- time selector -->
         <view class="a-chart-date">
-            <timeHaveIcon startTime='2017-01-01' endTime="2029-12-31" id="timeHaveIcon"></timeHaveIcon>
+            <picker style="height: 20px;" mode="multiSelector" bindchange="bindPickerDateChange" value="{{dateIndex}}" range="{{dateArray}}">
+                <view>
+                    {{dateArray[0][dateIndex[0]]}}
+                </view>
+                <view style="height: 20px;">
+                    {{dateArray[1][dateIndex[1]]}}
+                </view>
+            </picker>
         </view>
         <!-- echarts -->
         <view class="a-chart-data">

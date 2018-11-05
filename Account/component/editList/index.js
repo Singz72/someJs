@@ -14,6 +14,10 @@ Component({
         'title': {
             type: String, //必填，目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
             value: "" //可选，默认值，如果页面没传值过来就会使用默认值 
+        },
+        'value': {
+            type: Number, //必填，目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
+            value: 0 //可选，默认值，如果页面没传值过来就会使用默认值 
         }
     },
     data: {

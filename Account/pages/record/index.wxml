@@ -20,10 +20,10 @@
     <!-- editList -->
     <!-- editLists => els -->
     <view class="r-els">
-        <editList iconPath='{{food.icon}}' title="{{food.title}}" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
-        <editList iconPath='{{travel.icon}}' title="{{travel.title}}" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
-        <editList iconPath='{{game.icon}}' title="{{game.title}}" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
-        <editList iconPath='{{other.icon}}' title="{{other.title}}" bind:myBlurEditListVal="onGetEditListstateNum"></editList>
+        <editList iconPath='{{food.icon}}' title="{{food.title}}" value='{{food.count}}' bind:myBlurEditListVal="onGetEditListstateNum"></editList>
+        <editList iconPath='{{travel.icon}}' title="{{travel.title}}" value='{{travel.count}}' bind:myBlurEditListVal="onGetEditListstateNum"></editList>
+        <editList iconPath='{{game.icon}}' title="{{game.title}}" value='{{game.count}}' bind:myBlurEditListVal="onGetEditListstateNum"></editList>
+        <editList iconPath='{{other.icon}}' title="{{other.title}}" value='{{other.count}}' bind:myBlurEditListVal="onGetEditListstateNum"></editList>
     </view>
     <view>
         <button bindtap="submitForm" size="mini">确认</button>

@@ -38,6 +38,37 @@ Page({
     },
     onReady: function() {
         this.selectComponent('#timeHaveIcon').loadChangeDate();
+        this.setDefaultDate();
+    },
+    setDefaultDate() {
+        let that = this,
+            nowDate = new Date(),
+            nowYear = nowDate.getFullYear(),
+            nowMonth = (nowDate.getMonth() + 1) + '',
+            nowDay = nowDate.getDate() + '',
+            today = nowYear + '-' + (nowMonth.length < 2 ? '0' + nowMonth : nowMonth) + '-' + (nowDay.length < 2 ? '0' + nowDay : nowDay);
+
+        wx.getStorage({
+            key: 'todayData',
+            success: function(res) {
+                // success
+                const resData = res.data;
+                if (resData.time == today) {
+                    const count = resData.count,
+                        food = `food.count`,
+                        travel = `travel.count`,
+                        game = `game.count`,
+                        other = `other.count`;
+                    that.setData({
+                        [food]: count.food,
+                        [travel]: count.travel,
+                        [game]: count.game,
+                        [other]: count.other,
+                    });
+                    that.setCount();
+                }
+            }
+        })
     },
     bindDateChange: function(e) {
         this.setData({
@@ -52,8 +83,11 @@ Page({
         this.setData({
             [key]: val
         });
-        data = this.data;
-        sum = data.food.count +
+        this.setCount();
+    },
+    setCount() {
+        let data = this.data,
+            sum = data.food.count +
             data.travel.count +
             data.game.count +
             data.other.count;
@@ -62,7 +96,6 @@ Page({
             countNum: sum,
             count: sum + ''
         })
-
     },
     submitForm() {
         let data = this.data,
@@ -75,7 +108,11 @@ Page({
                     other: data.other.count
                 }
             };
-        console.log(obj)
+        console.log(obj);
+        wx.setStorage({
+            key: 'todayData',
+            data: obj
+        })
         wx.request({
             url: '',
             data: obj,
