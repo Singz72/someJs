@@ -18,22 +18,22 @@ Page({
         food: {
             title: 'Food',
             icon: '../../img/UI/icon/meh.png',
-            count: 0
+            count: ''
         },
         travel: {
             title: 'Travel',
             icon: '../../img/UI/icon/car.png',
-            count: 0
+            count: ''
         },
         game: {
             title: 'Game',
             icon: '../../img/UI/icon/trophy.png',
-            count: 0
+            count: ''
         },
         other: {
             title: 'Other',
             icon: '../../img/UI/icon/read.png',
-            count: 0
+            count: ''
         }
     },
     onReady: function() {

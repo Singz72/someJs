@@ -6,35 +6,48 @@ const app = getApp();
 
 Page({
     data: {
-        date: '2018',
         count: '',
-        title: '',
+        title: '消费总额',
         dataList: [],
+        dataList11: [{
+                value: 30,
+                name: '饮食'
+            },
+            {
+                value: 8,
+                name: '出行'
+            },
+            {
+                value: 20,
+                name: '娱乐'
+            },
+            {
+                value: 10,
+                name: '一般'
+            }
+        ],
+        dataList12: [{
+                value: 34,
+                name: '饮食'
+            },
+            {
+                value: 120,
+                name: '出行'
+            },
+            {
+                value: 10,
+                name: '娱乐'
+            },
+            {
+                value: 50,
+                name: '一般'
+            }
+        ],
         ec: {
             lazyLoad: true
         },
         dateArray: [],
         dateIndex: [],
-        state: {
-            month: {
-                title: '月花费',
-                type: 'month_active',
-                data: [
-                    [1, 11],
-                    [2, 15],
-                    [3, 2],
-                    [4, 10],
-                    [5, 13],
-                    [6, 15],
-                    [7, 17],
-                    [8, 14],
-                    [9, 10],
-                    [10, 3],
-                    [11, 11],
-                    [12, 5]
-                ]
-            }
-        },
         food: {
             title: "饮食",
             count: "12",
@@ -51,28 +64,22 @@ Page({
             iconPath: "../../img/UI/icon/a_shopping_active.png"
         }
     },
-    selectDateChangeDisplay: function(e) {
-        this.setData({
-            date: e.detail.value
-        })
-    },
     onLoad: function() {
-        //时间下拉框
-        this.setDateArray();
-        this.echartsComponment = this.selectComponent('#mychart-dom-line');
-        this.categoryChangeIconFun('month');
-    },
-    onReady: function() {
-        // this.selectComponent('#timeHaveIcon').loadChangeDate();
-    },
-    onShow() {
         wx.getStorage({
             key: 'todayData',
             success(res) {
                 // console.log(res.data)
             }
         });
+        //时间下拉框
+        this.setDateArray();
+        //图表初始化
+        this.echartsComponment = this.selectComponent('#mychart-dom-line');
+        //数据初始化
+        this.categoryChangeIconFun(11);
     },
+    onReady: function() {},
+    onShow() {},
     setDateArray() {
         let monthArr = [],
             yearArr = [],
@@ -92,72 +99,51 @@ Page({
         })
     },
     bindPickerDateChange(e) {
+        const that = this,
+            dateArray = this.data.dateArray,
+            dateIndex = [e.detail.value[0], e.detail.value[1]],
+            date = dateArray[0][dateIndex[0]] + '-' + dateArray[1][dateIndex[1]].split('月')[0];
         this.setData({
-            dateIndex: [e.detail.value[0], e.detail.value[1]]
+            dateIndex: dateIndex
+        })
+
+        wx.request({
+            url: '',
+            data: {
+                date: date
+            },
+            method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+            // header: {}, // 设置请求的 header
+            success(res) {
+                // success
+            },
+            fail(res) {
+                console.log(res)
+            },
+            complete(res) {
+                //假设的数据
+                const month = dateArray[1][dateIndex[1]].split('月')[0];
+                that.categoryChangeIconFun(month)
+            }
         })
     },
-    init_charts: function() {
-        const that = this;
-        this.echartsComponment.init((canvas, width, height) => {
-            let echart = echarts.init(canvas, null, {
-                width: width,
-                height: height
-            });
-            that.set_option(echart);
-            return echart;
-        })
-    },
-    set_option: function(chart) {
-        // chart.clear();
-        chart.setOption(this.get_option(this.data.dataList));
-    },
-    //icon点击事件触发器
-    categoryChangeIcon: function(e) {
-        const name = e.currentTarget.dataset.state.split('_active')[0]; //被点击icon的名字
+    categoryChangeIconFun: function(val) {
 
-        this.categoryChangeIconFun(name);
-    },
-    //icon点击事件触发器
-    categoryChangeIconFun: function(key) {
-
-        const stateObj = this.data.state;
-        //设置所有据处于未激活状态
-        Object.keys(stateObj).forEach((k) => {
-            let val = stateObj[k].type.split('_active')[0];
-            let keys = `state.${k}.type`;
-            this.setData({
-                [keys]: val
-            })
-        })
-
-        //激活当前点击状态
-        let val = key + '_active';
-        let keys = `state.${key}.type`;
+        //重新加载数据
+        const dataList = `dataList${val}`;
         this.setData({
-            [keys]: val
-        })
+            dataList: this.data[dataList]
+        });
 
-        //设置总额title
-        let title = stateObj[key].title;
-        this.setData({
-            title: title
-        })
-
-        //根据key发送对应请求
-        // dataList = stateObj[key].data;
-        this.setData({
-            dataList: stateObj[key].data
-        })
         if (!this.data.chart) {
             this.init_charts();
         } else {
             this.set_option(this.data.chart);
         }
-
-        let num = this.data.dataList.reduce((sum, arr) => {
-            return sum + arr[1];
+        let num = this.data.dataList.reduce((sum, { value }) => {
+            return sum + value;
         }, 0)
-        this.changeTheShowMoney(num)
+        this.changeTheShowMoney(num);
     },
     //改变显示的金钱数
     changeTheShowMoney: function(num) {
@@ -181,79 +167,45 @@ Page({
             count: strNum
         })
         return strNum;
-    }, //图表配置
+    },
+    init_charts: function() {
+        const that = this;
+        this.echartsComponment.init((canvas, width, height) => {
+            let echart = echarts.init(canvas, null, {
+                width: width,
+                height: height
+            });
+            that.set_option(echart);
+            return echart;
+        })
+    },
+    set_option: function(chart) {
+        // chart.clear();
+        chart.setOption(this.get_option(this.data.dataList));
+    },
+    //图表配置
     get_option: function(dataList) {
         let option = {
-            title: {
-                text: '',
-                left: 'center'
-            },
-            color: ["#ffcc33"],
-            grid: {
-                containLabel: true
-            },
-            tooltip: {
-                show: false,
-                trigger: 'axis',
-                renderMode: 'richText',
-                confine: true
-            },
-            axisPointer: {
-                type: 'line',
-                lineStyle: {
-                    type: 'dashed'
-                }
-            },
-            xAxis: {
-                name: '',
-                type: 'value',
-                // boundaryGap: true,
-                data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                // show: false,
-                axisLine: {
-                    show: false,
-                    lineStyle: {
-                        color: '#7f8389'
-                    }
-                },
-                splitLine: {
-                    lineStyle: {
-                        type: 'dashed',
-                        color: ['rgba(0,0,0,0)', '#ddd']
-                    }
-                },
-                interval: 3,
-                scale: true,
-                axisTick: {
-                    show: false
-                }
-            },
-            yAxis: {
-                name: '',
-                x: 'center',
-                type: 'value',
-                splitLine: {
-                    lineStyle: {
-                        type: 'dashed',
-                        color: ['rgba(0,0,0,0)', '#ddd']
-                    }
-                },
-                // show: false
-                axisLine: {
-                    show: false,
-                    lineStyle: {
-                        color: '#7f8389'
-                    }
-                },
-                axisTick: {
-                    show: false
-                }
-            },
+            color: ["#37A2DA", "#32C5E9", "#67E0E3", "#91F2DE", "#FFDB5C", "#FF9F7F"],
             series: [{
-                name: '消费',
-                type: 'line',
-                smooth: true,
-                data: dataList
+                label: {
+                    normal: {
+                        fontSize: 14,
+                        position: 'inner'
+                    }
+                },
+                selectedMode: 'single',
+                type: 'pie',
+                radius: [0, '60%'],
+                center: ['50%', '50%'],
+                data: dataList,
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.3)'
+                    }
+                }
             }]
         };
         return option
