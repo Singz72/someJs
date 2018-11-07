@@ -6,21 +6,71 @@
 }
 
 .a-count {
-    height: 362rpx;
-    font-size: 80rpx;
+    font-size: 50rpx;
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    box-sizing: border-box;
+    padding: 10rpx 0 10rpx;
+    color: rgba(255, 255, 255, 1);
 }
 
-.a-count-title {
-    margin-top: 60rpx;
-    font-size: 40rpx;
+.a-count-spend,
+.a-count-proportion {
+    width: 34%;
+    text-align: center;
+}
+
+.a-count-date {
+    width: 28%;
+    box-sizing: border-box;
+    padding-left: 40rpx;
+    border-right: 1px solid rgb(88, 88, 88);
+}
+
+
+/* tabs */
+
+.tab {
+    background: #fff;
+    position: relative;
+}
+
+.tab_select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 15rpx 0;
+}
+
+.tab_selects {
+    border: 2px solid #3a3a3a;
+    border-radius: 8rpx;
+    box-sizing: border-box;
+    font-size: 22rpx;
+    display: flex;
+}
+
+.tab_selects0 {
+    box-sizing: border-box;
+    width: 200rpx;
+    padding: 5rpx 0;
+    text-align: center;
+}
+
+.tab_selected {
+    color: #fff;
+    background: #3a3a3a;
+}
+
+.tabs {
+    position: absolute;
+    color: #3a3a3a;
+    width: 100%;
 }
 
 .a-chart {
     /* height: calc(100% - 362rpx); */
-    height: 748rpx;
+    height: 400rpx;
     position: relative;
     background: #fff;
     box-sizing: border-box;
@@ -56,15 +106,9 @@
     height: 100%;
 }
 
-.a-chart-date {
-    text-align: center;
-    padding-top: 60rpx;
-    margin-bottom: 30rpx;
-}
-
 .a-chart-data {
     width: 100%;
-    height: calc(100% - 142rpx);
+    height: 100%;
 }
 
 .a-list {
@@ -73,11 +117,24 @@
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
-    background: #ffcc33;
+    background: #fff;
 }
 
 .a-list-block {
     width: 50%;
     box-sizing: border-box;
     padding: 20rpx 25rpx;
+}
+
+
+/* 针对性样式 */
+
+.garyFontsize18rpx {
+    color: rgb(128, 128, 128);
+    font-size: 20rpx;
+}
+
+.whiteFontsize18rpx {
+    color: #fff;
+    font-size: 20rpx;
 }

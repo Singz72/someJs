@@ -5,11 +5,11 @@
         "pages/person/index"
     ],
     "window": {
-        "backgroundTextStyle": "dark",
-        "navigationBarBackgroundColor": "#ffcc33",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#3a3a3a",
         "navigationBarTitleText": "我的记账本",
-        "navigationBarTextStyle": "black",
-        "backgroundColor": "#ffcc33"
+        "navigationBarTextStyle": "white",
+        "backgroundColor": "#3a3a3a"
     },
     "tabBar": {
         "list": [{

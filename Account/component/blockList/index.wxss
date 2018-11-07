@@ -3,7 +3,9 @@
     height: 200rpx;
     background: #fff;
     border-radius: 4px;
-    /* box-shadow: 0 0 10rpx 1rpx #fff; */
+    box-shadow: 0 0 10rpx 1rpx #3a3a3a;
+    box-sizing: border-box;
+    border: 1px solid #3a3a3a;
     display: flex;
 }
 

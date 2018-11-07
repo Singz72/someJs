@@ -62,7 +62,11 @@ Page({
             title: "娱乐",
             count: "453",
             iconPath: "../../img/UI/icon/a_shopping_active.png"
-        }
+        },
+        categoryState: 'tab_selected',
+        categoryDis: true,
+        detailState: '',
+        detailDis: false
     },
     onLoad: function() {
         wx.getStorage({
@@ -80,6 +84,23 @@ Page({
     },
     onReady: function() {},
     onShow() {},
+    categoryClickFun() {
+        this.setData({
+            categoryState: 'tab_selected',
+            categoryDis: true,
+            detailState: '',
+            detailDis: false
+        });
+        this.categoryChangeIconFun(11);
+    },
+    detailClickFun() {
+        this.setData({
+            categoryState: '',
+            categoryDis: false,
+            detailState: 'tab_selected',
+            detailDis: true
+        })
+    },
     setDateArray() {
         let monthArr = [],
             yearArr = [],
@@ -87,7 +108,7 @@ Page({
             nowYear = nowDate.getFullYear(),
             nowMonth = nowDate.getMonth();
         for (let i = 0; i < 12; i++) {
-            monthArr.push((i + 1) + '月');
+            monthArr.push((i + 1));
         }
         for (let j = 1989; j < 2051; j++) {
             yearArr.push(j)
@@ -102,7 +123,7 @@ Page({
         const that = this,
             dateArray = this.data.dateArray,
             dateIndex = [e.detail.value[0], e.detail.value[1]],
-            date = dateArray[0][dateIndex[0]] + '-' + dateArray[1][dateIndex[1]].split('月')[0];
+            date = dateArray[0][dateIndex[0]] + '-' + dateArray[1][dateIndex[1]];
         this.setData({
             dateIndex: dateIndex
         })
@@ -122,7 +143,7 @@ Page({
             },
             complete(res) {
                 //假设的数据
-                const month = dateArray[1][dateIndex[1]].split('月')[0];
+                const month = dateArray[1][dateIndex[1]];
                 that.categoryChangeIconFun(month)
             }
         })
@@ -136,8 +157,10 @@ Page({
         });
 
         if (!this.data.chart) {
+            console.log(1)
             this.init_charts();
         } else {
+            console.log(2)
             this.set_option(this.data.chart);
         }
         let num = this.data.dataList.reduce((sum, { value }) => {
@@ -171,6 +194,9 @@ Page({
     init_charts: function() {
         const that = this;
         this.echartsComponment.init((canvas, width, height) => {
+            console.log(width)
+            console.log(height)
+                //再次切换回来时 获取不到dom的宽高
             let echart = echarts.init(canvas, null, {
                 width: width,
                 height: height
@@ -186,7 +212,7 @@ Page({
     //图表配置
     get_option: function(dataList) {
         let option = {
-            color: ["#37A2DA", "#32C5E9", "#67E0E3", "#91F2DE", "#FFDB5C", "#FF9F7F"],
+            color: ["#f7994e", "#f7d151", "#f7994e", "#f7d151", "#f7994e", "#f7d151"],
             series: [{
                 label: {
                     normal: {
@@ -196,7 +222,7 @@ Page({
                 },
                 selectedMode: 'single',
                 type: 'pie',
-                radius: [0, '60%'],
+                radius: [0, '80%'],
                 center: ['50%', '50%'],
                 data: dataList,
                 itemStyle: {

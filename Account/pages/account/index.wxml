@@ -3,40 +3,70 @@
     <!-- account => a -->
     <!-- count -->
     <view class="a-count">
-        <view class="a-count-title">
-            {{title}}
-        </view>
-        <view class="a-count-num">
-            ¥ {{count}}
-        </view>
-    </view>
-    <!-- chart -->
-    <view class="a-chart">
-        <!-- time selector -->
-        <view class="a-chart-date">
+        <view class="a-count-date">
             <picker style="height: 20px;" mode="multiSelector" bindchange="bindPickerDateChange" value="{{dateIndex}}" range="{{dateArray}}">
-                <view>
-                    {{dateArray[0][dateIndex[0]]}}
+                <view class="garyFontsize18rpx">
+                    {{dateArray[0][dateIndex[0]]}}年
                 </view>
-                <view style="height: 20px;">
+                <view style="height: 100%;">
                     {{dateArray[1][dateIndex[1]]}}
+                    <span class="whiteFontsize18rpx">月▼</span>
                 </view>
             </picker>
         </view>
-        <!-- echarts -->
-        <view class="a-chart-data">
-            <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+        <view class="a-count-spend">
+            <view class="a-count-title garyFontsize18rpx">
+                {{title}}
+            </view>
+            <view class="a-count-num">
+                {{count}}
+            </view>
+        </view>
+        <view class="a-count-proportion">
+            <view class="a-count-title garyFontsize18rpx">
+                {{title}}
+            </view>
+            <view class="a-count-num">
+                {{count}}
+            </view>
         </view>
     </view>
-    <view class="a-list">
-        <view class="a-list-block">
-            <blockList title="{{food.title}}" count="{{food.count}}" iconPath="{{food.iconPath}}"></blockList>
+    <view class="tab" id="tab">
+        <view class="tab_select">
+            <view class="tab_selects">
+                <view class="tab_selects0 tab_selects1 {{categoryState}}" bindtap="categoryClickFun">
+                    类别报表
+                </view>
+                <view class="tab_selects0 tab_selects2 {{detailState}}" bindtap="detailClickFun">
+                    明细
+                </view>
+            </view>
         </view>
-        <view class="a-list-block">
-            <blockList title="{{travel.title}}" count="{{travel.count}}" iconPath="{{travel.iconPath}}"></blockList>
+        <view class="tabs tabs1" wx:if="{{categoryDis}}">
+            <!-- chart -->
+            <view class="a-chart">
+                <!-- echarts -->
+                <view class="a-chart-data">
+                    <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+                </view>
+            </view>
+            <view class="a-list">
+                <view class="a-list-block">
+                    <blockList title="{{food.title}}" count="{{food.count}}" iconPath="{{food.iconPath}}"></blockList>
+                </view>
+                <view class="a-list-block">
+                    <blockList title="{{travel.title}}" count="{{travel.count}}" iconPath="{{travel.iconPath}}"></blockList>
+                </view>
+                <view class="a-list-block">
+                    <blockList title="{{recreation.title}}" count="{{recreation.count}}" iconPath="{{recreation.iconPath}}"></blockList>
+                </view>
+                <view class="a-list-block">
+                    <blockList title="{{recreation.title}}" count="{{recreation.count}}" iconPath="{{recreation.iconPath}}"></blockList>
+                </view>
+            </view>
         </view>
-        <view class="a-list-block">
-            <blockList title="{{recreation.title}}" count="{{recreation.count}}" iconPath="{{recreation.iconPath}}"></blockList>
+        <view class="tabs tabs2" wx:if="{{detailDis}}">
+            2
         </view>
     </view>
 </view>
