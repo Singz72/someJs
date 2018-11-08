@@ -52,16 +52,19 @@
             </view>
             <view class="a-list">
                 <view class="a-list-block">
-                    <blockList title="{{food.title}}" count="{{food.count}}" iconPath="{{food.iconPath}}"></blockList>
+                    <blockList title="{{food.title}}" count="{{food.count}}" percentage="{{food.percentage}}" iconPath="{{food.iconPath}}"></blockList>
                 </view>
                 <view class="a-list-block">
-                    <blockList title="{{travel.title}}" count="{{travel.count}}" iconPath="{{travel.iconPath}}"></blockList>
+                    <blockList title="{{travel.title}}" count="{{travel.count}}" percentage="{{travel.percentage}}" iconPath="{{travel.iconPath}}"></blockList>
                 </view>
                 <view class="a-list-block">
-                    <blockList title="{{recreation.title}}" count="{{recreation.count}}" iconPath="{{recreation.iconPath}}"></blockList>
+                    <blockList title="{{recreation.title}}" count="{{recreation.count}}" percentage="{{recreation.percentage}}" iconPath="{{recreation.iconPath}}"></blockList>
                 </view>
                 <view class="a-list-block">
-                    <blockList title="{{recreation.title}}" count="{{recreation.count}}" iconPath="{{recreation.iconPath}}"></blockList>
+                    <blockList title="{{recreation.title}}" count="{{recreation.count}}" percentage="{{recreation.percentage}}" iconPath="{{recreation.iconPath}}"></blockList>
+                </view>
+                <view class="a-list-block">
+                    <blockList title="{{recreation.title}}" count="{{recreation.count}}" percentage="{{recreation.percentage}}" iconPath="{{recreation.iconPath}}"></blockList>
                 </view>
             </view>
         </view>

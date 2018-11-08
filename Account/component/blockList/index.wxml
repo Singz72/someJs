@@ -1,16 +1,19 @@
 <view class="blocklist">
     <!-- blocklist=>bl -->
-    <view class="bl-left bl-box">
-        <view class="bl-left-box">
+    <view class="bl-left">
+        <view class="bl-box bl-box-padding bl-left-box-img">
             <image src="{{iconPath}}"></image>
         </view>
-    </view>
-    <view class="bl-right bl-box">
-        <view class="bl-right-box bl-right-top-box">
+        <view class="bl-box bl-box-padding blackfontsize20">
             <view>{{title}}</view>
         </view>
-        <view class="bl-right-box bl-right-bottom-box">
-            <view>¥ {{count}}</view>
+        <view class="bl-box blackfontsize20">
+            <view>{{percentage}}</view>
+        </view>
+    </view>
+    <view class="bl-right">
+        <view class="bl-box blackfontsize20">
+            <view>{{count}}</view>
         </view>
     </view>
 </view>

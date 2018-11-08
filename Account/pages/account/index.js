@@ -10,7 +10,7 @@ Page({
         title: '消费总额',
         dataList: [],
         dataList11: [{
-                value: 30,
+                value: 30.355,
                 name: '饮食'
             },
             {
@@ -50,17 +50,20 @@ Page({
         dateIndex: [],
         food: {
             title: "饮食",
-            count: "12",
+            percentage: "100%",
+            count: "-12.00",
             iconPath: "../../img/UI/icon/a_food_active.png"
         },
         travel: {
             title: "出行",
-            count: "8",
+            percentage: "100%",
+            count: "-8.23",
             iconPath: "../../img/UI/icon/a_car_active.png"
         },
         recreation: {
             title: "娱乐",
-            count: "453",
+            percentage: "100%",
+            count: "-453.45",
             iconPath: "../../img/UI/icon/a_shopping_active.png"
         },
         categoryState: 'tab_selected',
@@ -77,12 +80,12 @@ Page({
         });
         //时间下拉框
         this.setDateArray();
-        //图表初始化
-        this.echartsComponment = this.selectComponent('#mychart-dom-line');
-        //数据初始化
-        this.categoryChangeIconFun(11);
     },
-    onReady: function() {},
+    onReady() {
+        //数据初始化
+        const month = (new Date()).getMonth() + 1;
+        this.categoryChangeIconFun(month);
+    },
     onShow() {},
     categoryClickFun() {
         this.setData({
@@ -91,7 +94,8 @@ Page({
             detailState: '',
             detailDis: false
         });
-        this.categoryChangeIconFun(11);
+        const month = this.data.dateArray[1][this.data.dateIndex[1]];
+        this.categoryChangeIconFun(month);
     },
     detailClickFun() {
         this.setData({
@@ -157,10 +161,8 @@ Page({
         });
 
         if (!this.data.chart) {
-            console.log(1)
             this.init_charts();
         } else {
-            console.log(2)
             this.set_option(this.data.chart);
         }
         let num = this.data.dataList.reduce((sum, { value }) => {
@@ -170,22 +172,7 @@ Page({
     },
     //改变显示的金钱数
     changeTheShowMoney: function(num) {
-        let strNum;
-        num = num + '';
-        if (num.indexOf('.') > -1) {
-            const numArr = num.split('.');
-            const l = numArr[1].length;
-            if (l == 1) {
-                strNum = num + '0';
-            } else if (l > 2) {
-                strNum = numArr[0] + '.' + numArr[1].substring(0, 2);
-            } else {
-                strNum = num;
-            }
-        } else {
-            strNum = num + '.00';
-        }
-
+        let strNum = num.toFixed(2) + '';
         this.setData({
             count: strNum
         })
@@ -193,10 +180,8 @@ Page({
     },
     init_charts: function() {
         const that = this;
-        this.echartsComponment.init((canvas, width, height) => {
-            console.log(width)
-            console.log(height)
-                //再次切换回来时 获取不到dom的宽高
+        //图表初始化
+        this.selectComponent('#mychart-dom-line').init((canvas, width, height) => {
             let echart = echarts.init(canvas, null, {
                 width: width,
                 height: height

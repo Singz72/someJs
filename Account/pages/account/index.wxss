@@ -113,17 +113,21 @@
 
 .a-list {
     width: 100%;
-    padding: 20rpx 10rpx;
+    padding: 0rpx 35rpx;
     box-sizing: border-box;
     display: flex;
-    flex-wrap: wrap;
     background: #fff;
+    flex-direction: column;
+    border-top: 1px solid rgb(228, 228, 228);
+    border-bottom: 2px solid #fff;
 }
 
 .a-list-block {
-    width: 50%;
-    box-sizing: border-box;
-    padding: 20rpx 25rpx;
+    border-bottom: 1px solid rgb(228, 228, 228);
+}
+
+.a-list-block:last-child {
+    border-bottom: none;
 }
 
 

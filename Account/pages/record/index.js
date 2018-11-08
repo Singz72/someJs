@@ -108,7 +108,6 @@ Page({
                     other: data.other.count
                 }
             };
-        console.log(obj);
         wx.setStorage({
             key: 'todayData',
             data: obj

@@ -29,7 +29,7 @@
             "selectedIconPath": "img/UI/icon/user-active.png"
         }],
         "color": "#7f8389",
-        "backgroundColor": "#ffffff",
+        "backgroundColor": "#3a3a3a",
         "selectedColor": "#F6C540",
         "borderStyle": "white"
     },
