@@ -66,10 +66,22 @@ Page({
             count: "-453.45",
             iconPath: "../../img/UI/icon/a_shopping_active.png"
         },
-        categoryState: 'tab_selected',
-        categoryDis: true,
-        detailState: '',
-        detailDis: false
+        other: {
+            title: "一般",
+            percentage: "100%",
+            count: "-50.00",
+            iconPath: "../../img/UI/icon/a_shopping_active.png"
+        },
+        income: {
+            title: "收入",
+            percentage: "100%",
+            count: "4453.45",
+            iconPath: "../../img/UI/icon/a_shopping_active.png"
+        },
+        categoryState: '',
+        categoryDis: false,
+        detailState: 'tab_selected',
+        detailDis: true
     },
     onLoad: function() {
         wx.getStorage({
@@ -83,8 +95,10 @@ Page({
     },
     onReady() {
         //数据初始化
-        const month = (new Date()).getMonth() + 1;
-        this.categoryChangeIconFun(month);
+        if (this.data.categoryDis) {
+            const month = (new Date()).getMonth() + 1;
+            this.categoryChangeIconFun(month);
+        }
     },
     onShow() {},
     categoryClickFun() {

@@ -1,0 +1,71 @@
+.detailBlock {
+    position: relative;
+    box-sizing: border-box;
+    padding: 20rpx 0 0;
+}
+
+.db-overview {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(228, 228, 228);
+    box-sizing: border-box;
+    padding: 0 40rpx 15rpx;
+}
+
+.db-info {
+    display: flex;
+}
+
+.db-pay {
+    padding-right: 15rpx;
+}
+
+.db-item {
+    display: flex;
+    padding: 20rpx 0 0 30rpx;
+    box-sizing: border-box;
+}
+
+.db-icon {
+    width: 85rpx;
+    height: 75rpx;
+    box-sizing: border-box;
+    padding-right: 30rpx;
+    padding-bottom: 20rpx;
+}
+
+.db-icon image {
+    width: 100%;
+    height: 100%;
+}
+
+.db-title {
+    width: calc(100% - 85rpx);
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(228, 228, 228);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20rpx;
+    padding-right: 20rpx;
+    font-size: 30rpx;
+    font-weight: 500;
+    opacity: .8;
+}
+
+.db-detials .db-item:last-child .db-title {
+    border-bottom: none;
+}
+
+
+/* 针对性样式 */
+
+.garyFontsize18rpx {
+    color: rgb(128, 128, 128);
+    font-size: 20rpx;
+}
+
+.whiteFontsize18rpx {
+    color: #fff;
+    font-size: 24rpx;
+}

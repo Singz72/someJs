@@ -1,0 +1,49 @@
+<view class="detailBlock">
+    <!-- detailBlock=>db -->
+    <view class="db-overview garyFontsize18rpx">
+        <view class="db-date">{{_date}}</view>
+        <view class="db-info">
+            <view class="db-pay">支出:{{_pay}}</view>
+            <view class="db-income">收入:{{_income}}</view>
+        </view>
+    </view>
+    <view class="db-detials">
+        <view class="db-item" wx:if='{{_food!=="" }}'>
+            <view class="db-icon">
+                <image src="{{food.iconPath}}"></image>
+            </view>
+            <view class="db-title">
+                <view class="db-text">{{food.title}}</view>
+                <view class="db-count">{{_food}}</view>
+            </view>
+        </view>
+        <view class="db-item" wx:if='{{_travel!=="" }}'>
+            <view class="db-icon">
+                <image src="{{travel.iconPath}}"></image>
+            </view>
+            <view class="db-title">
+                <view class="db-text">{{travel.title}}</view>
+                <view class="db-count">{{_travel}}</view>
+            </view>
+        </view>
+        <view class="db-item" wx:if='{{_recreation!=="" }}'>
+            <view class="db-icon">
+                <image src="{{recreation.iconPath}}"></image>
+            </view>
+            <view class="db-title">
+                <view class="db-text">{{recreation.title}}</view>
+                <view class="db-count">{{_recreation}}</view>
+            </view>
+        </view>
+        <view class="db-item" wx:if='{{_other!=="" }}'>
+            <view class="db-icon">
+                <image src="{{other.iconPath}}"></image>
+            </view>
+            <view class="db-title">
+                <view class="db-text">{{other.title}}</view>
+                <view class="db-count">{{_other}}</view>
+            </view>
+        </view>
+
+    </view>
+</view>

@@ -4,11 +4,11 @@
     <!-- count -->
     <view class="a-count">
         <view class="a-count-date">
-            <picker style="height: 20px;" mode="multiSelector" bindchange="bindPickerDateChange" value="{{dateIndex}}" range="{{dateArray}}">
+            <picker mode="multiSelector" bindchange="bindPickerDateChange" value="{{dateIndex}}" range="{{dateArray}}">
                 <view class="garyFontsize18rpx">
                     {{dateArray[0][dateIndex[0]]}}年
                 </view>
-                <view style="height: 100%;">
+                <view>
                     {{dateArray[1][dateIndex[1]]}}
                     <span class="whiteFontsize18rpx">月▼</span>
                 </view>
@@ -61,15 +61,21 @@
                     <blockList title="{{recreation.title}}" count="{{recreation.count}}" percentage="{{recreation.percentage}}" iconPath="{{recreation.iconPath}}"></blockList>
                 </view>
                 <view class="a-list-block">
-                    <blockList title="{{recreation.title}}" count="{{recreation.count}}" percentage="{{recreation.percentage}}" iconPath="{{recreation.iconPath}}"></blockList>
+                    <blockList title="{{other.title}}" count="{{other.count}}" percentage="{{other.percentage}}" iconPath="{{other.iconPath}}"></blockList>
                 </view>
                 <view class="a-list-block">
-                    <blockList title="{{recreation.title}}" count="{{recreation.count}}" percentage="{{recreation.percentage}}" iconPath="{{recreation.iconPath}}"></blockList>
+                    <blockList title="{{income.title}}" count="{{income.count}}" percentage="{{income.percentage}}" iconPath="{{income.iconPath}}"></blockList>
                 </view>
             </view>
         </view>
         <view class="tabs tabs2" wx:if="{{detailDis}}">
-            2
+            <detailBlock _income="1020.00" _food="-20.00" _travel="-30.00" _recreation="-34.55" _other="-23.00"></detailBlock>
+            <detailBlock _income="1020.00" _food="-20.00" _travel="-30.00" _recreation="-34.55" _other="-23.00"></detailBlock>
+            <detailBlock _income="1020.00" _food="-20.00" _travel="-30.00" _recreation="-34.55" _other="-23.00"></detailBlock>
         </view>
     </view>
 </view>
+
+<!-- 在添加数据时可以再添加备注，
+    显示时备注在括号里显示出来，
+    并且当点击这个消费记录可以在新开的页面看到这个消费情况 -->

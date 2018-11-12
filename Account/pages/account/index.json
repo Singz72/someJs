@@ -1,6 +1,6 @@
 {
     "usingComponents": {
-        "timeHaveIcon": "../../component/timeHaveIcon/index",
+        "detailBlock": "../../component/detailBlock/index",
         "blockList": "../../component/blockList/index",
         "ec-canvas": "../../ec-canvas/ec-canvas"
     },
