@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/account/index",
         "pages/record/index",
+        "pages/account/index",
         "pages/person/index"
     ],
     "window": {

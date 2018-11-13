@@ -13,7 +13,10 @@
                 <image src="{{food.iconPath}}"></image>
             </view>
             <view class="db-title">
-                <view class="db-text">{{food.title}}</view>
+                <view class="db-text">
+                    {{food.title}}
+                    <span class="db-remarks">{{_foodRemarks}}</span>
+                </view>
                 <view class="db-count">{{_food}}</view>
             </view>
         </view>
@@ -22,7 +25,9 @@
                 <image src="{{travel.iconPath}}"></image>
             </view>
             <view class="db-title">
-                <view class="db-text">{{travel.title}}</view>
+                <view class="db-text">
+                    {{travel.title}}
+                    <span class="db-remarks">{{_travelRemarks}}</span></view>
                 <view class="db-count">{{_travel}}</view>
             </view>
         </view>
@@ -31,7 +36,9 @@
                 <image src="{{recreation.iconPath}}"></image>
             </view>
             <view class="db-title">
-                <view class="db-text">{{recreation.title}}</view>
+                <view class="db-text">
+                    {{recreation.title}}
+                    <span class="db-remarks">{{_recreationRemarks}}</span></view>
                 <view class="db-count">{{_recreation}}</view>
             </view>
         </view>
@@ -40,7 +47,9 @@
                 <image src="{{other.iconPath}}"></image>
             </view>
             <view class="db-title">
-                <view class="db-text">{{other.title}}</view>
+                <view class="db-text">
+                    {{other.title}}
+                    <span class="db-remarks">{{_otherRemarks}}</span></view>
                 <view class="db-count">{{_other}}</view>
             </view>
         </view>

@@ -23,34 +23,50 @@ Component({
             type: String,
             value: ""
         },
+        '_foodRemarks': {
+            type: String,
+            value: "无备注信息"
+        },
         '_travel': {
             type: String,
             value: ""
+        },
+        '_travelRemarks': {
+            type: String,
+            value: "无备注信息"
         },
         '_recreation': {
             type: String,
             value: ""
         },
+        '_recreationRemarks': {
+            type: String,
+            value: "无备注信息"
+        },
         '_other': {
             type: String,
             value: ""
         },
+        '_otherRemarks': {
+            type: String,
+            value: "无备注信息"
+        },
     },
     data: {
         food: {
-            title: "饮食快上飞机就看到",
-            iconPath: "../../img/UI/icon/a_food_active.png"
+            title: "饮食",
+            iconPath: "../../img/UI/icon/a_food_active.png",
         },
         travel: {
-            title: "出行赶快给机体健康的",
+            title: "出行",
             iconPath: "../../img/UI/icon/a_car_active.png"
         },
         recreation: {
-            title: "娱乐看 i 人就开始大哭",
+            title: "娱乐",
             iconPath: "../../img/UI/icon/a_shopping_active.png"
         },
         other: {
-            title: "一般收到了恐惧感 i",
+            title: "一般",
             iconPath: "../../img/UI/icon/a_shopping_active.png"
         },
     },

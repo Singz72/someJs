@@ -78,10 +78,12 @@ Page({
             count: "4453.45",
             iconPath: "../../img/UI/icon/a_shopping_active.png"
         },
-        categoryState: '',
-        categoryDis: false,
-        detailState: 'tab_selected',
-        detailDis: true
+        categoryState: 'tab_selected',
+        categoryDis: true,
+        detailState: '',
+        detailDis: false,
+        detailCount: true,
+        detailNoCount: false
     },
     onLoad: function() {
         wx.getStorage({

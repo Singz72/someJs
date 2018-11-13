@@ -32,6 +32,7 @@
 .tab {
     background: #fff;
     position: relative;
+    min-height: calc(100% - 60px);
 }
 
 .tab_select {
@@ -128,6 +129,13 @@
 
 .a-list-block:last-child {
     border-bottom: none;
+}
+
+.a-detailNoCount {
+    height: 200rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 

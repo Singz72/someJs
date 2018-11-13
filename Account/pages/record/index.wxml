@@ -11,14 +11,6 @@
         </picker> -->
         <timeHaveIcon startTime='2017-01-01' endTime="2029-12-31" id="timeHaveIcon" bind:loadDate="bindDateChange"></timeHaveIcon>
     </view>
-    <!-- count -->
-    <view class="r-count">
-        <view class="r-count-text">
-            ¥ {{count}}
-        </view>
-    </view>
-    <!-- editList -->
-    <!-- editLists => els -->
     <view class="r-els">
         <editList iconPath='{{food.icon}}' title="{{food.title}}" value='{{food.count}}' bind:myBlurEditListVal="onGetEditListstateNum"></editList>
         <editList iconPath='{{travel.icon}}' title="{{travel.title}}" value='{{travel.count}}' bind:myBlurEditListVal="onGetEditListstateNum"></editList>

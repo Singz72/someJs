@@ -69,9 +69,14 @@
             </view>
         </view>
         <view class="tabs tabs2" wx:if="{{detailDis}}">
-            <detailBlock _income="1020.00" _food="-20.00" _travel="-30.00" _recreation="-34.55" _other="-23.00"></detailBlock>
-            <detailBlock _income="1020.00" _food="-20.00" _travel="-30.00" _recreation="-34.55" _other="-23.00"></detailBlock>
-            <detailBlock _income="1020.00" _food="-20.00" _travel="-30.00" _recreation="-34.55" _other="-23.00"></detailBlock>
+            <view wx:if="{{detailCount}}">
+                <detailBlock _income="1020.00" _food="-320.00" _travel="-30.00" _recreation="-34.55" _other="-23.00" _foodRemarks="请朋友吃了胖哥俩花了200" _travelRemarks="上海厦门台湾等地旅游" _recreationRemarks="购买荒野大镖客2花掉430"></detailBlock>
+                <detailBlock _income="1020.00" _food="-320.00" _travel="-30.00" _recreation="-34.55" _other="-23.00" _foodRemarks="请朋友吃了胖哥俩花了200" _recreationRemarks="购买荒野大镖客2花掉430" _otherRemarks="上医院体检用掉300"></detailBlock>
+                <detailBlock _income="1020.00" _food="-320.00" _travel="-30.00" _recreation="-34.55" _other="-23.00" _foodRemarks="请朋友吃了胖哥俩花了200" _travelRemarks="上海厦门台湾等地旅游" _otherRemarks="上医院体检用掉300"></detailBlock>
+            </view>
+            <view wx:if="{{detailNoCount}}" class="a-detailNoCount garyFontsize18rpx">
+                无相关信息
+            </view>
         </view>
     </view>
 </view>

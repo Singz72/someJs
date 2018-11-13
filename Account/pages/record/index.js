@@ -65,7 +65,6 @@ Page({
                         [game]: count.game,
                         [other]: count.other,
                     });
-                    that.setCount();
                 }
             }
         })
@@ -83,19 +82,6 @@ Page({
         this.setData({
             [key]: val
         });
-        this.setCount();
-    },
-    setCount() {
-        let data = this.data,
-            sum = data.food.count +
-            data.travel.count +
-            data.game.count +
-            data.other.count;
-
-        this.setData({
-            countNum: sum,
-            count: sum + ''
-        })
     },
     submitForm() {
         let data = this.data,

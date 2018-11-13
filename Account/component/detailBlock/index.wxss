@@ -53,6 +53,11 @@
     opacity: .8;
 }
 
+.db-remarks {
+    font-size: 16rpx;
+    color: rgba(0, 0, 0, .65);
+}
+
 .db-detials .db-item:last-child .db-title {
     border-bottom: none;
 }
@@ -62,7 +67,7 @@
 
 .garyFontsize18rpx {
     color: rgb(128, 128, 128);
-    font-size: 20rpx;
+    font-size: 24rpx;
 }
 
 .whiteFontsize18rpx {
