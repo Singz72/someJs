@@ -1,47 +1,35 @@
 .editlist {
-    width: 650rpx;
-    height: 150rpx;
+    width: 100%;
     margin: auto;
     box-sizing: border-box;
-}
-
-.el-content {
-    height: 100%;
     display: flex;
 }
 
-.el-con-box {
-    display: flex;
-    align-items: center;
-}
-
-.el-icon {
-    margin-left: 26rpx;
-}
-
-.r-date-icon {
-    width: 71rpx;
-    height: 71rpx;
-}
-
-.el-title {
-    margin-left: 40rpx;
-    color: #ffcc33;
-    font-size: 48rpx;
+.el-left {
+    width: 200rpx;
+    box-sizing: border-box;
+    text-align: right;
+    padding: 0 40rpx 0 0;
 }
 
 .el-right {
-    margin-left: 20rpx;
-    padding-right: 16rpx;
+    width: calc(100% - 200rpx);
 }
 
-.r-date-icon-right {
-    width: 16rpx;
-    height: 24rpx;
+.el-input,
+.el-marks,
+.el-tags {
+    width: 80%;
+    box-sizing: border-box;
 }
 
-.el-bottomline {
-    height: 1rpx;
-    background: #ececec;
-    box-shadow: 0 0 20rpx 1rpx #ececec;
+
+/* 特定样式 */
+
+.inputStyle {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20rpx 0 20rpx 10rpx;
+    margin-bottom: 40rpx;
 }

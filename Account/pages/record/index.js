@@ -11,29 +11,33 @@ Page({
         foodIcon: '../../img/UI/icon/meh.png',
         travelTitle: 'Travel',
         travelIcon: '../../img/UI/icon/car.png',
-        gameTitle: 'Gmae',
-        gameIcon: '../../img/UI/icon/trophy.png',
+        recreationTitle: 'recreation',
+        recreationIcon: '../../img/UI/icon/trophy.png',
         otherTitle: 'Other',
         otherIcon: '../../img/UI/icon/read.png',
         food: {
-            title: 'Food',
-            icon: '../../img/UI/icon/meh.png',
-            count: ''
+            title: '饮食',
+            idTitle: 'food',
+            count: '',
+            marks: ''
         },
         travel: {
-            title: 'Travel',
-            icon: '../../img/UI/icon/car.png',
-            count: ''
+            title: '出行',
+            idTitle: 'travel',
+            count: '',
+            marks: ''
         },
-        game: {
-            title: 'Game',
-            icon: '../../img/UI/icon/trophy.png',
-            count: ''
+        recreation: {
+            title: '娱乐',
+            idTitle: 'recreation',
+            count: '',
+            marks: ''
         },
         other: {
-            title: 'Other',
-            icon: '../../img/UI/icon/read.png',
-            count: ''
+            title: '一般',
+            idTitle: 'other',
+            count: '',
+            marks: ''
         }
     },
     onReady: function() {
@@ -52,19 +56,30 @@ Page({
             key: 'todayData',
             success: function(res) {
                 // success
+                console.log(res)
                 const resData = res.data;
                 if (resData.time == today) {
-                    const count = resData.count,
-                        food = `food.count`,
-                        travel = `travel.count`,
-                        game = `game.count`,
-                        other = `other.count`;
+                    const detail = resData.detail,
+                        foodCount = `food.count`,
+                        foodMarks = `food.marks`,
+                        travelCount = `travel.count`,
+                        travelMarks = `food.marks`,
+                        recreationCount = `recreation.count`,
+                        recreationMarks = `food.marks`,
+                        otherCount = `other.count`,
+                        otherMarks = `food.marks`;
                     that.setData({
-                        [food]: count.food,
-                        [travel]: count.travel,
-                        [game]: count.game,
-                        [other]: count.other,
+                        [foodCount]: detail.food.count,
+                        [foodMarks]: detail.food.marks,
+                        [travelCount]: detail.travel.count,
+                        [travelMarks]: detail.travel.marks,
+                        [recreationCount]: detail.recreation.count,
+                        [recreationMarks]: detail.recreation.marks,
+                        [otherCount]: detail.other.count,
+                        [otherMarks]: detail.other.marks,
                     });
+
+                    console.log(this.data)
                 }
             }
         })
@@ -75,23 +90,31 @@ Page({
         })
     },
     onGetEditListstateNum: function(e) {
-        let val = e.detail.val,
-            title = e.detail.title.toLowerCase(),
-            key = `${title}.count`,
-            sum, data;
-        this.setData({
-            [key]: val
-        });
+        let val = e.detail;
+        console.log(val)
+            //赋值
     },
     submitForm() {
         let data = this.data,
             obj = {
                 time: data.date,
-                count: {
-                    food: data.food.count,
-                    travel: data.travel.count,
-                    game: data.game.count,
-                    other: data.other.count
+                detail: {
+                    food: {
+                        count: data.food.count,
+                        marks: data.food.marks
+                    },
+                    travel: {
+                        count: data.travel.count,
+                        marks: data.travel.marks
+                    },
+                    recreation: {
+                        count: data.recreation.count,
+                        marks: data.travel.marks
+                    },
+                    other: {
+                        count: data.other.count,
+                        marks: data.travel.marks
+                    }
                 }
             };
         wx.setStorage({

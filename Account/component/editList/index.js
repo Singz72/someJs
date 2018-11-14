@@ -7,7 +7,7 @@ Component({
      * 用于组件自定义设置
      */
     properties: {
-        'iconPath': {
+        'idTitle': {
             type: String, //必填，目前接受的类型包括：String,Number,Boolean, Object, Array, null（表示任意类型）
             value: "" //可选，默认值，如果页面没传值过来就会使用默认值 
         },
@@ -20,16 +20,26 @@ Component({
             value: 0 //可选，默认值，如果页面没传值过来就会使用默认值 
         }
     },
-    data: {
-        right: "../../img/UI/icon/right.png"
-    },
+    data: {},
     methods: {
-        numToFixed(e) {
-            var myBlurEditListValDetail = {
-                val: e.detail.value - 1 + 1,
-                title: this.data.title
+        getDailyCountDetail(e) {
+            const idText = e.target.id;
+            let dailyCountDetail;
+            if (idText == 'aInput') {
+                dailyCountDetail = {
+                    idTitle: this.data.idTitle,
+                    type: 'count',
+                    value: e.detail.value
+                }
+            } else if (idText == 'aTextArea') {
+                dailyCountDetail = {
+                    idTitle: this.data.idTitle,
+                    type: 'marks',
+                    value: e.detail.value
+                }
             }
-            this.triggerEvent('myBlurEditListVal', myBlurEditListValDetail);
+
+            this.triggerEvent('dailyCount', dailyCountDetail);
         }
     }
 })
