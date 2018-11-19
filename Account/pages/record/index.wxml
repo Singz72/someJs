@@ -12,10 +12,11 @@
         <timeHaveIcon startTime='2017-01-01' endTime="2029-12-31" id="timeHaveIcon" bind:loadDate="bindDateChange"></timeHaveIcon>
     </view>
     <view class="r-els">
-        <editList idTitle="{{food.idTitle}}" title="{{food.title}}" value='{{food.count}}' bind:dailyCount="onGetEditListstateNum"></editList>
-        <editList idTitle="{{travel.idTitle}}" title="{{travel.title}}" value='{{travel.count}}' bind:dailyCount="onGetEditListstateNum"></editList>
-        <editList idTitle="{{recreation.idTitle}}" title="{{recreation.title}}" value='{{recreation.count}}' bind:dailyCount="onGetEditListstateNum"></editList>
-        <editList idTitle="{{other.idTitle}}" title="{{other.title}}" value='{{other.count}}' bind:dailyCount="onGetEditListstateNum"></editList>
+        <editList idTitle="{{food.idTitle}}" title="{{food.title}}" value='{{food.count}}' marks='{{food.marks}}' bind:dailyCount="onGetEditListstateNum"></editList>
+        <editList idTitle="{{travel.idTitle}}" title="{{travel.title}}" value='{{travel.count}}' marks='{{travel.marks}}' bind:dailyCount="onGetEditListstateNum"></editList>
+        <editList idTitle="{{recreation.idTitle}}" title="{{recreation.title}}" value='{{recreation.count}}' marks='{{recreation.marks}}' bind:dailyCount="onGetEditListstateNum"></editList>
+        <editList idTitle="{{other.idTitle}}" title="{{other.title}}" value='{{other.count}}' marks='{{other.marks}}' bind:dailyCount="onGetEditListstateNum"></editList>
+        <editList idTitle="{{income.idTitle}}" title="{{income.title}}" value='{{income.count}}' marks='{{income.marks}}' bind:dailyCount="onGetEditListstateNum"></editList>
     </view>
     <view>
         <button bindtap="submitForm" size="mini">确认</button>

@@ -5,10 +5,10 @@
     </view>
     <view class="el-right">
         <view class="el-input">
-            <input placeholder="0.00" type="number" class="inputStyle" bindblur="getDailyCountDetail" id="aInput" />
+            <input placeholder="0.00" type="number" class="inputStyle" bindblur="getDailyCountDetail" id="aInput" value="{{value}}" />
         </view>
         <view class="el-marks">
-            <textarea placeholder="请填写消费备注" auto-height class="inputStyle" bindblur="getDailyCountDetail" id="aTextArea" />
+            <textarea placeholder="请填写消费备注" auto-height class="inputStyle" bindblur="getDailyCountDetail" id="aTextArea" value="{{marks}}" />
         </view>
         <view class="el-tags"></view>
     </view>

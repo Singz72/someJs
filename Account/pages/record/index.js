@@ -38,13 +38,20 @@ Page({
             idTitle: 'other',
             count: '',
             marks: ''
-        }
+        },
+        income: {
+            title: '收入',
+            idTitle: 'income',
+            count: '',
+            marks: ''
+        },
+        attr: ['food', 'travel', 'recreation', 'other', 'income']
     },
-    onReady: function() {
+    onReady() {
         this.selectComponent('#timeHaveIcon').loadChangeDate();
-        this.setDefaultDate();
+        this.setDefaultData();
     },
-    setDefaultDate() {
+    setDefaultData() {
         let that = this,
             nowDate = new Date(),
             nowYear = nowDate.getFullYear(),
@@ -52,81 +59,71 @@ Page({
             nowDay = nowDate.getDate() + '',
             today = nowYear + '-' + (nowMonth.length < 2 ? '0' + nowMonth : nowMonth) + '-' + (nowDay.length < 2 ? '0' + nowDay : nowDay);
 
+        //模拟请求获取初始值
         wx.getStorage({
             key: 'todayData',
-            success: function(res) {
+            success(res) {
                 // success
-                console.log(res)
-                const resData = res.data;
+                const resData = res.data,
+                    attr = that.data.attr;
                 if (resData.time == today) {
-                    const detail = resData.detail,
-                        foodCount = `food.count`,
-                        foodMarks = `food.marks`,
-                        travelCount = `travel.count`,
-                        travelMarks = `food.marks`,
-                        recreationCount = `recreation.count`,
-                        recreationMarks = `food.marks`,
-                        otherCount = `other.count`,
-                        otherMarks = `food.marks`;
-                    that.setData({
-                        [foodCount]: detail.food.count,
-                        [foodMarks]: detail.food.marks,
-                        [travelCount]: detail.travel.count,
-                        [travelMarks]: detail.travel.marks,
-                        [recreationCount]: detail.recreation.count,
-                        [recreationMarks]: detail.recreation.marks,
-                        [otherCount]: detail.other.count,
-                        [otherMarks]: detail.other.marks,
-                    });
-
-                    console.log(this.data)
+                    const detail = resData.detail;
+                    for (let i = 0, l = attr.length; i < l; i++) {
+                        let type = detail[attr[i]];
+                        that.saveDefaultDetail(attr[i], type.count, type.marks);
+                    }
                 }
             }
         })
     },
-    bindDateChange: function(e) {
+    //单个初识类型设值
+    saveDefaultDetail(attr, count, marks = "无备注信息") {
+        let attrCount = `${attr}.count`,
+            attrMarks = `${attr}.marks`;
+        this.setData({
+            [attrCount]: count,
+            [attrMarks]: marks
+        });
+    },
+    bindDateChange(e) {
         this.setData({
             date: e.detail.value
         })
     },
-    onGetEditListstateNum: function(e) {
+    onGetEditListstateNum(e) {
         let val = e.detail;
-        console.log(val)
-            //赋值
+        //赋值
+        let attrType = `${val.idTitle}.${val.type}`;
+        this.setData({
+            [attrType]: val.value
+        });
     },
     submitForm() {
         let data = this.data,
             obj = {
                 time: data.date,
-                detail: {
-                    food: {
-                        count: data.food.count,
-                        marks: data.food.marks
-                    },
-                    travel: {
-                        count: data.travel.count,
-                        marks: data.travel.marks
-                    },
-                    recreation: {
-                        count: data.recreation.count,
-                        marks: data.travel.marks
-                    },
-                    other: {
-                        count: data.other.count,
-                        marks: data.travel.marks
-                    }
-                }
+                detail: {}
             };
+        const attr = this.data.attr;;
+        for (let i = 0, l = attr.length; i < l; i++) {
+            let { count, marks } = data[attr[i]];
+            obj.detail[attr[i]] = {
+                count,
+                marks
+            };
+        }
+        //模拟存储数据
         wx.setStorage({
             key: 'todayData',
             data: obj
         })
-        wx.request({
-            url: '',
-            data: obj,
-            success() {
-                console.log(ok)
-            }
-        })
+
+        // wx.request({
+        //     url: '',
+        //     data: obj,
+        //     success() {
+        //         console.log(ok)
+        //     }
+        // })
     }
 })

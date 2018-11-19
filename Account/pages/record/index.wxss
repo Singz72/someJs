@@ -1,17 +1,16 @@
 /**index.wxss**/
 
 .main-page {
-    height: 118rpx;
-    background: #ffcc33;
+    background: #fff;
     color: rgba(0, 0, 0, .8);
 }
 
 .r-date {
-    height: 118rpx;
-    font-size: 28rpx;
-    text-align: right;
-    padding-top: 13rpx;
-    padding-right: 63rpx;
+    font-size: 38rpx;
+    box-sizing: border-box;
+    text-align: center;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
 }
 
 .r-date-icon {
@@ -21,7 +20,5 @@
 
 .r-els {
     /* height: 984rpx; */
-    background: #fff;
-    padding-top: 83rpx;
     box-sizing: border-box;
 }
