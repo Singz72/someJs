@@ -148,21 +148,27 @@ Page({
             dateIndex: dateIndex
         })
 
+        function foo(res) {
+            console.log(res)
+        }
+
         wx.request({
-            url: '',
-            data: {
+            url: 'http://www.singz72.com/account/json.php',
+            dataType: {
                 date: date
             },
             method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
             // header: {}, // 设置请求的 header
             success(res) {
                 // success
+                console.log(res)
             },
             fail(res) {
                 console.log(res)
             },
             complete(res) {
-                //假设的数据
+                console.log(res)
+                    //假设的数据
                 const month = dateArray[1][dateIndex[1]];
                 that.categoryChangeIconFun(month)
             }

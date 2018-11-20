@@ -1,9 +1,10 @@
-let obj = {
-    '2018': {}
-}
-
 for (let i = 1, l = 13; i < l; i++) {
-    obj['2018'][i] = {};
+
+    let obj = {
+        "date": `2018-${i<10?"0"+i:i}`,
+        "data": []
+    }
+
     let j = 1,
         k, income = 0;
     if (i == 2) {
@@ -25,38 +26,43 @@ for (let i = 1, l = 13; i < l; i++) {
             recreationM,
             other = (Math.random() * (100 - 5) + 5).toFixed(2) - 1 + 1,
             otherM;
-        if (!food % 2) {
+
+        let foodRandom = Math.round(Math.random() * (12 - 1) + 1),
+            travelRandom = Math.round(Math.random() * (12 - 1) + 1),
+            recreationRandom = Math.round(Math.random() * (12 - 1) + 1),
+            otherRandom = Math.round(Math.random() * (12 - 1) + 1);
+        if (foodRandom < 5) {
             foodM = '点了比较好吃的外卖';
-        } else if (!food % 3) {
+        } else if (foodRandom < 9) {
             foodM = '喝了很多奶茶！';
         } else {
             foodM = '我是真的没有喝可乐！！';
         }
 
-        if (!travel % 2) {
+        if (travelRandom < 5) {
             travelM = '应该坐了地铁';
-        } else if (!travel % 3) {
+        } else if (travelRandom < 9) {
             travelM = '出去玩了一趟';
         } else {
             travelM = '虽然宅在家但也花了路费！！';
         }
 
-        if (!recreation % 2) {
+        if (recreationRandom < 5) {
             recreationM = '买了一款新游戏';
-        } else if (!recreation % 3) {
+        } else if (recreationRandom < 9) {
             recreationM = '去了KTV';
         } else {
             recreationM = '又买皮肤了！！';
         }
 
-        if (!other % 2) {
+        if (otherRandom < 5) {
             otherM = '话费充值';
-        } else if (!other % 3) {
+        } else if (otherRandom < 9) {
             otherM = '买了几本书';
         } else {
             otherM = '又淘宝啦！！！';
         }
-        obj['2018'][i][j] = {
+        obj.data.push({
             'food': {
                 value: food,
                 marks: foodM
@@ -77,8 +83,7 @@ for (let i = 1, l = 13; i < l; i++) {
                 value: income,
                 marks: '工资'
             }
-        }
+        })
     }
+    console.log(JSON.stringify(obj))
 }
-
-console.log(JSON.stringify(obj))

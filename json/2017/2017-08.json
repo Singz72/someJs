@@ -1,0 +1,655 @@
+{
+    "date": "2017-08",
+    "data": [{
+        "food": {
+            "value": 33.78,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 7.05,
+            "marks": "虽然宅在家但也花了路费！！"
+        },
+        "recreation": {
+            "value": 48.38,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 76.31,
+            "marks": "买了几本书"
+        },
+        "income": {
+            "value": 0,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 19.9,
+            "marks": "我是真的没有喝可乐！！"
+        },
+        "travel": {
+            "value": 6.02,
+            "marks": "应该坐了地铁"
+        },
+        "recreation": {
+            "value": 92.63,
+            "marks": "去了KTV"
+        },
+        "other": {
+            "value": 48.33,
+            "marks": "话费充值"
+        },
+        "income": {
+            "value": 0,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 24.66,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 7.7,
+            "marks": "出去玩了一趟"
+        },
+        "recreation": {
+            "value": 84.54,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 15.1,
+            "marks": "买了几本书"
+        },
+        "income": {
+            "value": 0,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 46.1,
+            "marks": "我是真的没有喝可乐！！"
+        },
+        "travel": {
+            "value": 7.17,
+            "marks": "应该坐了地铁"
+        },
+        "recreation": {
+            "value": 82.02,
+            "marks": "买了一款新游戏"
+        },
+        "other": {
+            "value": 89.68,
+            "marks": "买了几本书"
+        },
+        "income": {
+            "value": 0,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 36.06,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 6.72,
+            "marks": "出去玩了一趟"
+        },
+        "recreation": {
+            "value": 97.52,
+            "marks": "买了一款新游戏"
+        },
+        "other": {
+            "value": 87.38,
+            "marks": "话费充值"
+        },
+        "income": {
+            "value": 0,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 37.75,
+            "marks": "我是真的没有喝可乐！！"
+        },
+        "travel": {
+            "value": 6.06,
+            "marks": "虽然宅在家但也花了路费！！"
+        },
+        "recreation": {
+            "value": 39.06,
+            "marks": "去了KTV"
+        },
+        "other": {
+            "value": 27.72,
+            "marks": "话费充值"
+        },
+        "income": {
+            "value": 0,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 33.06,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 7.89,
+            "marks": "虽然宅在家但也花了路费！！"
+        },
+        "recreation": {
+            "value": 61.7,
+            "marks": "买了一款新游戏"
+        },
+        "other": {
+            "value": 12.67,
+            "marks": "话费充值"
+        },
+        "income": {
+            "value": 0,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 30.18,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 7.96,
+            "marks": "虽然宅在家但也花了路费！！"
+        },
+        "recreation": {
+            "value": 29.75,
+            "marks": "买了一款新游戏"
+        },
+        "other": {
+            "value": 97.63,
+            "marks": "又淘宝啦！！！"
+        },
+        "income": {
+            "value": 0,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 44.18,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 7.09,
+            "marks": "出去玩了一趟"
+        },
+        "recreation": {
+            "value": 49.67,
+            "marks": "去了KTV"
+        },
+        "other": {
+            "value": 35.99,
+            "marks": "买了几本书"
+        },
+        "income": {
+            "value": 0,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 48.94,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 7.86,
+            "marks": "出去玩了一趟"
+        },
+        "recreation": {
+            "value": 57.03,
+            "marks": "买了一款新游戏"
+        },
+        "other": {
+            "value": 17.02,
+            "marks": "话费充值"
+        },
+        "income": {
+            "value": 0,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 22.71,
+            "marks": "我是真的没有喝可乐！！"
+        },
+        "travel": {
+            "value": 6.47,
+            "marks": "应该坐了地铁"
+        },
+        "recreation": {
+            "value": 96.15,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 86.78,
+            "marks": "又淘宝啦！！！"
+        },
+        "income": {
+            "value": 0,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 10.62,
+            "marks": "我是真的没有喝可乐！！"
+        },
+        "travel": {
+            "value": 7.6,
+            "marks": "出去玩了一趟"
+        },
+        "recreation": {
+            "value": 92.77,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 57.57,
+            "marks": "又淘宝啦！！！"
+        },
+        "income": {
+            "value": 0,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 10.56,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 6.77,
+            "marks": "出去玩了一趟"
+        },
+        "recreation": {
+            "value": 33.34,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 18.46,
+            "marks": "话费充值"
+        },
+        "income": {
+            "value": 0,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 49.33,
+            "marks": "点了比较好吃的外卖"
+        },
+        "travel": {
+            "value": 7.36,
+            "marks": "虽然宅在家但也花了路费！！"
+        },
+        "recreation": {
+            "value": 55.77,
+            "marks": "去了KTV"
+        },
+        "other": {
+            "value": 82.9,
+            "marks": "又淘宝啦！！！"
+        },
+        "income": {
+            "value": 0,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 41.02,
+            "marks": "点了比较好吃的外卖"
+        },
+        "travel": {
+            "value": 7.35,
+            "marks": "出去玩了一趟"
+        },
+        "recreation": {
+            "value": 22.03,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 74.27,
+            "marks": "又淘宝啦！！！"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 36.18,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 7.67,
+            "marks": "出去玩了一趟"
+        },
+        "recreation": {
+            "value": 71.59,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 26.53,
+            "marks": "买了几本书"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 16.47,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 6.46,
+            "marks": "应该坐了地铁"
+        },
+        "recreation": {
+            "value": 90.99,
+            "marks": "买了一款新游戏"
+        },
+        "other": {
+            "value": 36.75,
+            "marks": "话费充值"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 41.83,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 7.83,
+            "marks": "虽然宅在家但也花了路费！！"
+        },
+        "recreation": {
+            "value": 47.79,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 55.31,
+            "marks": "话费充值"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 13.06,
+            "marks": "点了比较好吃的外卖"
+        },
+        "travel": {
+            "value": 7.65,
+            "marks": "出去玩了一趟"
+        },
+        "recreation": {
+            "value": 65.34,
+            "marks": "去了KTV"
+        },
+        "other": {
+            "value": 89.8,
+            "marks": "话费充值"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 36.73,
+            "marks": "点了比较好吃的外卖"
+        },
+        "travel": {
+            "value": 6.56,
+            "marks": "出去玩了一趟"
+        },
+        "recreation": {
+            "value": 21.56,
+            "marks": "买了一款新游戏"
+        },
+        "other": {
+            "value": 60.11,
+            "marks": "话费充值"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 19.72,
+            "marks": "点了比较好吃的外卖"
+        },
+        "travel": {
+            "value": 7.61,
+            "marks": "出去玩了一趟"
+        },
+        "recreation": {
+            "value": 87.33,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 43.75,
+            "marks": "买了几本书"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 48.31,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 7.64,
+            "marks": "虽然宅在家但也花了路费！！"
+        },
+        "recreation": {
+            "value": 32.93,
+            "marks": "买了一款新游戏"
+        },
+        "other": {
+            "value": 51.17,
+            "marks": "买了几本书"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 24.59,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 6.42,
+            "marks": "出去玩了一趟"
+        },
+        "recreation": {
+            "value": 54.33,
+            "marks": "买了一款新游戏"
+        },
+        "other": {
+            "value": 16,
+            "marks": "又淘宝啦！！！"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 32.59,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 6.31,
+            "marks": "出去玩了一趟"
+        },
+        "recreation": {
+            "value": 26.2,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 47.06,
+            "marks": "话费充值"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 44.78,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 7.65,
+            "marks": "虽然宅在家但也花了路费！！"
+        },
+        "recreation": {
+            "value": 81.06,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 22.81,
+            "marks": "话费充值"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 42.18,
+            "marks": "点了比较好吃的外卖"
+        },
+        "travel": {
+            "value": 7.99,
+            "marks": "虽然宅在家但也花了路费！！"
+        },
+        "recreation": {
+            "value": 94.77,
+            "marks": "去了KTV"
+        },
+        "other": {
+            "value": 40.83,
+            "marks": "买了几本书"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 42.35,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 7.28,
+            "marks": "应该坐了地铁"
+        },
+        "recreation": {
+            "value": 32.96,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 22.85,
+            "marks": "话费充值"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 11.8,
+            "marks": "我是真的没有喝可乐！！"
+        },
+        "travel": {
+            "value": 7.46,
+            "marks": "出去玩了一趟"
+        },
+        "recreation": {
+            "value": 79,
+            "marks": "买了一款新游戏"
+        },
+        "other": {
+            "value": 46.04,
+            "marks": "买了几本书"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 39.73,
+            "marks": "我是真的没有喝可乐！！"
+        },
+        "travel": {
+            "value": 7.28,
+            "marks": "应该坐了地铁"
+        },
+        "recreation": {
+            "value": 71.67,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 75.19,
+            "marks": "买了几本书"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 36.05,
+            "marks": "点了比较好吃的外卖"
+        },
+        "travel": {
+            "value": 6.92,
+            "marks": "虽然宅在家但也花了路费！！"
+        },
+        "recreation": {
+            "value": 36.57,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 15.26,
+            "marks": "买了几本书"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }, {
+        "food": {
+            "value": 20.78,
+            "marks": "喝了很多奶茶！"
+        },
+        "travel": {
+            "value": 7.38,
+            "marks": "应该坐了地铁"
+        },
+        "recreation": {
+            "value": 57.96,
+            "marks": "又买皮肤了！！"
+        },
+        "other": {
+            "value": 8.07,
+            "marks": "话费充值"
+        },
+        "income": {
+            "value": 5000,
+            "marks": "工资"
+        }
+    }]
+}
