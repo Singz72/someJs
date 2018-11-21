@@ -153,7 +153,7 @@ Page({
         }
 
         wx.request({
-            url: 'http://www.singz72.com/account/json.php',
+            url: 'https://www.singz72.com/account/json/2017/2017-02.json',
             dataType: {
                 date: date
             },
@@ -161,14 +161,13 @@ Page({
             // header: {}, // 设置请求的 header
             success(res) {
                 // success
-                console.log(res)
+                console.log(JSON.parse(res.data))
             },
             fail(res) {
                 console.log(res)
             },
             complete(res) {
-                console.log(res)
-                    //假设的数据
+                //假设的数据
                 const month = dateArray[1][dateIndex[1]];
                 that.categoryChangeIconFun(month)
             }
