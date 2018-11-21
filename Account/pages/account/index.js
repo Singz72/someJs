@@ -6,76 +6,43 @@ const app = getApp();
 
 Page({
     data: {
-        count: '',
-        title: '消费总额',
-        dataList: [],
-        dataList11: [{
-                value: 30.355,
-                name: '饮食'
-            },
-            {
-                value: 8,
-                name: '出行'
-            },
-            {
-                value: 20,
-                name: '娱乐'
-            },
-            {
-                value: 10,
-                name: '一般'
-            }
-        ],
-        dataList12: [{
-                value: 34,
-                name: '饮食'
-            },
-            {
-                value: 120,
-                name: '出行'
-            },
-            {
-                value: 10,
-                name: '娱乐'
-            },
-            {
-                value: 50,
-                name: '一般'
-            }
-        ],
         ec: {
             lazyLoad: true
         },
+        count: '', //消费总额
+        title: '消费总额',
+        dataListForEcharts: [],
+        dataList: [],
         dateArray: [],
         dateIndex: [],
         food: {
             title: "饮食",
             percentage: "100%",
-            count: "-12.00",
+            count: 0,
             iconPath: "../../img/UI/icon/a_food_active.png"
         },
         travel: {
             title: "出行",
             percentage: "100%",
-            count: "-8.23",
+            count: 0,
             iconPath: "../../img/UI/icon/a_car_active.png"
         },
         recreation: {
             title: "娱乐",
             percentage: "100%",
-            count: "-453.45",
+            count: 0,
             iconPath: "../../img/UI/icon/a_shopping_active.png"
         },
         other: {
             title: "一般",
             percentage: "100%",
-            count: "-50.00",
+            count: 0,
             iconPath: "../../img/UI/icon/a_shopping_active.png"
         },
         income: {
             title: "收入",
-            percentage: "100%",
-            count: "4453.45",
+            percentage: "",
+            count: 0,
             iconPath: "../../img/UI/icon/a_shopping_active.png"
         },
         categoryState: 'tab_selected',
@@ -86,23 +53,21 @@ Page({
         detailNoCount: false
     },
     onLoad: function() {
+        //时间下拉框
+        this.setDateArray();
         wx.getStorage({
             key: 'todayData',
             success(res) {
                 // console.log(res.data)
             }
         });
-        //时间下拉框
-        this.setDateArray();
     },
     onReady() {
-        //数据初始化
-        if (this.data.categoryDis) {
-            const month = (new Date()).getMonth() + 1;
-            this.categoryChangeIconFun(month);
-        }
+        this.refreshData((new Date()).getFullYear(), (new Date()).getMonth() + 1);
     },
-    onShow() {},
+    onShow() {
+        this.refreshPage();
+    },
     categoryClickFun() {
         this.setData({
             categoryState: 'tab_selected',
@@ -110,8 +75,7 @@ Page({
             detailState: '',
             detailDis: false
         });
-        const month = this.data.dateArray[1][this.data.dateIndex[1]];
-        this.categoryChangeIconFun(month);
+        this.refreshPage();
     },
     detailClickFun() {
         this.setData({
@@ -139,57 +103,124 @@ Page({
             dateIndex: [nowYear - 1989, nowMonth]
         })
     },
+    //选择时间后调用函数
     bindPickerDateChange(e) {
         const that = this,
             dateArray = this.data.dateArray,
-            dateIndex = [e.detail.value[0], e.detail.value[1]],
-            date = dateArray[0][dateIndex[0]] + '-' + dateArray[1][dateIndex[1]];
+            dateIndex = [e.detail.value[0], e.detail.value[1]];
         this.setData({
             dateIndex: dateIndex
         })
 
-        function foo(res) {
-            console.log(res)
-        }
+        this.refreshData(dateArray[0][dateIndex[0]], dateArray[1][dateIndex[1]]);
+        this.refreshPage();
 
-        wx.request({
-            url: 'https://www.singz72.com/account/json/2017/2017-02.json',
-            dataType: {
-                date: date
-            },
-            method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-            // header: {}, // 设置请求的 header
-            success(res) {
-                // success
-                console.log(JSON.parse(res.data))
-            },
-            fail(res) {
-                console.log(res)
-            },
-            complete(res) {
-                //假设的数据
-                const month = dateArray[1][dateIndex[1]];
-                that.categoryChangeIconFun(month)
-            }
-        })
     },
-    categoryChangeIconFun: function(val) {
-
-        //重新加载数据
-        const dataList = `dataList${val}`;
+    dealDataForchart(data) {
+        let foodData = 0,
+            travelData = 0,
+            recreationData = 0,
+            otherData = 0,
+            income = 0,
+            incomeCount = `income.count`,
+            i = 0,
+            l = data.length;
+        for (; i < l; i++) {
+            foodData += data[i].food.value;
+            travelData += data[i].travel.value;
+            recreationData += data[i].recreation.value;
+            otherData += data[i].other.value;
+            income += data[i].income.value;
+        }
+        foodData = foodData.toFixed(2);
+        travelData = travelData.toFixed(2);
+        recreationData = recreationData.toFixed(2);
+        otherData = otherData.toFixed(2);
+        income = income.toFixed(2);
         this.setData({
-            dataList: this.data[dataList]
+            dataList: data,
+            dataListForEcharts: [{
+                    value: foodData,
+                    name: '饮食'
+                },
+                {
+                    value: travelData,
+                    name: '出行'
+                },
+                {
+                    value: recreationData,
+                    name: '娱乐'
+                },
+                {
+                    value: otherData,
+                    name: '一般'
+                }
+            ],
+            [`food.count`]: -foodData,
+            [`travel.count`]: -travelData,
+            [`recreation.count`]: -recreationData,
+            [`other.count`]: -otherData,
+            [`income.count`]: income
+        })
+        console.log(this.data);
+    },
+    refreshData(year, month) {
+        //数据重载
+        this.accountRequest(year, month, (arg) => {
+            let dealDataForchart = this.dealDataForchart;
+            wx.setStorage({
+                key: arg.date,
+                data: arg.data,
+                success(res) {
+                    // success
+                    if (res.errMsg === "setStorage:ok") {
+                        console.log(arg)
+                        dealDataForchart(arg.data);
+                    }
+                }
+            })
         });
-
+    },
+    refreshPage() {
+        //UI渲染
         if (!this.data.chart) {
             this.init_charts();
         } else {
             this.set_option(this.data.chart);
         }
-        let num = this.data.dataList.reduce((sum, { value }) => {
+        let num = this.data.dataList.reduce((sum, {
+            value
+        }) => {
             return sum + value;
         }, 0)
         this.changeTheShowMoney(num);
+    },
+    accountRequest(year, month, successFun, failFun, completeFun) {
+        wx.request({
+            url: `https://www.singz72.com/account/json/${year}/${year}-${month.length<2?'0'+month:month}.json`,
+            method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+            // header: {}, // 设置请求的 header
+            success(res) {
+                // success
+                if (successFun) {
+                    if (typeof res.data === String) {
+                        successFun(JSON.parse(res.data));
+                    } else {
+                        successFun(res.data);
+                    }
+                }
+            },
+            fail(res) {
+                if (failFun) {
+                    failFun(res);
+                }
+            },
+            complete(res) {
+                if (completeFun) {
+                    completeFun(res);
+                }
+            }
+        })
     },
     //改变显示的金钱数
     changeTheShowMoney: function(num) {
