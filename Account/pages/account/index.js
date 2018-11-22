@@ -12,7 +12,7 @@ Page({
         count: '', //消费总额
         title: '消费总额',
         dataListForEcharts: [],
-        dataList: [],
+        dataList: [], //月消费情况
         dateArray: [],
         dateIndex: [],
         food: {
@@ -113,16 +113,18 @@ Page({
         })
 
         this.refreshData(dateArray[0][dateIndex[0]], dateArray[1][dateIndex[1]]);
-        this.refreshPage();
-
     },
     dealDataForchart(data) {
-        let foodData = 0,
+        let totalData,
+            foodData = 0,
             travelData = 0,
             recreationData = 0,
             otherData = 0,
+            foodPer,
+            travelPer,
+            recreationPer,
+            otherPer,
             income = 0,
-            incomeCount = `income.count`,
             i = 0,
             l = data.length;
         for (; i < l; i++) {
@@ -132,12 +134,18 @@ Page({
             otherData += data[i].other.value;
             income += data[i].income.value;
         }
-        foodData = foodData.toFixed(2);
-        travelData = travelData.toFixed(2);
-        recreationData = recreationData.toFixed(2);
-        otherData = otherData.toFixed(2);
-        income = income.toFixed(2);
+        foodData = Math.round(foodData * 100) / 100;
+        travelData = Math.round(travelData * 100) / 100;
+        recreationData = Math.round(recreationData * 100) / 100;
+        otherData = Math.round(otherData * 100) / 100;
+        income = Math.round(income * 100) / 100;
+        totalData = foodData + travelData + recreationData + otherData;
+        foodPer = Math.round(foodData / totalData * 10000) / 100 + "%";
+        travelPer = Math.round(travelData / totalData * 10000) / 100 + "%";
+        recreationPer = Math.round(recreationData / totalData * 10000) / 100 + "%";
+        otherPer = Math.round(otherData / totalData * 10000) / 100 + "%";
         this.setData({
+            count: totalData.toFixed(2),
             dataList: data,
             dataListForEcharts: [{
                     value: foodData,
@@ -156,26 +164,31 @@ Page({
                     name: '一般'
                 }
             ],
+            // percentage
             [`food.count`]: -foodData,
             [`travel.count`]: -travelData,
             [`recreation.count`]: -recreationData,
             [`other.count`]: -otherData,
-            [`income.count`]: income
-        })
-        console.log(this.data);
+            [`income.count`]: income,
+            [`food.percentage`]: foodPer,
+            [`travel.percentage`]: travelPer,
+            [`recreation.percentage`]: recreationPer,
+            [`other.percentage`]: otherPer
+        });
     },
     refreshData(year, month) {
         //数据重载
         this.accountRequest(year, month, (arg) => {
             let dealDataForchart = this.dealDataForchart;
+            let refreshPage = this.refreshPage;
             wx.setStorage({
                 key: arg.date,
                 data: arg.data,
                 success(res) {
                     // success
                     if (res.errMsg === "setStorage:ok") {
-                        console.log(arg)
                         dealDataForchart(arg.data);
+                        refreshPage();
                     }
                 }
             })
@@ -183,68 +196,18 @@ Page({
     },
     refreshPage() {
         //UI渲染
-        if (!this.data.chart) {
-            this.init_charts();
-        } else {
-            this.set_option(this.data.chart);
-        }
-        let num = this.data.dataList.reduce((sum, {
-            value
-        }) => {
-            return sum + value;
-        }, 0)
-        this.changeTheShowMoney(num);
-    },
-    accountRequest(year, month, successFun, failFun, completeFun) {
-        wx.request({
-            url: `https://www.singz72.com/account/json/${year}/${year}-${month.length<2?'0'+month:month}.json`,
-            method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-            // header: {}, // 设置请求的 header
-            success(res) {
-                // success
-                if (successFun) {
-                    if (typeof res.data === String) {
-                        successFun(JSON.parse(res.data));
-                    } else {
-                        successFun(res.data);
-                    }
-                }
-            },
-            fail(res) {
-                if (failFun) {
-                    failFun(res);
-                }
-            },
-            complete(res) {
-                if (completeFun) {
-                    completeFun(res);
-                }
-            }
-        })
-    },
-    //改变显示的金钱数
-    changeTheShowMoney: function(num) {
-        let strNum = num.toFixed(2) + '';
-        this.setData({
-            count: strNum
-        })
-        return strNum;
+        this.init_charts();
     },
     init_charts: function() {
-        const that = this;
         //图表初始化
         this.selectComponent('#mychart-dom-line').init((canvas, width, height) => {
             let echart = echarts.init(canvas, null, {
                 width: width,
                 height: height
             });
-            that.set_option(echart);
+            echart.setOption(this.get_option(this.data.dataListForEcharts));
             return echart;
         })
-    },
-    set_option: function(chart) {
-        // chart.clear();
-        chart.setOption(this.get_option(this.data.dataList));
     },
     //图表配置
     get_option: function(dataList) {
@@ -272,5 +235,33 @@ Page({
             }]
         };
         return option
-    }
+    },
+    //请求-包装
+    accountRequest(year, month, successFun, failFun, completeFun) {
+        wx.request({
+            url: `https://www.singz72.com/account/json/${year}/${year}-${(month+'').length<2?'0'+month:month}.json`,
+            method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+            // header: {}, // 设置请求的 header
+            success(res) {
+                // success
+                if (successFun) {
+                    if (typeof res.data === String) {
+                        successFun(JSON.parse(res.data));
+                    } else {
+                        successFun(res.data);
+                    }
+                }
+            },
+            fail(res) {
+                if (failFun) {
+                    failFun(res);
+                }
+            },
+            complete(res) {
+                if (completeFun) {
+                    completeFun(res);
+                }
+            }
+        })
+    },
 })
