@@ -24,10 +24,10 @@
         </view>
         <view class="a-count-proportion">
             <view class="a-count-title garyFontsize18rpx">
-                {{title}}
+                {{lastCountTitle}}
             </view>
             <view class="a-count-num">
-                {{count}}
+                {{nowLastPer}}
             </view>
         </view>
     </view>

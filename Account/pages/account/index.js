@@ -12,9 +12,12 @@ Page({
         count: '', //消费总额
         title: '消费总额',
         dataListForEcharts: [],
-        dataList: [], //月消费情况
+        dataList: [], //当月消费明细
         dateArray: [],
         dateIndex: [],
+        lastCount: '',
+        nowLastPer: '', //当月目前消费减去上月消费后的占上月消费总额的比例
+        lastCountTitle: '相比上月支出',
         food: {
             title: "饮食",
             percentage: "100%",
@@ -94,13 +97,13 @@ Page({
         for (let i = 0; i < 12; i++) {
             monthArr.push((i + 1));
         }
-        for (let j = 1989; j < 2099; j++) {
+        for (let j = 2017; j < 2019; j++) {
             yearArr.push(j)
         }
 
         this.setData({
             dateArray: [yearArr, monthArr],
-            dateIndex: [nowYear - 1989, nowMonth]
+            dateIndex: [nowYear - 2017, nowMonth]
         })
     },
     //选择时间后调用函数
@@ -114,36 +117,44 @@ Page({
 
         this.refreshData(dateArray[0][dateIndex[0]], dateArray[1][dateIndex[1]]);
     },
+    numTotalCount(data) {
+        let obj = {},
+            arr = ['food', 'travel', 'recreation', 'other', 'income'],
+            i = 0,
+            l = data.length,
+            k = arr.length,
+            num100 = 100;
+        for (; i < l; i++) {
+            for (let j = 0; j < k; j++) {
+                let str = arr[j],
+                    strs = `${str}Data`;
+                if (!obj[strs]) {
+                    obj[strs] = 0;
+                }
+                obj[strs] += Math.round(data[i][str].value * num100) / num100;
+            }
+        }
+        obj.totalData = obj.foodData + obj.travelData + obj.recreationData + obj.otherData;
+
+        return obj
+    },
     dealDataForchart(data) {
-        let totalData,
-            foodData = 0,
-            travelData = 0,
-            recreationData = 0,
-            otherData = 0,
-            foodPer,
+        let foodPer,
             travelPer,
             recreationPer,
-            otherPer,
-            income = 0,
-            i = 0,
-            l = data.length;
-        for (; i < l; i++) {
-            foodData += data[i].food.value;
-            travelData += data[i].travel.value;
-            recreationData += data[i].recreation.value;
-            otherData += data[i].other.value;
-            income += data[i].income.value;
-        }
-        foodData = Math.round(foodData * 100) / 100;
-        travelData = Math.round(travelData * 100) / 100;
-        recreationData = Math.round(recreationData * 100) / 100;
-        otherData = Math.round(otherData * 100) / 100;
-        income = Math.round(income * 100) / 100;
-        totalData = foodData + travelData + recreationData + otherData;
-        foodPer = Math.round(foodData / totalData * 10000) / 100 + "%";
-        travelPer = Math.round(travelData / totalData * 10000) / 100 + "%";
-        recreationPer = Math.round(recreationData / totalData * 10000) / 100 + "%";
-        otherPer = Math.round(otherData / totalData * 10000) / 100 + "%";
+            otherPer;
+
+        const {
+            foodData,
+            travelData,
+            recreationData,
+            otherData,
+            incomeData,
+            totalData
+        } = this.numTotalCount(data),
+            num100 = 100,
+            num10000 = 10000;
+
         this.setData({
             count: totalData.toFixed(2),
             dataList: data,
@@ -165,38 +176,94 @@ Page({
                 }
             ],
             // percentage
-            [`food.count`]: -foodData,
-            [`travel.count`]: -travelData,
-            [`recreation.count`]: -recreationData,
-            [`other.count`]: -otherData,
-            [`income.count`]: income,
-            [`food.percentage`]: foodPer,
-            [`travel.percentage`]: travelPer,
-            [`recreation.percentage`]: recreationPer,
-            [`other.percentage`]: otherPer
+            [`food.count`]: -Math.round(foodData * num100) / num100,
+            [`travel.count`]: -Math.round(travelData * num100) / num100,
+            [`recreation.count`]: -Math.round(recreationData * num100) / num100,
+            [`other.count`]: -Math.round(otherData * num100) / num100,
+            [`income.count`]: Math.round(incomeData * num100) / num100,
+            [`food.percentage`]: Math.round(foodData / totalData * num10000) / num100 + "%",
+            [`travel.percentage`]: Math.round(travelData / totalData * num10000) / num100 + "%",
+            [`recreation.percentage`]: Math.round(recreationData / totalData * num10000) / num100 + "%",
+            [`other.percentage`]: Math.round(otherData / totalData * num10000) / num100 + "%"
         });
     },
     refreshData(year, month) {
-        //数据重载
-        this.accountRequest(year, month, (arg) => {
-            let dealDataForchart = this.dealDataForchart;
-            let refreshPage = this.refreshPage;
-            wx.setStorage({
-                key: arg.date,
-                data: arg.data,
+        let accountRequest = this.accountRequest;
+        let dealDataForchart = this.dealDataForchart;
+        let dealLastMonthDetail = this.dealLastMonthDetail;
+        let refreshPage = this.refreshPage;
+        wx.getStorage({
+                key: `${year}-${month}`,
                 success(res) {
-                    // success
-                    if (res.errMsg === "setStorage:ok") {
-                        dealDataForchart(arg.data);
+                    if (res.errMsg === "getStorage:ok") {
+                        dealDataForchart(res.data);
+                        dealLastMonthDetail(year, month);
                         refreshPage();
+                    }
+                },
+                fail(res) {
+                    if (res.errMsg === "getStorage:fail data not found") {
+                        accountRequest(year, month, (arg) => {
+                            wx.setStorage({
+                                key: arg.date,
+                                data: arg.data,
+                                success(res) {
+                                    // success
+                                    if (res.errMsg === "setStorage:ok") {
+                                        dealDataForchart(arg.data);
+                                        dealLastMonthDetail(year, month);
+                                        refreshPage();
+                                    }
+                                }
+                            })
+                        });
                     }
                 }
             })
-        });
+            //数据重载
     },
     refreshPage() {
         //UI渲染
         this.init_charts();
+    },
+    //保存上月消费情况
+    dealLastMonthDetail(year, month) {
+        let setNowLastPer = this.setNowLastPer,
+            accountRequest = this.accountRequest;
+        wx.getStorage({
+            key: `${year}-${month-1}`,
+            success(res) {
+                if (res.errMsg === "getStorage:ok") {
+                    setNowLastPer(res.data);
+                }
+            },
+            fail(res) {
+                if (res.errMsg === "getStorage:fail data not found") {
+                    accountRequest(year, month - 1, (arg) => {
+                        wx.setStorage({
+                            key: arg.date,
+                            data: arg.data,
+                            success(res) {
+                                // success
+                                if (res.errMsg === "setStorage:ok") {
+                                    setNowLastPer(arg.data);
+                                }
+                            }
+                        })
+                    });
+                }
+            }
+        })
+    },
+    setNowLastPer(data) {
+        const {
+            totalData
+        } = this.numTotalCount(data),
+            count = this.data.count;
+        this.setData({
+            lastCount: totalData,
+            nowLastPer: Math.round((count - totalData) / totalData * 10000) / 100 + "%"
+        })
     },
     init_charts: function() {
         //图表初始化
