@@ -1,8 +1,0 @@
-{
-    "usingComponents": {
-        "timeHaveIcon": "../../component/timeHaveIcon/index",
-        "blockList": "../../component/blockList/index",
-        "ec-canvas": "../../ec-canvas/ec-canvas"
-    },
-    "navigationBarTitleText": "消费查询"
-}

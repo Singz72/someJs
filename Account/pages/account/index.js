@@ -230,6 +230,10 @@ Page({
     dealLastMonthDetail(year, month) {
         let setNowLastPer = this.setNowLastPer,
             accountRequest = this.accountRequest;
+        if (month - 1 == 0) {
+            year = year - 1;
+            month = 13;
+        }
         wx.getStorage({
             key: `${year}-${month-1}`,
             success(res) {
